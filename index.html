@@ -40,7 +40,7 @@ h1{font-size:27px;color:#c04478;margin:12px 0}
 .wheel-sub{font-size:14px;color:#a66b86;line-height:1.9;margin-bottom:18px}
 .wheel-wrap{width:290px;height:290px;max-width:100%;margin:25px auto 20px;position:relative}
 .wheel{width:100%;height:100%;border-radius:50%;border:7px solid white;box-shadow:0 8px 25px #a34d7740;position:relative;background:conic-gradient(#f5a6c8 0deg 45deg,#d9b5f2 45deg 90deg,#ffc8a8 90deg 135deg,#f7a9b8 135deg 180deg,#b9d8f5 180deg 225deg,#f4c5df 225deg 270deg,#c9b6f3 270deg 315deg,#f7d49a 315deg 360deg);transition:transform 5s cubic-bezier(.12,.72,.12,1);overflow:hidden}
-.wheel-label{position:absolute;top:50%;left:50%;width:75px;margin-left:-37.5px;margin-top:-12px;text-align:center;font-size:12px;font-weight:bold;color:#71334f;transform:rotate(var(--angle)) translateY(-105px) rotate(var(--back));pointer-events:none}
+.wheel-label{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:62px;min-height:32px;display:flex;align-items:center;justify-content:center;text-align:center;font-size:10px;font-weight:800;line-height:1.35;color:#71334f;text-shadow:0 1px 0 #ffffff99;white-space:normal;overflow-wrap:anywhere;pointer-events:none;padding:2px}
 .wheel-pointer{position:absolute;z-index:3;top:-15px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:15px solid transparent;border-right:15px solid transparent;border-top:30px solid #c04478;filter:drop-shadow(0 3px 3px #71334f55)}
 .wheel-center{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;border:5px solid white;border-radius:50%;background:#c04478;color:white;display:flex;align-items:center;justify-content:center;font-size:25px;box-shadow:0 3px 12px #71334f44;pointer-events:none}
 .wheel-btn{width:100%;border:0;border-radius:16px;padding:15px;background:linear-gradient(135deg,#c04478,#e879aa);color:white;font-size:17px;font-weight:bold;cursor:pointer;box-shadow:0 5px 15px #c0447840;transition:.2s}
@@ -52,17 +52,29 @@ h1{font-size:27px;color:#c04478;margin:12px 0}
 .wheel-result h3{color:#c04478;margin:0 0 8px}
 .wheel-result p{font-size:17px;margin:0}
 .wheel-count{font-size:12px;color:#a66b86;margin-top:12px}
-@media(max-width:380px){.card,.wheel-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{transform:rotate(var(--angle)) translateY(-92px) rotate(var(--back))}}
+@media(max-width:380px){.card,.wheel-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{width:55px;font-size:9px;min-height:30px}}
 @media(prefers-reduced-motion:reduce){.falling-petal{display:none}.touch-heart,.touch-sparkle,.touch-ripple{animation-duration:.3s}}
 </style></head><body>
 
 <main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main>
 
-<!-- قسم العجلة الجديد مستقل عن الرسائل وFirebase -->
 <section class="wheel-section">
 <h2>🎡 عجلة المفاجآت بتاعتك</h2>
 <div class="wheel-sub">كل يوم ليكي لفة واحدة، شوفي النهارده مخبيلك إيه ❤️</div>
-<div class="wheel-wrap"><div class="wheel-pointer"></div><div class="wheel" id="wheel"><span class="wheel-label" style="--angle:0deg;--back:0deg">❤️ الحب</span><span class="wheel-label" style="--angle:45deg;--back:-45deg">😂 الضحك</span><span class="wheel-label" style="--angle:90deg;--back:-90deg">🎁 مفاجآت</span><span class="wheel-label" style="--angle:135deg;--back:-135deg">📸 صور</span><span class="wheel-label" style="--angle:180deg;--back:-180deg">💌 رسائل</span><span class="wheel-label" style="--angle:225deg;--back:-225deg">🧠 أسئلة</span><span class="wheel-label" style="--angle:270deg;--back:-270deg">🥰 رومانسية</span><span class="wheel-label" style="--angle:315deg;--back:-315deg">✨ متنوعة</span></div><div class="wheel-center">💗</div></div>
+<div class="wheel-wrap">
+<div class="wheel-pointer"></div>
+<div class="wheel" id="wheel">
+<span class="wheel-label" style="--x:62.4%;--y:19.7%">❤️ الحب</span>
+<span class="wheel-label" style="--x:80.3%;--y:37.6%">😂 الضحك</span>
+<span class="wheel-label" style="--x:80.3%;--y:62.4%">🎁 المفاجآت</span>
+<span class="wheel-label" style="--x:62.4%;--y:80.3%">📸 الصور</span>
+<span class="wheel-label" style="--x:37.6%;--y:80.3%">💌 الرسائل</span>
+<span class="wheel-label" style="--x:19.7%;--y:62.4%">🧠 الأسئلة</span>
+<span class="wheel-label" style="--x:19.7%;--y:37.6%">🥰 رومانسية</span>
+<span class="wheel-label" style="--x:37.6%;--y:19.7%">✨ متنوعة</span>
+</div>
+<div class="wheel-center">💗</div>
+</div>
 <button class="wheel-btn" id="spinButton">لفّي العجلة 🎀</button>
 <div class="wheel-status" id="wheelStatus"></div>
 <div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div>
@@ -133,7 +145,7 @@ const messages=[
 `وزتي يا روحي 💌
 خلي عندك أمل في كل حاجة حلوة بتسعي ليها، حتى لو الطريق محتاج صبر. كل خطوة بتتعلمي منها حاجة، وكل محاولة بتقربك من اللي نفسك فيه. متستسلميش للإحباط لو حاجة متظبطتش من أول مرة، إنتي تقدري تتعلمي وتحاولي تاني. ربنا يسهّل طريقك ويكرمك ويجبر بخاطرك، وأنا بتمنالك النجاح من كل قلبي ❤️`,
 `يا وزة 🥹💕
-بتمنالك الصحة والستر والنجاح وراحة البال، وربنا يحفظك ويبارك في عمرك ويكتبلك أيام مليانة خير وفرحة. نفسي كل مرة تفتحي الرسالة دي تكوني أحسن من اليوم اللي قبله، وتكون فيه حاجة جديدة فرحتك. خدي بالك من نفسك ومتنساش تفرحي بالحاجات الصغيرة، لأنها ساعات بتكون أجمل حاجة في اليوم. بحبك يا وزتي ❤️`,
+بتمنالك الصحة والستر والنجاح وراحة البال، وربنا يحفظك ويبارك في عمرك ويكتبلك أيام مليانة خير وفرحة. نفسي كل مرة تفتحي رسالة من دول تكوني أحسن من اليوم اللي قبله، وتكون فيه حاجة جديدة فرحتك. خدي بالك من نفسك ومتنساش تفرحي بالحاجات الصغيرة، لأنها ساعات بتكون أجمل حاجة في اليوم. بحبك يا وزتي ❤️`,
 `يا وزتي 🍓
 بحب لما تكوني على طبيعتك وتضحكي من قلبك وتحكيلي اللي جواكي من غير تكلف. متحسيش إنك محتاجة تكوني مثالية عشان تتحبي؛ إنتي إنسانة ليها قيمة كبيرة، بتفاصيلها الحلوة وحتى بأيامها اللي مش بتكون فيها بأفضل حال. نفسي دايمًا تكوني مرتاحة ومتصالحة مع نفسك وفخورة بيها. ربنا يفرح قلبك ويحفظك يا حبيبتي 💗`,
 `يا حبيبتي يا وزة ❤️
@@ -191,7 +203,6 @@ async function startApp(){render();try{await signInAnonymously(auth);await refre
 function scheduleMidnightUpdate(){const now=new Date(),tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,1);setTimeout(async()=>{render();await refreshReadStatus();scheduleMidnightUpdate()},tomorrow-now)}scheduleMidnightUpdate();
 </script>
 
-<!-- سكريبت العجلة مستقل ولا يتعامل مع Firebase -->
 <script>
 const wheelChallenges=[
 {name:"❤️ تحديات الحب",items:["قولي 3 حاجات بتحبيها في شخصيتي ❤️","ابعتيلي رسالة حب من غير ما تستخدمي كلمة بحبك 💌","احكيلي أول موقف خلّاكي تبتسمي بسببي 🥹","اختاري أغنية تفكرك بيا وابعتيهالي 🎶","قوليلي أكتر تفصيلة صغيرة بتحبيها في علاقتنا 💗","اكتبيلي جملة نفسك تسمعيها مني دايمًا ❤️","قوليلي 5 أسباب بتخليكي مبسوطة معايا 🥰"]},
