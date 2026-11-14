@@ -64,8 +64,27 @@ body{scroll-behavior:smooth}
 .wheel-count{font-size:12px;margin-top:12px}
 @media(max-width:380px){.card,.wheel-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{width:55px;font-size:9px;min-height:30px}}
 @media(prefers-reduced-motion:reduce){.falling-petal{display:none}.touch-heart,.touch-sparkle,.touch-ripple{animation-duration:.3s}}
+
+/* Intro screen */
+body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:none!important}
+.intro-screen{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;padding:24px 18px;background:radial-gradient(ellipse at 50% 25%,#321447 0,transparent 48%),linear-gradient(145deg,#05030b,#0b0715 58%,#16091f);transition:opacity .65s ease,visibility .65s ease}
+.intro-screen.hide{opacity:0;visibility:hidden;pointer-events:none}
+.intro-card{position:relative;width:100%;max-width:430px;padding:38px 24px 30px;text-align:center;border:1px solid #e1a0ff55;border-radius:30px;background:rgba(25,13,39,.78);box-shadow:0 0 45px #a855f744,0 20px 55px #0009;backdrop-filter:blur(16px);overflow:hidden}
+.intro-card:before{content:"404";position:absolute;top:8px;left:0;right:0;font-size:112px;font-weight:900;letter-spacing:8px;color:#ffffff08;pointer-events:none}
+.intro-art{position:relative;width:190px;height:165px;margin:0 auto 18px;display:grid;place-items:center}
+.intro-goose{font-size:88px;filter:drop-shadow(0 0 20px #f49bdc88);animation:introFloat 3s ease-in-out infinite}
+.intro-orbit{position:absolute;width:175px;height:105px;border:1px solid #e8a1ff66;border-radius:50%;transform:rotate(-22deg);animation:orbitGlow 4s ease-in-out infinite}
+.intro-orbit:after{content:"✦";position:absolute;top:3px;right:24px;color:#ffd2f0;font-size:20px;text-shadow:0 0 12px #ff8bd6}
+.intro-card h2{position:relative;color:#ff9cdd;font-size:25px;margin:8px 0 12px;text-shadow:0 0 15px #ff4fc477}
+.intro-card p{position:relative;color:#e8d5f4;font-size:15px;line-height:2;margin:0 0 24px}
+.intro-button{position:relative;width:100%;border:0;border-radius:16px;padding:15px 20px;background:linear-gradient(135deg,#8739c7,#e34fae);color:#fff;font-size:17px;font-weight:bold;box-shadow:0 0 22px #c14cff55;cursor:pointer}
+.intro-note{position:relative;display:block;margin-top:18px;color:#c6a8df;font-size:12px;letter-spacing:.3px;direction:ltr}
+@keyframes introFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-11px) rotate(3deg)}}
+@keyframes orbitGlow{0%,100%{opacity:.45;transform:rotate(-22deg) scale(.96)}50%{opacity:1;transform:rotate(-12deg) scale(1.04)}}
+
 </style></head><body>
 <canvas id="galaxyCanvas"></canvas>
+<section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>افتحي رسالتك يا وزة 💗</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section>
 
 <section class="page-section active" id="messagesPage"><main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main></section>
 
@@ -251,5 +270,9 @@ setInterval(()=>{const daily=readWheelStorage(WHEEL_DAILY_KEY,null);if(!daily||d
 </script>
 <script>
 (()=>{const buttons=[...document.querySelectorAll(".nav-btn")];buttons.forEach(button=>button.addEventListener("click",()=>{const target=button.dataset.page;document.querySelectorAll(".page-section").forEach(page=>page.classList.toggle("active",page.id===target));buttons.forEach(item=>item.classList.toggle("active",item===button));window.scrollTo({top:0,behavior:"smooth"})}))})();
+</script>
+
+<script>
+(()=>{const intro=document.getElementById("introScreen"),button=document.getElementById("goHomeButton");button.addEventListener("click",()=>{document.body.classList.add("app-started");intro.classList.add("hide");setTimeout(()=>intro.remove(),700)})})();
 </script>
 </body></html>
