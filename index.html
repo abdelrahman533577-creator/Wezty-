@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>رسالة النهارده لوزتي ❤️</title><style>
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:20px;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b);color:#f8eaff;overflow-x:hidden}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:22px;padding:24px 16px 112px;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b);color:#f8eaff;overflow-x:hidden}
 #galaxyCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 .card,.wheel-section{width:100%;max-width:500px;text-align:center;padding:28px 22px;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);position:relative;z-index:2}
 .heart{font-size:43px;animation:pulse 1.5s infinite,heartGlow 2s infinite alternate;filter:drop-shadow(0 0 12px #ff70d5)}
@@ -37,6 +37,15 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .surprise-box p{color:#ffc1e8;font-size:19px;line-height:1.9}
 .surprise-close{border:0;border-radius:14px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;padding:12px 25px;font-size:15px;cursor:pointer}
 .wheel-section{overflow:hidden}
+.page-section{display:none;width:100%;max-width:500px;position:relative;z-index:2;margin:auto 0}
+.page-section.active{display:block;animation:pageIn .28s ease}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 28px));display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-btn{border:1px solid transparent;border-radius:15px;background:transparent;color:#d9c3ec;padding:10px 8px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
+.nav-btn .nav-icon{font-size:22px;line-height:1}
+.nav-btn.active{background:linear-gradient(135deg,#8739c7,#d94eaa);color:#fff;box-shadow:0 0 16px #c14cff55}
+body{scroll-behavior:smooth}
+
 .wheel-section h2{color:#ff9cdd;margin:5px 0 10px;font-size:24px;text-shadow:0 0 15px #ff4fc477}
 .wheel-sub{font-size:14px;line-height:1.9;margin-bottom:18px}
 .wheel-wrap{width:290px;height:290px;max-width:100%;margin:25px auto 20px;position:relative}
@@ -55,46 +64,12 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .wheel-count{font-size:12px;margin-top:12px}
 @media(max-width:380px){.card,.wheel-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{width:55px;font-size:9px;min-height:30px}}
 @media(prefers-reduced-motion:reduce){.falling-petal{display:none}.touch-heart,.touch-sparkle,.touch-ripple{animation-duration:.3s}}
-
-.app-content{width:100%;max-width:560px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:22px;position:relative;z-index:2}
-body.app-started #appContent{display:flex}
-#introScreen{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at 50% 35%,#241039 0,transparent 55%),linear-gradient(145deg,#030208,#090512 58%,#10091b);text-align:center;opacity:1;visibility:visible;transition:opacity .65s ease,visibility .65s ease}
-#introScreen.leaving{opacity:0;visibility:hidden;pointer-events:none}
-.intro-inner{width:100%;max-width:440px;padding:34px 24px;border:1px solid #dba0ff44;border-radius:30px;background:rgba(20,12,34,.72);box-shadow:0 0 35px #a855f733,0 18px 55px #0009;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
-.intro-code{font-size:clamp(54px,16vw,82px);font-weight:900;letter-spacing:8px;line-height:1;color:#d9b4ff;opacity:.18;text-shadow:0 0 25px #c77dff;margin-bottom:-8px}
-.intro-goose-wrap{width:150px;height:150px;margin:4px auto 18px;display:grid;place-items:center;position:relative;border-radius:50%;background:radial-gradient(circle,#9f55ce26 0 42%,transparent 70%);animation:introFloat 3s ease-in-out infinite}
-.intro-goose-wrap:before,.intro-goose-wrap:after{content:"";position:absolute;inset:9px;border:1px solid #d8a0ff55;border-radius:50%;animation:introOrbit 12s linear infinite}
-.intro-goose-wrap:after{inset:-5px;border-style:dashed;opacity:.5;animation-direction:reverse;animation-duration:20s}
-.intro-goose{font-size:92px;filter:drop-shadow(0 0 18px #e58bff88);line-height:1}
-@keyframes introFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@keyframes introOrbit{to{transform:rotate(360deg)}}
-.intro-title{font-size:clamp(24px,6vw,31px);color:#ffaddf;margin:10px 0 8px;text-shadow:0 0 18px #ff65c655}
-.intro-copy{font-size:15px;line-height:2;color:#d6bce9;margin:0 auto 22px;max-width:330px}
-.intro-home{width:100%;max-width:250px;border:1px solid #f4b5e8aa;border-radius:16px;padding:14px 22px;background:linear-gradient(135deg,#8739c7,#e34fae);box-shadow:0 0 24px #c14cff66;color:white;font-size:16px;font-weight:bold;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.intro-home:active{transform:scale(.97)}
-.intro-foot{margin-top:18px;color:#a98bbb;font-size:12px;letter-spacing:.4px}
-@media(max-width:380px){.intro-inner{padding:27px 18px}.intro-goose-wrap{width:130px;height:130px}.intro-goose{font-size:80px}}
-@media(prefers-reduced-motion:reduce){.intro-goose-wrap,.intro-goose-wrap:before,.intro-goose-wrap:after{animation:none}}
-
-</style></head><body class="intro-open">
+</style></head><body>
 <canvas id="galaxyCanvas"></canvas>
 
-<section id="introScreen" aria-label="صفحة الترحيب">
-  <div class="intro-inner">
-    <div class="intro-code" aria-hidden="true">404</div>
-    <div class="intro-goose-wrap"><div class="intro-goose" aria-hidden="true">🪿</div></div>
-    <h1 class="intro-title">افتحي رسالتك يا وزة 💗</h1>
-    <p class="intro-copy">مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p>
-    <button class="intro-home" id="goToHome" type="button">Go to Home</button>
-    <div class="intro-foot">A little message made just for you ✨</div>
-  </div>
-</section>
+<section class="page-section active" id="messagesPage"><main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main></section>
 
-<div id="appContent" class="app-content" aria-hidden="true">
-
-<main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main>
-
-<section class="wheel-section">
+<section class="page-section" id="wheelPage"><section class="wheel-section">
 <h2>🎡 عجلة المفاجآت بتاعتك</h2>
 <div class="wheel-sub">كل يوم ليكي لفة واحدة، شوفي النهارده مخبيلك إيه ❤️</div>
 <div class="wheel-wrap">
@@ -114,27 +89,11 @@ body.app-started #appContent{display:flex}
 <button class="wheel-btn" id="spinButton">لفّي العجلة 🎀</button>
 <div class="wheel-status" id="wheelStatus"></div>
 <div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div>
-</section>
-</div>
+</section></section>
+
+<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button></nav>
 
 <div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div>
-
-
-<script>
-(()=> {
-  const intro=document.getElementById("introScreen");
-  const button=document.getElementById("goToHome");
-  const appContent=document.getElementById("appContent");
-  if(!intro||!button||!appContent)return;
-  button.addEventListener("click",()=>{
-    document.body.classList.add("app-started");
-    document.body.classList.remove("intro-open");
-    appContent.setAttribute("aria-hidden","false");
-    intro.classList.add("leaving");
-    window.setTimeout(()=>intro.remove(),700);
-  },{once:true});
-})();
-</script>
 
 <script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
@@ -289,5 +248,8 @@ function spinWheel(){if(isSpinning)return;const today=cairoDateKey(),daily=readW
 spinButton.addEventListener("click",spinWheel);
 updateWheelStatus();
 setInterval(()=>{const daily=readWheelStorage(WHEEL_DAILY_KEY,null);if(!daily||daily.date!==cairoDateKey())updateWheelStatus()},15000);
+</script>
+<script>
+(()=>{const buttons=[...document.querySelectorAll(".nav-btn")];buttons.forEach(button=>button.addEventListener("click",()=>{const target=button.dataset.page;document.querySelectorAll(".page-section").forEach(page=>page.classList.toggle("active",page.id===target));buttons.forEach(item=>item.classList.toggle("active",item===button));window.scrollTo({top:0,behavior:"smooth"})}))})();
 </script>
 </body></html>
