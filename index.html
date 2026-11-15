@@ -2,7 +2,7 @@
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:22px;padding:24px 16px 112px;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b);color:#f8eaff;overflow-x:hidden}
 #galaxyCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
-.card,.wheel-section{width:100%;max-width:500px;text-align:center;padding:28px 22px;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);position:relative;z-index:2}
+.card,.wheel-section,.game-section{width:100%;max-width:500px;text-align:center;padding:28px 22px;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);position:relative;z-index:2}
 .heart{font-size:43px;animation:pulse 1.5s infinite,heartGlow 2s infinite alternate;filter:drop-shadow(0 0 12px #ff70d5)}
 h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .sub,.date,.footer,.wheel-sub,.wheel-status,.wheel-count{font-size:14px;color:#c6a8df;line-height:1.8}
@@ -36,11 +36,11 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .surprise-box .big-heart{font-size:55px;animation:pulse 1s infinite,heartGlow 2s infinite alternate}
 .surprise-box p{color:#ffc1e8;font-size:19px;line-height:1.9}
 .surprise-close{border:0;border-radius:14px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;padding:12px 25px;font-size:15px;cursor:pointer}
-.wheel-section{overflow:hidden}
+.wheel-section,.game-section{overflow:hidden}
 .page-section{display:none;width:100%;max-width:500px;position:relative;z-index:2;margin:auto 0}
 .page-section.active{display:block;animation:pageIn .28s ease}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 28px));display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 28px));display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .nav-btn{border:1px solid transparent;border-radius:15px;background:transparent;color:#d9c3ec;padding:10px 8px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
 .nav-btn .nav-icon{font-size:22px;line-height:1}
 .nav-btn.active{background:linear-gradient(135deg,#8739c7,#d94eaa);color:#fff;box-shadow:0 0 16px #c14cff55}
@@ -62,9 +62,14 @@ body{scroll-behavior:smooth}
 .wheel-result h3{color:#ff9cdd;margin:0 0 8px}
 .wheel-result p{font-size:17px;margin:0}
 .wheel-count{font-size:12px;margin-top:12px}
-@media(max-width:380px){.card,.wheel-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{width:55px;font-size:9px;min-height:30px}}
+@media(max-width:380px){.card,.wheel-section,.game-section{padding:23px 16px}h1{font-size:23px}.message{font-size:16px}.wheel-wrap{width:260px;height:260px}.wheel-label{width:55px;font-size:9px;min-height:30px}}
 @media(prefers-reduced-motion:reduce){.falling-petal{display:none}.touch-heart,.touch-sparkle,.touch-ripple{animation-duration:.3s}}
 
+/* Know each other game */
+.game-section{width:100%;max-width:500px;text-align:center;padding:28px 22px;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);position:relative;z-index:2;border-radius:24px}
+.game-section h2{color:#ff9cdd;font-size:24px;margin:4px 0 10px}.game-sub{color:#c6a8df;font-size:14px;line-height:1.9;margin-bottom:18px}
+.game-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.level-btn{border:1px solid #d58aff55;background:#321b43;color:#f8eaff;border-radius:13px;padding:11px 5px;font-size:13px;cursor:pointer}.level-btn.selected{background:linear-gradient(135deg,#8739c7,#d94eaa);border-color:#f4b3ed}
+.game-panel{padding:18px 14px;border-radius:18px;background:rgba(49,27,67,.72);border:1px solid #d58aff33;margin-top:15px}.game-turn{color:#ffb5df;font-weight:bold;font-size:14px}.game-question{font-size:19px;line-height:1.9;margin:14px 0;color:#fff0fb}.game-answer{width:100%;min-height:100px;resize:vertical;border:1px solid #d58aff55;border-radius:14px;background:#170d24;color:#fff;padding:13px;font:16px Arial;line-height:1.7;outline:none}.game-answer:focus{border-color:#e99be0}.game-action{width:100%;border:0;border-radius:14px;padding:13px;margin-top:12px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;font-size:16px;font-weight:bold;cursor:pointer}.game-action:disabled{opacity:.5}.game-progress{font-size:12px;color:#c6a8df;margin-top:12px}.game-summary{text-align:right;line-height:1.9}.game-entry{padding:12px;margin:10px 0;border-radius:13px;background:#321b43}.game-entry strong{color:#ffb5df}.game-hidden{display:none!important}
 /* Intro screen */
 body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:none!important}
 .intro-screen{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;padding:24px 18px;background:radial-gradient(ellipse at 50% 25%,#321447 0,transparent 48%),linear-gradient(145deg,#05030b,#0b0715 58%,#16091f);transition:opacity .65s ease,visibility .65s ease}
@@ -81,6 +86,51 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 .intro-note{position:relative;display:block;margin-top:18px;color:#c6a8df;font-size:12px;letter-spacing:.3px;direction:ltr}
 @keyframes introFloat{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-11px) rotate(3deg)}}
 @keyframes orbitGlow{0%,100%{opacity:.45;transform:rotate(-22deg) scale(.96)}50%{opacity:1;transform:rotate(-12deg) scale(1.04)}}
+
+
+/* Compact mobile full-screen layout: keep the whole message screen visible without page scrolling */
+@media screen and (max-width:600px) and (max-height:950px){
+  html,body{width:100%;height:100%;min-height:100%;overflow:hidden}
+  body{min-height:100svh;height:100svh;gap:0;padding:5px 8px calc(62px + env(safe-area-inset-bottom));justify-content:center}
+  .page-section{width:100%;max-width:500px;margin:0 auto;max-height:100%;overflow:hidden}
+  .page-section.active{display:flex;align-items:center;justify-content:center;min-height:0}
+  .card,.wheel-section,.game-section{width:100%;max-height:100%;padding:10px 11px;border-radius:18px;overflow:hidden}
+  .heart{font-size:25px;line-height:1;margin:0}
+  h1{font-size:clamp(17px,4.8vw,21px);line-height:1.25;margin:5px 0}
+  .sub{font-size:11px;line-height:1.35}
+  .message{margin:7px 0;padding:8px 9px;border-radius:14px;font-size:clamp(10px,2.9vw,12px);line-height:1.38;max-height:34svh;overflow:hidden}
+  .date{font-size:10px;line-height:1.35}
+  .read-section{margin-top:7px;padding:7px 8px;border-radius:13px}
+  .read-section p{font-size:11px;line-height:1.35;margin:2px 0 5px}
+  .read-btn{margin:5px 0;padding:7px 8px;border-radius:10px;font-size:11px;line-height:1.3}
+  #readStatus{font-size:10px;line-height:1.35;margin-top:5px}
+  .footer{display:none}
+  .bottom-nav{bottom:calc(4px + env(safe-area-inset-bottom));width:calc(100% - 16px);gap:4px;padding:5px;border-radius:15px}
+  .nav-btn{padding:6px 3px;gap:4px;font-size:11px;border-radius:11px}
+  .nav-btn .nav-icon{font-size:17px}
+  .wheel-section h2,.game-section h2{font-size:18px;margin:2px 0 5px}
+  .wheel-sub,.game-sub{font-size:11px;line-height:1.4;margin:4px 0 7px}
+  .wheel-wrap{width:min( min(54vw,210px), 27svh);height:min( min(54vw,210px), 27svh);margin:8px auto}
+  .wheel-label{font-size:8px;width:48px}
+  .wheel-center{width:46px;height:46px;font-size:19px;border-width:3px}
+  .wheel-pointer{top:-11px;border-left-width:11px;border-right-width:11px;border-top-width:22px}
+  .wheel-btn,.game-action{padding:9px;font-size:13px;border-radius:11px;margin-top:6px}
+  .wheel-status,.wheel-count{font-size:10px;line-height:1.4;margin-top:5px}
+  .wheel-result{margin-top:7px;padding:9px;line-height:1.4}
+  .wheel-result p{font-size:12px}
+  .game-levels{gap:5px;margin:7px 0}
+  .level-btn{padding:7px 3px;font-size:10px;border-radius:9px}
+  .game-panel{padding:9px 8px;margin-top:7px;border-radius:13px}
+  .game-turn,.game-progress{font-size:10px}
+  .game-question{font-size:14px;line-height:1.45;margin:7px 0}
+  .game-answer{min-height:58px;max-height:90px;padding:8px;font-size:13px}
+  .game-entry{padding:7px;margin:5px 0}
+}
+@media screen and (max-width:600px) and (max-height:700px){
+  .message{font-size:10px;line-height:1.25;max-height:30svh}
+  .read-btn{padding:5px;font-size:10px}
+  .wheel-wrap{width:min(48vw,170px);height:min(48vw,170px)}
+}
 
 </style></head><body>
 <canvas id="galaxyCanvas"></canvas>
@@ -110,12 +160,19 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 <div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div>
 </section></section>
 
-<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button></nav>
+<section class="page-section" id="gamePage"><section class="game-section">
+<h2>🧩 اعرفيني أكتر</h2><div class="game-sub">سؤال ليكي وسؤال ليا... نشوف قد إيه عارفين بعض؟ ❤️</div>
+<div class="game-sub">كل واحد يختار هو مين من جهازه، وبعدها العبوا سوا ❤️</div><div class="game-levels" style="grid-template-columns:repeat(2,1fr)"><button class="level-btn" id="roleMe" type="button">💙 أنا عبدالرحمن</button><button class="level-btn" id="roleHer" type="button">💗 أنا هي</button></div><div class="game-sub" id="roleStatus">اختار هويتك على الجهاز ده</div><div id="gameSetup"><div class="game-sub">اختاروا مستوى الأسئلة وابدأوا جولتكوا</div><div class="game-levels"><button class="level-btn selected" data-level="light">🌸 خفيف</button><button class="level-btn" data-level="feelings">❤️ مشاعر</button><button class="level-btn" data-level="deep">🧠 عميق</button></div><button class="game-action" id="startGame">ابدأوا اللعب 🎀</button></div>
+<div id="gamePlay" class="game-panel game-hidden"><div class="game-turn" id="gameTurn"></div><div class="game-question" id="gameQuestion"></div><textarea class="game-answer" id="gameAnswer" placeholder="اكتب إجابتك هنا..."></textarea><button class="game-action" id="saveAnswer">احفظ الإجابة وكمل</button><div class="game-progress" id="gameProgress"></div><div class="game-summary" id="gameLiveAnswers"></div></div>
+<div id="gameDone" class="game-panel game-hidden"><h3 style="color:#ff9cdd">خلصتوا الجولة! 🎉</h3><div class="game-summary" id="gameSummary"></div><button class="game-action" id="newGame">العبوا جولة جديدة</button></div>
+</section></section>
+
+<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button></nav>
 
 <div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div>
 
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 const firebaseConfig={apiKey:"AIzaSyD4I4NviTS4pNo5hxksiGDr-2SiOVaj4AI",authDomain:"zozo-41d24.firebaseapp.com",projectId:"zozo-41d24",storageBucket:"zozo-41d24.firebasestorage.app",messagingSenderId:"872003176089",appId:"1:872003176089:web:c9d522e470d6e7124b5a08",measurementId:"G-HZRTXWPJSX"};const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app);
 const messages=[
 `يا وزتي يا حتة من قلبي ❤️
@@ -234,8 +291,74 @@ document.addEventListener("pointerdown",event=>{if(!event.isPrimary||event.targe
 const surprise=document.getElementById("touchSurprise");function showTouchSurprise(){surprise.classList.add("show")}document.getElementById("closeSurprise").addEventListener("click",()=>surprise.classList.remove("show"));surprise.addEventListener("click",event=>{if(event.target===surprise)surprise.classList.remove("show")});
 function createPetal(){if(document.hidden)return;const petal=document.createElement("span");petal.className="falling-petal";petal.textContent=randomItem(["🌸","🌷","🌺"]);petal.style.setProperty("--left",Math.random()*100+"vw");petal.style.setProperty("--size",12+Math.random()*12+"px");petal.style.setProperty("--duration",7+Math.random()*6+"s");petal.style.setProperty("--drift",Math.random()*120-60+"px");document.body.appendChild(petal);setTimeout(()=>petal.remove(),14000)}
 for(let i=0;i<6;i++)setTimeout(createPetal,i*700);setInterval(createPetal,1800);
-async function startApp(){render();try{await signInAnonymously(auth);await refreshReadStatus()}catch(error){console.error(error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}}startApp();
+async function startApp(){render();try{await signInAnonymously(auth);await refreshReadStatus();listenToSharedGame();setRole(gameRole)}catch(error){console.error(error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}}startApp();
 function scheduleMidnightUpdate(){const now=new Date(),tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,1);setTimeout(async()=>{render();await refreshReadStatus();scheduleMidnightUpdate()},tomorrow-now)}scheduleMidnightUpdate();
+
+// لعبة مشتركة بين الجهازين عبر Firestore
+const gameBanks={
+ light:[
+ "إيه أكتر حاجة بتضحكك؟","لو عندنا يوم فاضي، تحب نعمل إيه؟","إيه أكتر أكلة بتحبها؟","إيه أغرب عادة عندك؟","لو هتختار أغنية لمودك دلوقتي، هتكون إيه؟","إيه أكتر فيلم أو مسلسل بتحبه؟","إيه الحاجة الصغيرة اللي بتفرحك؟","لو هنسافر يوم واحد، تختار نروح فين؟","إيه أكتر إيموجي بتستخدمه؟","مين فينا بيضحك أسرع؟","إيه ذكرى مضحكة مش بتنساها؟","لو عندك قوة خارقة ليوم، تختار إيه؟",
+ "إيه أكتر مشروب بتحبه؟","بتحب الصبح أكتر ولا السهر؟","إيه لون بتحس إنه شبه شخصيتك؟","لو هتختار حيوان أليف، تختار إيه؟","إيه أكتر لعبة كنت بتحبها وإنت صغير؟","بتفضل البحر ولا الأماكن الخضرا؟","إيه أكتر حاجة بتعملها لما تكون زهقان؟","لو هتعيش يوم في فيلم، تختار فيلم إيه؟","إيه أكتر ريحة بتحبها؟","بتحب المفاجآت ولا التخطيط؟","إيه أكتر تطبيق بتستخدمه؟","لو هتتعلم مهارة في يوم واحد، تختار إيه؟",
+ "إيه أكتر وقت في اليوم بتحبه؟","لو هتطلب أكلة دلوقتي، هتطلب إيه؟","إيه حاجة بسيطة نفسك تشتريها؟","بتفضل الجو البارد ولا الحر؟","إيه أكتر مادة أو موضوع كان ممتع بالنسبالك؟","لو عندك تذكرة سفر مجانية، تختار أنهي بلد؟","إيه أكتر موقف بيخليك تضحك من قلبك؟","بتحب الصور العفوية ولا المتظبطة؟","إيه أكتر شخصية كرتونية بتحبها؟","لو هتختار اسم لفريقنا، هيكون إيه؟","إيه تحدي لطيف نفسك نجربه سوا؟","إيه حاجة جديدة اكتشفت إنك بتحبها مؤخرًا؟"
+ ],
+ feelings:[
+ "إيه أكتر تصرف بيخليك تحس إنك متقدّر؟","إيه أكتر حاجة بتحبها في شخصية التاني؟","إمتى بتحس إن يومك بقى أحسن؟","إيه معنى الاهتمام بالنسبالك؟","إيه ذكرى بينا بتحب تفتكرها؟","إيه حاجة بسيطة ممكن تحسّن يومك؟","إيه أكتر صفة بتقدّرها في الناس؟","إيه طريقة التعبير اللي بتوصلك الاهتمام؟","إيه حاجة نفسك نعملها سوا قريب؟","إيه أكتر وقت بتحب نتكلم فيه؟","إيه حاجة اتعلمتها من التاني؟","إيه أكتر حاجة بتخليك تحس بالراحة؟",
+ "إيه نوع الكلام اللي بيشجعك لما تكون متضايق؟","إيه تصرف صغير ممكن يفرق معاك في يوم صعب؟","إمتى بتحس إن اللي قدامك بيسمعك بجد؟","إيه أكتر حاجة بتخليك تثق في شخص؟","إيه ذكرى بسيطة بينا ليها مكانة عندك؟","إيه أكتر حاجة بتحب نشاركها مع بعض؟","لما تكون مبسوط، بتحب تحكي فورًا ولا بعدين؟","إيه اللي يخليك تحس إن وقتنا سوا مميز؟","إيه أكتر صفة بتحبها في طريقة كلامنا؟","إيه حاجة نفسك أفتكرها عنك دايمًا؟","إيه شكل الدعم اللي بتحبه وقت الضغط؟","إيه أكتر موقف حسّسك إننا فاهمين بعض؟",
+ "إيه حاجة بتخليك تحس بالأمان في الكلام؟","إيه عادة لطيفة تحب تبقى بينا؟","إيه أكتر حاجة بتقدّرها في الصراحة؟","إيه نوع الخروجات اللي بتحسسك بالسعادة؟","إيه حاجة نفسك أسمعك بتحكي عنها أكتر؟","إيه أكتر مجاملة بتفضل فاكرها؟","إيه تفصيلة صغيرة ممكن تخلّي يومك أحلى؟","إيه أكتر حاجة بتحبها في قضاء الوقت مع شخص قريب؟","إزاي بتحب نحل أي سوء تفاهم بينا؟","إيه حاجة شايف إننا بنعملها كويس سوا؟","إيه ذكرى تتمنى نضيف زيها لذكرياتنا؟","إيه أكتر حاجة بتخليك تحس إنك مفهوم؟"
+ ],
+ deep:[
+ "إيه قيمة مستحيل تتنازل عنها؟","إيه حلم نفسك تحققه وليه؟","لما تواجه قرار صعب، بتفكر إزاي؟","إيه تجربة غيرت طريقة تفكيرك؟","إيه أكتر حاجة نفسك الناس تفهمها عنك؟","بالنسبالك، إيه معنى الثقة؟","إيه صفة نفسك تطورها في نفسك؟","إيه اللي بيساعدك تعدّي الأيام الصعبة؟","إيه حاجة بقيت تقدرها مع الوقت؟","إيه تعريفك للصداقة الحقيقية؟","إيه قرار فخور إنك خدته؟","إيه حاجة نفسك تتعلمها عن نفسك؟",
+ "إيه مبدأ بتحاول تلتزم بيه حتى لو كان صعب؟","إيه درس اتعلمته من غلطة قديمة؟","إزاي بتعرف إنك محتاج تاخد وقت لنفسك؟","إيه الفرق عندك بين النجاح والراحة؟","إيه حاجة كنت شايفها مهمة زمان واتغير رأيك فيها؟","إيه صفة بتتمنى الناس تلاحظها فيك؟","لما تختلف مع حد، إيه أهم حاجة بتحاول تحافظ عليها؟","إيه معنى إن الشخص يكون مسؤول عن اختياراته؟","إيه خوف أو قلق نفسك تتعامل معاه بشكل أفضل؟","إيه تجربة علمتك الصبر؟","إيه حاجة بتدي لحياتك معنى؟","إيه قرار صغير ممكن يغيّر مسار يومك للأحسن؟",
+ "إيه أكتر حاجة بتساعدك تفهم نفسك؟","إيه نوع الأشخاص اللي بتتعلم منهم؟","إيه اعتقاد عندك اتغير مع مرور الوقت؟","إيه حدود مهمة بتحب الناس تحترمها؟","إيه معنى التوازن بين الطموح والراحة بالنسبالك؟","إيه حاجة نفسك تكون أشجع في تجربتها؟","إيه موقف خلاك تعيد التفكير في أولوياتك؟","إزاي بتتعامل مع عدم اليقين؟","إيه صفة بتعتبرها أساس أي علاقة صحية؟","إيه حاجة تحب تفتكرها لما تواجه فترة صعبة؟","إيه إنجاز صغير كان ليه تأثير كبير عليك؟","إيه نوع الأثر الطيب اللي تتمنى تسيبه في حياة الناس؟"
+ ]
+};
+const gameRef=doc(db,"shared_games","zozo_know_game");
+const gameRoleKey="zozo_know_game_role";
+let gameRole=localStorage.getItem(gameRoleKey)||"";
+let sharedGame=null;
+const gameEl=id=>document.getElementById(id);
+const gameSetup=gameEl("gameSetup"),gamePlay=gameEl("gamePlay"),gameDone=gameEl("gameDone");
+let chosenLevel="light";
+function gameEscape(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function setRole(role){gameRole=role;localStorage.setItem(gameRoleKey,role);gameEl("roleMe").classList.toggle("selected",role==="me");gameEl("roleHer").classList.toggle("selected",role==="her");gameEl("roleStatus").textContent=role==="me"?"تم اختيار: عبدالرحمن على الجهاز ده 💙":"تم اختيار: هي على الجهاز ده 💗";renderSharedGame()}
+function shuffleGame(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function chooseFreshGameQuestions(level,usedQuestions={}){const bank=gameBanks[level]||[];let used=Array.isArray(usedQuestions[level])?usedQuestions[level]:[];let available=bank.filter(q=>!used.includes(q));if(available.length<6){used=[];available=[...bank]}const selected=shuffleGame(available).slice(0,6);return{questions:selected,usedQuestions:{...usedQuestions,[level]:[...used,...selected]}}}
+function renderSharedGame(){
+ gameEl("roleMe").classList.toggle("selected",gameRole==="me");gameEl("roleHer").classList.toggle("selected",gameRole==="her");
+ if(!sharedGame||sharedGame.status==="done"){
+  gamePlay.classList.add("game-hidden");gameDone.classList.toggle("game-hidden",!sharedGame||sharedGame.status!=="done");gameSetup.classList.toggle("game-hidden",!!sharedGame&&sharedGame.status==="done");
+  if(sharedGame&&sharedGame.status==="done"){gameEl("gameSummary").innerHTML=sharedGame.answers.map((a,i)=>`<div class="game-entry"><strong>${a.who} • ${i+1}</strong><div>${gameEscape(a.question)}</div><div>${gameEscape(a.answer)}</div></div>`).join("");gameEl("newGame").textContent="ابدأوا جولة جديدة 🎀"}
+  else gameEl("newGame").textContent="العبوا جولة جديدة";
+  return;
+ }
+ gameSetup.classList.add("game-hidden");gameDone.classList.add("game-hidden");gamePlay.classList.remove("game-hidden");
+ const turn=sharedGame.turn||0,answerer=turn%2===0?"her":"me",myTurn=gameRole===answerer;
+ gameEl("gameTurn").textContent=answerer==="her"?"💗 السؤال ليها":"💙 السؤال ليك";
+ gameEl("gameQuestion").textContent=sharedGame.questions[turn]||"";
+ gameEl("gameProgress").textContent=`السؤال ${turn+1} من 6 • ${myTurn?"دورك، اكتب إجابتك":"مستنيين إجابة الطرف التاني..."}`;
+ gameEl("gameLiveAnswers").innerHTML=(sharedGame.answers||[]).map((a,i)=>`<div class="game-entry"><strong>${gameEscape(a.who)} • ${i+1}</strong><div>${gameEscape(a.question)}</div><div>${gameEscape(a.answer)}</div></div>`).join("");
+ gameEl("gameAnswer").disabled=!myTurn;gameEl("gameAnswer").placeholder=myTurn?"اكتب إجابتك هنا...":"مش دورك دلوقتي، هتظهر الإجابة هنا بعد ما الطرف التاني يجاوب";
+ gameEl("gameAnswer").value="";gameEl("saveAnswer").disabled=true;gameEl("saveAnswer").textContent=myTurn?"احفظ الإجابة وكمل":"في انتظار الإجابة...";
+}
+function listenToSharedGame(){onSnapshot(gameRef,snap=>{sharedGame=snap.exists()?snap.data():null;renderSharedGame()},error=>{console.error("Shared game listener:",error);gameEl("gameProgress").textContent="تعذر تحميل اللعبة المشتركة. راجع صلاحيات Firestore."})}
+gameEl("roleMe").addEventListener("click",()=>setRole("me"));gameEl("roleHer").addEventListener("click",()=>setRole("her"));
+document.querySelectorAll(".level-btn[data-level]").forEach(btn=>btn.addEventListener("click",()=>{chosenLevel=btn.dataset.level;document.querySelectorAll(".level-btn[data-level]").forEach(b=>b.classList.toggle("selected",b===btn))}));
+gameEl("startGame").addEventListener("click",async()=>{
+ if(!gameRole){gameEl("roleStatus").textContent="اختار الأول أنت مين على الجهاز ده ❤️";return}
+ const button=gameEl("startGame");button.disabled=true;button.textContent="بنجهز الجولة...";
+ try{await runTransaction(db,async tx=>{const snap=await tx.get(gameRef);if(snap.exists()&&snap.data().status==="active")return;const previous=snap.exists()?snap.data():{};const picked=chooseFreshGameQuestions(chosenLevel,previous.usedQuestions||{});tx.set(gameRef,{status:"active",level:chosenLevel,questions:picked.questions,usedQuestions:picked.usedQuestions,answers:[],turn:0,createdAt:serverTimestamp(),updatedAt:serverTimestamp()})})}
+ catch(error){console.error(error);alert("مش قادرين نبدأ الجولة. غالباً محتاجين نراجع صلاحيات Firestore للمجموعة shared_games.")}
+ finally{button.disabled=false;button.textContent="ابدأوا اللعب 🎀"}
+});
+gameEl("gameAnswer").addEventListener("input",()=>{gameEl("saveAnswer").disabled=!gameEl("gameAnswer").value.trim()||!sharedGame||gameRole!==(sharedGame.turn%2===0?"her":"me")});
+gameEl("saveAnswer").addEventListener("click",async()=>{
+ const answer=gameEl("gameAnswer").value.trim();if(!answer||!sharedGame)return;
+ const button=gameEl("saveAnswer");button.disabled=true;button.textContent="جاري حفظ الإجابة...";
+ try{await runTransaction(db,async tx=>{const snap=await tx.get(gameRef);if(!snap.exists())throw new Error("No active game");const data=snap.data(),turn=data.turn||0,answerer=turn%2===0?"her":"me";if(data.status!=="active"||answerer!==gameRole||turn!==sharedGame.turn)throw new Error("Not your turn");const answers=[...(data.answers||[]),{who:answerer==="her"?"هي":"عبدالرحمن",question:data.questions[turn],answer}];tx.update(gameRef,{answers,turn:turn+1,status:turn+1>=data.questions.length?"done":"active",updatedAt:serverTimestamp()})})}
+ catch(error){console.error(error);alert("الإجابة ما اتحفظتش. اتأكد من الاتصال وإن الدور بتاعك.");renderSharedGame()}
+});
+gameEl("newGame").addEventListener("click",()=>{gameDone.classList.add("game-hidden");gameSetup.classList.remove("game-hidden");sharedGame=null;gameEl("gameAnswer").value=""});
+
 </script>
 
 <script>
@@ -271,6 +394,7 @@ setInterval(()=>{const daily=readWheelStorage(WHEEL_DAILY_KEY,null);if(!daily||d
 <script>
 (()=>{const buttons=[...document.querySelectorAll(".nav-btn")];buttons.forEach(button=>button.addEventListener("click",()=>{const target=button.dataset.page;document.querySelectorAll(".page-section").forEach(page=>page.classList.toggle("active",page.id===target));buttons.forEach(item=>item.classList.toggle("active",item===button));window.scrollTo({top:0,behavior:"smooth"})}))})();
 </script>
+
 
 <script>
 (()=>{const intro=document.getElementById("introScreen"),button=document.getElementById("goHomeButton");button.addEventListener("click",()=>{document.body.classList.add("app-started");intro.classList.add("hide");setTimeout(()=>intro.remove(),700)})})();
