@@ -180,6 +180,20 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
  .memory-footer{font-size:12px;margin:10px 2px 2px}
 }
 
+
+/* Mobile bottom navigation: stack icon and label to prevent overlap */
+@media (max-width:600px){
+ .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:5px;width:calc(100% - 16px)}
+ .nav-btn{min-width:0;width:100%;min-height:54px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:clamp(9px,2.6vw,11px);line-height:1.15;white-space:normal;text-align:center;overflow-wrap:anywhere}
+ .nav-btn .nav-icon{display:block;font-size:18px;line-height:1.1;flex:0 0 auto}
+ .nav-btn span:not(.nav-icon){display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+}
+@media (max-width:360px){
+ .bottom-nav{gap:2px;padding:4px}
+ .nav-btn{font-size:9px;padding:5px 1px;min-height:50px}
+ .nav-btn .nav-icon{font-size:16px}
+}
+
 </style></head><body>
 <canvas id="galaxyCanvas"></canvas>
 <section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>حدث خطأ ما</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section>
