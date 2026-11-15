@@ -40,12 +40,22 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .page-section{display:none;width:100%;max-width:500px;position:relative;z-index:2;margin:auto 0}
 .page-section.active{display:block;animation:pageIn .28s ease}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(440px,calc(100% - 28px));display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 16px));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .nav-btn{border:1px solid transparent;border-radius:15px;background:transparent;color:#d9c3ec;padding:10px 8px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
 .nav-btn .nav-icon{font-size:22px;line-height:1}
 .nav-btn.active{background:linear-gradient(135deg,#8739c7,#d94eaa);color:#fff;box-shadow:0 0 16px #c14cff55}
 body{scroll-behavior:smooth}
 
+/* Coming Soon page */
+.coming-page{width:100%;max-width:500px;padding:25px 20px;text-align:center;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;border-radius:24px;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.coming-title{font-size:29px;color:#ff9cdd;margin:5px 0 10px;text-shadow:0 0 15px #ff4fc477}
+.coming-subtitle{font-size:14px;color:#c6a8df;line-height:1.9;margin:0 0 20px}
+.coming-badge{display:inline-block;padding:7px 14px;border:1px solid #d58aff66;border-radius:30px;color:#f5c4ff;background:#8739c733;font-size:12px;margin-bottom:12px}
+.coming-ideas{display:grid;gap:11px;text-align:right}
+.coming-idea{padding:14px 15px;border:1px solid #d58aff33;border-radius:16px;background:rgba(49,27,67,.65);color:#ffeaff}
+.coming-idea strong{display:block;color:#ffb5df;font-size:15px;margin-bottom:5px}
+.coming-idea span{display:block;color:#d7c0e8;font-size:13px;line-height:1.8}
+.coming-footer{font-size:13px;color:#c6a8df;line-height:1.9;margin:18px 3px 0}
 .wheel-section h2{color:#ff9cdd;margin:5px 0 10px;font-size:24px;text-shadow:0 0 15px #ff4fc477}
 .wheel-sub{font-size:14px;line-height:1.9;margin-bottom:18px}
 .wheel-wrap{width:290px;height:290px;max-width:100%;margin:25px auto 20px;position:relative}
@@ -152,7 +162,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 .memory-footer{direction:ltr;color:#e9b8ed;font-size:14px;line-height:1.7;margin:16px 4px 3px;text-shadow:0 0 12px #d46cff55}
 .memory-sparkle{color:#f4b8ff;text-shadow:0 0 12px #d98aff}
 @media screen and (max-width:600px) and (max-height:950px){
- .bottom-nav{grid-template-columns:repeat(4,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
+ .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
  .nav-btn{min-width:0;padding:6px 1px;gap:3px;font-size:10px;white-space:nowrap}
  .nav-btn .nav-icon{font-size:16px}
  .memories-page{width:100%;max-height:calc(100svh - 78px);overflow-y:auto;overscroll-behavior:contain;padding:13px 10px 10px;border-radius:19px}
@@ -223,7 +233,14 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 <p class="memory-footer"><span class="memory-sparkle">✦</span> Every second since then has been a beautiful memory. ❤️</p>
 </main></section>
 
-<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button></nav>
+
+<section class="page-section" id="comingPage"><main class="coming-page">
+<div class="coming-badge">✨ A little surprise is on the way</div>
+<h2 class="coming-title">Coming Soon</h2>
+<p class="coming-subtitle">لسه شوية يا وزتي 🪿💕<br>في حاجات حلوة بتتجهز عشانك، وكل حاجة بتيجي في وقتها… استني المفاجأة!</p>
+</main></section>
+
+<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">✨</span><span>Coming Soon</span></button></nav>
 
 <div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div>
 
