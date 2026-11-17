@@ -1,0 +1,6 @@
+{
+  "appId": "com.wezty.app",
+  "appName": "WEZTY",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}

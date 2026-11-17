@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAllowedUser() {
+      return request.auth != null
+        && request.auth.uid in [
+          'DmbbqyG9t2SauNcV2v9LJGFXvYE3',
+          'eKw6zaBwDXP5g6wMyhbhoUBXf2D2'
+        ];
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == 'DmbbqyG9t2SauNcV2v9LJGFXvYE3';
+    }
+
+    // Shared site content: both approved accounts can read; only Admin can change it.
+    match /wezty_admin/content {
+      allow read: if isAllowedUser();
+      allow create, update: if isAdmin();
+      allow delete: if false;
+    }
+
+    // Daily read markers used by the two approved accounts.
+    match /message_reads/{readId} {
+      allow read, create, update: if isAllowedUser();
+      allow delete: if false;
+    }
+
+    // The shared game document is writable only by the two approved accounts.
+    match /shared_games/zozo_know_game {
+      allow read, create, update: if isAllowedUser();
+      allow delete: if false;
+    }
+
+    // Deny all other documents by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
