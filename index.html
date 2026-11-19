@@ -40,10 +40,10 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .page-section{display:none;width:100%;max-width:500px;position:relative;z-index:2;margin:auto 0}
 .page-section.active{display:block;animation:pageIn .28s ease}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 16px));display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 16px));display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .nav-btn{border:1px solid transparent;border-radius:15px;background:transparent;color:#d9c3ec;padding:10px 8px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:bold;cursor:pointer;transition:.2s}
 .nav-btn .nav-icon{font-size:22px;line-height:1}
-.nav-btn.active{background:linear-gradient(135deg,#8739c7,#d94eaa);color:#fff;box-shadow:0 0 16px #c14cff55}
+.nav-btn.active{background:linear-gradient(135deg,var(--wezty-accent,#8739c7),var(--wezty-accent-2,#d94eaa));color:#fff;box-shadow:0 0 16px #c14cff55}
 body{scroll-behavior:smooth}
 
 /* Coming Soon page */
@@ -162,7 +162,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 .memory-footer{direction:ltr;color:#e9b8ed;font-size:14px;line-height:1.7;margin:16px 4px 3px;text-shadow:0 0 12px #d46cff55}
 .memory-sparkle{color:#f4b8ff;text-shadow:0 0 12px #d98aff}
 @media screen and (max-width:600px) and (max-height:950px){
- .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
+ .bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
  .nav-btn{min-width:0;padding:6px 1px;gap:3px;font-size:10px;white-space:nowrap}
  .nav-btn .nav-icon{font-size:16px}
  .memories-page{width:100%;max-height:calc(100svh - 78px);overflow-y:auto;overscroll-behavior:contain;padding:13px 10px 10px;border-radius:19px}
@@ -183,7 +183,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 
 /* Mobile bottom navigation: stack icon and label to prevent overlap */
 @media (max-width:600px){
- .bottom-nav{grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;padding:5px;width:calc(100% - 16px)}
+ .bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:5px;width:calc(100% - 16px)}
  .nav-btn{min-width:0;width:100%;min-height:54px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:clamp(9px,2.6vw,11px);line-height:1.15;white-space:normal;text-align:center;overflow-wrap:anywhere}
  .nav-btn .nav-icon{display:block;font-size:18px;line-height:1.1;flex:0 0 auto}
  .nav-btn span:not(.nav-icon){display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
@@ -194,7 +194,30 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
  .nav-btn .nav-icon{font-size:16px}
 }
 
-</style></head><body>
+</style>
+<style>
+#weztyAuthGate{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 50% 20%,#321447,transparent 55%),#080511;color:#fff}
+#weztyAuthGate .auth-card{width:min(100%,420px);padding:28px;border:1px solid #dca1ff66;border-radius:24px;background:#1a1029ee;box-shadow:0 0 35px #a855f744;text-align:center}
+#weztyAuthGate input{display:block;width:100%;box-sizing:border-box;margin:12px 0;padding:14px;border-radius:12px;border:1px solid #bd8bdd66;background:#100a1b;color:#fff;font-size:16px}
+#weztyAuthGate button,#weztyAdminToggle,#weztyAdminPanel button{border:0;border-radius:12px;padding:12px 18px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;font-weight:700;cursor:pointer}
+#weztyAuthError{color:#ffb5cf;min-height:24px;font-size:13px}
+#weztyAdminBar{position:fixed;top:12px;left:12px;z-index:1000;display:none}
+#weztyAdminPanel{display:none;position:fixed;z-index:40000;inset:0;background:#080511ee;color:#fff;padding:24px;overflow:auto}
+#weztyAdminPanel .admin-inner{max-width:760px;margin:40px auto;padding:24px;border:1px solid #dca1ff66;border-radius:22px;background:#1a1029}
+#weztyAdminPanel h2{color:#ff9cdd}#weztyAdminPanel p{line-height:1.9}#weztyAdminPanel .admin-editor{padding:14px 0;border-bottom:1px solid #bd8bdd33;margin:12px 0}#weztyAdminPanel h3{color:#f4b5e4}#weztyAdminPanel textarea{max-width:100%;font-family:monospace}#weztyAdminPanel label{color:#f3c6e8}#weztyAdminPanel input[type=checkbox]{width:auto}#weztyAllStatus{color:#ffc7e9;line-height:1.8}
+</style>
+
+</head><body>
+
+<div id="weztyAuthGate"><div class="auth-card"><div style="font-size:48px">🪿💗</div><h1>WEZTY</h1><p>سجّل دخولك عشان تدخل عالم WEZTY</p><form id="weztyLoginForm"><input id="weztyEmail" type="email" autocomplete="username" placeholder="Gmail" required><input id="weztyPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور" required><button type="submit">تسجيل الدخول</button></form><div id="weztyAuthError"></div></div></div>
+<div id="weztyAdminBar"><button id="weztyAdminToggle">⚙️ الإدارة</button></div>
+<div id="weztyAdminPanel"><div class="admin-inner"><button id="weztyAdminClose">إغلاق ✕</button><h2>WEZTY — مركز الإدارة</h2><p id="weztyAdminWelcome">مرحبًا Abdelrahman</p><section class="admin-editor"><h3>💌 إدارة الرسائل اليومية</h3><p>كل رسالة في سطر مستقل داخل محرر JSON. يمكنك تعديل النصوص أو إضافة رسائل جديدة.</p><textarea id="weztyMessagesEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:280px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="weztyLoadMessages">تحميل الرسائل الحالية</button><button id="weztySaveMessages">حفظ الرسائل على Firebase</button></div><p id="weztyAdminStatus" role="status"></p></section>
+<section class="admin-editor"><h3>🧩 إدارة أسئلة اللعبة</h3><p>عدّل أسئلة كل مستوى. احتفظ بمفاتيح light وfeelings وdeep.</p><textarea id="weztyQuestionsEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section>
+<section class="admin-editor"><h3>🎡 إدارة العجلة والتحديات</h3><p>كل قسم يحتوي name وitems. حافظ على 8 أقسام حتى تتطابق مع قطاعات العجلة الحالية.</p><textarea id="weztyWheelEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section>
+<section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option></select></section>
+<section class="admin-editor"><h3>🔐 Secret Zone</h3><p>محتوى القسم السري الظاهر للحسابين المصرح لهم.</p><label>عنوان القسم</label><input id="weztySecretTitle" style="width:100%;padding:12px;margin:8px 0;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"><label>المحتوى</label><textarea id="weztySecretBody" style="width:100%;min-height:130px;padding:12px;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"></textarea><label style="display:block;margin:10px 0"><input type="checkbox" id="weztySecretEnabled" checked> تفعيل ظهور Secret Zone</label></section>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button id="weztyLoadAll">تحميل كل الإعدادات</button><button id="weztySaveAll">حفظ المراحل الأربع على Firebase</button></div><p id="weztyAllStatus" role="status"></p><p style="font-size:12px;color:#e7b8dc">تنبيه: حماية Firestore الفعلية تتطلب نشر القواعد المقترحة ومراجعة اختبارها في Firebase Console. إخفاء أدوات الإدارة وحده ليس حماية.</p><button id="weztyLogout">تسجيل الخروج</button></div></div>
+
 <canvas id="galaxyCanvas"></canvas>
 <section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>حدث خطأ ما</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section>
 
@@ -248,18 +271,19 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 </main></section>
 
 
+<section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section>
 <section class="page-section" id="comingPage"><main class="coming-page">
 <div class="coming-badge">✨ A little surprise is on the way</div>
 <h2 class="coming-title">Coming Soon</h2>
 <p class="coming-subtitle">لسه شوية يا وزتي 🪿💕<br>في حاجات حلوة بتتجهز عشانك، وكل حاجة بتيجي في وقتها… استني المفاجأة!</p>
 </main></section>
 
-<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">✨</span><span>Coming Soon</span></button></nav>
+<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">✨</span><span>Coming Soon</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret Zone</span></button></nav>
 
 <div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div>
 
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
+import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 const firebaseConfig={apiKey:"AIzaSyD4I4NviTS4pNo5hxksiGDr-2SiOVaj4AI",authDomain:"zozo-41d24.firebaseapp.com",projectId:"zozo-41d24",storageBucket:"zozo-41d24.firebasestorage.app",messagingSenderId:"872003176089",appId:"1:872003176089:web:c9d522e470d6e7124b5a08",measurementId:"G-HZRTXWPJSX"};const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app);
 const messages=[
 `يا وزتي يا حتة من قلبي ❤️
@@ -378,7 +402,75 @@ document.addEventListener("pointerdown",event=>{if(!event.isPrimary||event.targe
 const surprise=document.getElementById("touchSurprise");function showTouchSurprise(){surprise.classList.add("show")}document.getElementById("closeSurprise").addEventListener("click",()=>surprise.classList.remove("show"));surprise.addEventListener("click",event=>{if(event.target===surprise)surprise.classList.remove("show")});
 function createPetal(){if(document.hidden)return;const petal=document.createElement("span");petal.className="falling-petal";petal.textContent=randomItem(["🌸","🌷","🌺"]);petal.style.setProperty("--left",Math.random()*100+"vw");petal.style.setProperty("--size",12+Math.random()*12+"px");petal.style.setProperty("--duration",7+Math.random()*6+"s");petal.style.setProperty("--drift",Math.random()*120-60+"px");document.body.appendChild(petal);setTimeout(()=>petal.remove(),14000)}
 for(let i=0;i<6;i++)setTimeout(createPetal,i*700);setInterval(createPetal,1800);
-async function startApp(){render();try{await signInAnonymously(auth);await refreshReadStatus();listenToSharedGame();setRole(gameRole)}catch(error){console.error(error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}}startApp();
+
+const WEZTY_ADMIN_UID="DmbbqyG9t2SauNcV2v9LJGFXvYE3";
+const WEZTY_VIEWER_UID="eKw6zaBwDXP5g6wMyhbhoUBXf2D2";
+let currentWeztyRole=null;
+let unsubscribeWeztyContent=null;
+const authGate=document.getElementById("weztyAuthGate"),authError=document.getElementById("weztyAuthError");
+document.getElementById("weztyLoginForm").addEventListener("submit",async e=>{e.preventDefault();authError.textContent="جاري تسجيل الدخول...";try{await signInWithEmailAndPassword(auth,document.getElementById("weztyEmail").value.trim(),document.getElementById("weztyPassword").value)}catch(err){console.error(err);authError.textContent="تعذر تسجيل الدخول. راجع البريد وكلمة المرور."}});
+onAuthStateChanged(auth,async user=>{
+ if(unsubscribeWeztyContent){unsubscribeWeztyContent();unsubscribeWeztyContent=null;}
+ if(!user){currentWeztyRole=null;authGate.style.display="flex";document.getElementById("weztyAdminBar").style.display="none";return}
+ if(user.uid!==WEZTY_ADMIN_UID&&user.uid!==WEZTY_VIEWER_UID){await signOut(auth);authError.textContent="هذا الحساب غير مصرح له باستخدام WEZTY.";return}
+ currentWeztyRole=user.uid===WEZTY_ADMIN_UID?"admin":"viewer";
+ const applyRemoteContent=saved=>{
+  if(Array.isArray(saved.messages)&&saved.messages.every(x=>typeof x==="string"&&x.trim()))messages.splice(0,messages.length,...saved.messages);
+  if(saved.gameBanks&&["light","feelings","deep"].every(k=>Array.isArray(saved.gameBanks[k])&&saved.gameBanks[k].length>=6)){Object.keys(gameBanks).forEach(k=>delete gameBanks[k]);Object.assign(gameBanks,saved.gameBanks)}
+  if(Array.isArray(saved.wheelChallenges)&&saved.wheelChallenges.length===8)window.WEZTY_applyWheelChallenges(saved.wheelChallenges);
+  if(saved.theme){applyWeztyTheme(saved.theme);const themeSelect=document.getElementById("weztyThemeSelect");if(themeSelect)themeSelect.value=saved.theme;}
+  applySecretZone(saved.secretZone||defaultSecret);
+  render();
+ };
+ try{const contentSnap=await getDoc(doc(db,"wezty_admin","content"));if(contentSnap.exists())applyRemoteContent(contentSnap.data())}catch(loadErr){console.warn("WEZTY remote content unavailable; using bundled content",loadErr)}
+ // Keep both devices synchronized while the app is open.
+ unsubscribeWeztyContent=onSnapshot(doc(db,"wezty_admin","content"),snap=>{if(snap.exists())applyRemoteContent(snap.data())},error=>console.warn("WEZTY live settings listener:",error));
+ authGate.style.display="none";render();
+ document.getElementById("weztyAdminBar").style.display=currentWeztyRole==="admin"?"block":"none";
+ document.getElementById("weztyAdminWelcome").textContent=currentWeztyRole==="admin"?"مرحبًا Abdelrahman — Admin":"";
+ try{await refreshReadStatus();listenToSharedGame();setRole(currentWeztyRole==="admin"?"me":"her")}catch(error){console.error(error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}
+});
+async function loadAdminMessages(){const status=document.getElementById("weztyAdminStatus"),editor=document.getElementById("weztyMessagesEditor");status.textContent="جاري تحميل الرسائل...";try{const snap=await getDoc(doc(db,"wezty_admin","content"));const stored=snap.exists()?snap.data().messages:null;editor.value=JSON.stringify(Array.isArray(stored)?stored:messages,null,2);status.textContent=`تم تحميل ${Array.isArray(stored)?stored.length:messages.length} رسالة.`}catch(err){console.error(err);editor.value=JSON.stringify(messages,null,2);status.textContent="تعذر تحميل إعدادات Firebase؛ المعروض هو المحتوى المحلي الحالي."}}
+document.getElementById("weztyLoadMessages").addEventListener("click",()=>{if(currentWeztyRole==="admin")loadAdminMessages()});
+document.getElementById("weztySaveMessages").addEventListener("click",async()=>{if(currentWeztyRole!=="admin")return;const status=document.getElementById("weztyAdminStatus");try{const parsed=JSON.parse(document.getElementById("weztyMessagesEditor").value);if(!Array.isArray(parsed)||parsed.length<1||parsed.some(x=>typeof x!=="string"||!x.trim()))throw new Error("يجب إدخال مصفوفة JSON من نصوص الرسائل فقط.");await setDoc(doc(db,"wezty_admin","content"),{messages:parsed,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid},{merge:true});messages.splice(0,messages.length,...parsed);render();status.textContent=`تم حفظ ${parsed.length} رسالة وتحديث الصفحة الحالية بنجاح.`}catch(err){console.error(err);status.textContent=err instanceof SyntaxError?"صيغة JSON غير صحيحة. راجع الفواصل وعلامات الاقتباس.":(err.message||"تعذر الحفظ؛ تحقق من اتصال Firebase وقواعد Firestore.")}});
+document.getElementById("weztyAdminToggle").addEventListener("click",()=>{if(currentWeztyRole==="admin"){document.getElementById("weztyAdminPanel").style.display="block";loadAllAdminSettings()}});
+document.getElementById("weztyAdminClose").addEventListener("click",()=>document.getElementById("weztyAdminPanel").style.display="none");
+
+document.getElementById("weztyLogout").addEventListener("click",()=>signOut(auth));
+
+const defaultTheme="galaxy";
+const defaultSecret={title:"Secret Zone",body:"مساحة صغيرة خاصة بيكم ❤️",enabled:true};
+function applyWeztyTheme(theme){
+ const presets={
+  galaxy:{bg:"radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b)",panel:"rgba(20,12,34,.88)",accent:"#d94eaa",border:"#d58aff88",soft:"rgba(49,27,67,.78)"},
+  rose:{bg:"radial-gradient(ellipse at 20% 15%,#58213e 0,transparent 42%),linear-gradient(145deg,#160811,#2b1022)",panel:"rgba(48,17,37,.9)",accent:"#ef6f9d",border:"#ff9fca99",soft:"rgba(75,29,55,.82)"},
+  ocean:{bg:"radial-gradient(ellipse at 15% 12%,#145477 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#102e50 0,transparent 48%),linear-gradient(145deg,#030b16,#08243a 58%,#061522)",panel:"rgba(7,31,51,.93)",accent:"#42b8e8",border:"#78c9f0aa",soft:"rgba(15,53,77,.86)"}
+ };
+ const t=presets[theme]||presets[defaultTheme];document.documentElement.dataset.weztyTheme=theme;
+ document.documentElement.style.setProperty("--wezty-accent",t.accent);
+ document.documentElement.style.setProperty("--wezty-accent-2",theme==="ocean"?"#3856a8":theme==="rose"?"#b83d78":"#d94eaa");
+ document.body.style.setProperty("background",t.bg,"important");
+ document.querySelectorAll(".card,.wheel-section,.game-section,.coming-page,.memories-page").forEach(el=>{el.style.setProperty("background",t.panel,"important");el.style.borderColor=t.border;el.style.boxShadow=`0 0 25px ${t.accent}33,0 15px 45px #0008`});
+ document.querySelectorAll(".message,.read-section,.wheel-result,.coming-idea").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
+ document.querySelectorAll(".bottom-nav").forEach(el=>{el.style.background=t.panel;el.style.borderColor=t.border});
+ document.querySelectorAll(".read-btn,.wheel-btn,.game-action,.level-btn.selected,.wheel-center").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},#3856a8)`});
+ document.querySelectorAll("h1,.coming-title,.wheel-section h2,.wheel-result h3").forEach(el=>{el.style.color=t.accent;el.style.textShadow=`0 0 15px ${t.accent}55`});
+}
+document.getElementById("weztyThemeSelect").addEventListener("change",async e=>{
+ if(currentWeztyRole!=="admin")return;
+ const theme=e.target.value;applyWeztyTheme(theme);
+ const status=document.getElementById("weztyAllStatus");status.textContent="تم تطبيق معاينة الثيم... جاري حفظه على Firebase";
+ try{await setDoc(doc(db,"wezty_admin","content"),{theme,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid},{merge:true});status.textContent="تم تطبيق وحفظ الثيم بنجاح. هيظهر على الجهازين عند فتح الموقع."}
+ catch(err){console.error(err);status.textContent="الثيم اتطبق كمعاينة على الجهاز ده، لكن الحفظ على Firebase فشل: "+(err.message||"راجع صلاحيات Firestore");}
+});
+function applySecretZone(secret=defaultSecret){const cfg={...defaultSecret,...(secret||{})};document.getElementById("secretPageTitle").textContent=cfg.title||defaultSecret.title;document.getElementById("secretPageBody").textContent=cfg.body||defaultSecret.body;const nav=document.querySelector('.nav-btn[data-page="secretPage"]');if(nav)nav.style.display=cfg.enabled?"flex":"none";if(!cfg.enabled&&document.getElementById("secretPage").classList.contains("active")){document.querySelector('.nav-btn[data-page="messagesPage"]').click()}}
+function validateQuestionBanks(value){if(!value||typeof value!=="object"||!["light","feelings","deep"].every(k=>Array.isArray(value[k])&&value[k].length>=6&&value[k].every(q=>typeof q==="string"&&q.trim())))throw new Error("كل مستوى يحتاج 6 أسئلة صحيحة على الأقل.");return value}
+function validateWheel(value){if(!Array.isArray(value)||value.length!==8||value.some(c=>!c||typeof c.name!=="string"||!c.name.trim()||!Array.isArray(c.items)||!c.items.length||c.items.some(x=>typeof x!=="string"||!x.trim())))throw new Error("العجلة تحتاج 8 أقسام، وفي كل قسم تحدٍ واحد على الأقل.");return value}
+async function loadAllAdminSettings(){const status=document.getElementById("weztyAllStatus");status.textContent="جاري تحميل الإعدادات...";try{const snap=await getDoc(doc(db,"wezty_admin","content"));const data=snap.exists()?snap.data():{};document.getElementById("weztyMessagesEditor").value=JSON.stringify(data.messages||messages,null,2);document.getElementById("weztyQuestionsEditor").value=JSON.stringify(data.gameBanks||gameBanks,null,2);document.getElementById("weztyWheelEditor").value=JSON.stringify(data.wheelChallenges||window.WEZTY_getWheelChallenges?.()||[],null,2);document.getElementById("weztyThemeSelect").value=data.theme||defaultTheme;const secret={...defaultSecret,...(data.secretZone||{})};document.getElementById("weztySecretTitle").value=secret.title;document.getElementById("weztySecretBody").value=secret.body;document.getElementById("weztySecretEnabled").checked=!!secret.enabled;status.textContent="تم تحميل إعدادات الرسائل والأسئلة والعجلة والثيم وSecret Zone."}catch(err){console.error(err);status.textContent="تعذر تحميل الإعدادات من Firebase: "+(err.message||"راجع الاتصال والقواعد.")}}
+document.getElementById("weztyLoadAll").addEventListener("click",()=>{if(currentWeztyRole==="admin")loadAllAdminSettings()});
+document.getElementById("weztySaveAll").addEventListener("click",async()=>{if(currentWeztyRole!=="admin")return;const status=document.getElementById("weztyAllStatus");try{const msgs=JSON.parse(document.getElementById("weztyMessagesEditor").value);if(!Array.isArray(msgs)||!msgs.length||msgs.some(x=>typeof x!=="string"||!x.trim()))throw new Error("راجع صيغة الرسائل.");const banks=validateQuestionBanks(JSON.parse(document.getElementById("weztyQuestionsEditor").value));const wheelData=validateWheel(JSON.parse(document.getElementById("weztyWheelEditor").value));const theme=document.getElementById("weztyThemeSelect").value;const secretZone={title:document.getElementById("weztySecretTitle").value.trim()||defaultSecret.title,body:document.getElementById("weztySecretBody").value.trim()||defaultSecret.body,enabled:document.getElementById("weztySecretEnabled").checked};await setDoc(doc(db,"wezty_admin","content"),{messages:msgs,gameBanks:banks,wheelChallenges:wheelData,theme,secretZone,updatedAt:serverTimestamp(),updatedBy:auth.currentUser.uid},{merge:true});messages.splice(0,messages.length,...msgs);Object.keys(gameBanks).forEach(k=>delete gameBanks[k]);Object.assign(gameBanks,banks);window.WEZTY_applyWheelChallenges(wheelData);applyWeztyTheme(theme);applySecretZone(secretZone);render();status.textContent="تم حفظ وتطبيق المراحل الأربع بنجاح على Firebase."}catch(err){console.error(err);status.textContent=err instanceof SyntaxError?"صيغة JSON غير صحيحة. راجع علامات الاقتباس والفواصل.":(err.message||"تعذر الحفظ. راجع اتصال Firebase وصلاحيات Firestore.")}});
+
+
 function scheduleMidnightUpdate(){const now=new Date(),tomorrow=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,1);setTimeout(async()=>{render();await refreshReadStatus();scheduleMidnightUpdate()},tomorrow-now)}scheduleMidnightUpdate();
 
 // لعبة مشتركة بين الجهازين عبر Firestore
@@ -459,7 +551,7 @@ const wheelChallenges=[
 {name:"🎁 المفاجآت",items:["اختاريلي مفاجأة صغيرة نعملها سوا 🎁","النهارده ليكي رسالة إضافية مني 💌","اختاري حاجة نفسك نعملها في أقرب فرصة ❤️","ليكي حق تختاري فيلم نتفرج عليه سوا 🍿","اطلبي مني حاجة بسيطة تفرحك النهارده 🥹","اختاري أغنية نعتبرها أغنيتنا الخاصة 🎶"]},
 {name:"📸 تحديات الصور",items:["ابعتيلي صورة لحاجة حواليكي وفكرتك بيا ❤️","صوري حاجة لونها وردي النهارده 🌸","ابعتيلي صورة لأجمل حاجة شفتيها النهارده 📸","اختاري صورة قديمة بتحبي ذكراها 💗","صوري حاجة بتعبّر عن مودك النهارده 🥰","ابعتيلي صورة لابتسامتك لو حابة ❤️"]},
 {name:"💌 رسائل خاصة",items:["اكتبيلي رسالة من 3 سطور عن يومك 💌","ابعتيلي كلمة واحدة بتوصف إحساسك دلوقتي","قوليلي حاجة نفسك تحكيهالي من زمان ❤️","اكتبيلي أمنية نفسك نحققها سوا 🥹","ابعتيلي رسالة كأننا لسه بنتعرف على بعض 😂","اكتبيلي عنوان لفصل جديد في حكايتنا 💗"]},
-{name:"🧠 أسئلة بينكم",items:[,"إيه أكتر ذكرى بينا بتحبيها؟","لو هنخرج يوم كامل، تحبي نروح فين؟","إيه أول حاجة لفتت نظرك فيا؟","إيه أكتر حاجة بتخلي يومك أحلى؟","لو تقدري تعيشي يوم من ذكرياتنا تاني، تختاري إيه؟","إيه حاجة جديدة نفسك نتعلمها سوا؟"]},
+{name:"🧠 أسئلة بينكم",items:["اختاري ذكرى حلوة بينا واحكيلي ليه بتحبيها ❤️","إيه أكتر ذكرى بينا بتحبيها؟","لو هنخرج يوم كامل، تحبي نروح فين؟","إيه أول حاجة لفتت نظرك فيا؟","إيه أكتر حاجة بتخلي يومك أحلى؟","لو تقدري تعيشي يوم من ذكرياتنا تاني، تختاري إيه؟","إيه حاجة جديدة نفسك نتعلمها سوا؟"]},
 {name:"🥰 تحديات رومانسية",items:["اختاريلي لقب جديد أدلعك بيه 🥰","ابعتيلي فويس تقولي فيه حاجة حلوة ❤️","اختاري معاد نخصصه لينا ونتكلم فيه من غير انشغال 💗","قوليلي مكان نفسك نزوره سوا 🌷","اختاري ذكرى نفسنا نعمل زيها تاني 🥹","ابعتيلي 3 قلوب كل قلب بلون مختلف واختاري معناه ❤️"]},
 {name:"✨ تحديات متنوعة",items:["اختاريلي تحدي بسيط أنفذه أنا المرة الجاية 😂","اتعلمي كلمة جديدة وقوليهالي","اختاري لون يمثل يومنا النهارده 🎨","احكيلي عن حاجة جديدة عرفتيها النهارده","اختاري موضوع نتكلم فيه لمدة 10 دقايق","اعملي قائمة من 3 حاجات نفسك تجربيها قريب ✨"]}
 ];
@@ -470,7 +562,9 @@ function cairoDateKey(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"A
 function readWheelStorage(key,fallback){try{const value=localStorage.getItem(key);return value?JSON.parse(value):fallback}catch(e){return fallback}}
 function saveWheelStorage(key,value){try{localStorage.setItem(key,JSON.stringify(value))}catch(e){console.error("Wheel storage error",e)}}
 function allWheelChallenges(){const all=[];wheelChallenges.forEach((category,categoryIndex)=>category.items.forEach((item,itemIndex)=>{if(typeof item==="string"&&item.trim())all.push({id:categoryIndex+"-"+itemIndex,categoryIndex,text:item})}));return all}
-const allChallenges=allWheelChallenges();
+let allChallenges=allWheelChallenges();
+window.WEZTY_getWheelChallenges=()=>wheelChallenges.map(c=>({name:c.name,items:[...c.items]}));
+window.WEZTY_applyWheelChallenges=(next)=>{if(!Array.isArray(next)||next.length!==8)throw new Error("العجلة تحتاج 8 أقسام بالضبط.");wheelChallenges.splice(0,wheelChallenges.length,...next);allChallenges=allWheelChallenges();document.querySelectorAll("#wheel .wheel-label").forEach((el,i)=>{if(wheelChallenges[i])el.textContent=wheelChallenges[i].name});updateWheelStatus()};
 function getUsedChallenges(){const used=readWheelStorage(WHEEL_STORAGE_KEY,[]);return Array.isArray(used)?used:[]}
 function updateWheelStatus(){const today=cairoDateKey(),daily=readWheelStorage(WHEEL_DAILY_KEY,null),used=getUsedChallenges(),remaining=allChallenges.filter(x=>!used.includes(x.id)).length;wheelCount.textContent="التحديات المتبقية: "+remaining+" من 50";if(daily&&daily.date===today){spinButton.disabled=true;spinButton.textContent="لفّيتي عجلة النهارده ❤️";wheelStatus.textContent="استني لحد بكرة بتوقيت القاهرة عشان تلفّي تاني 💗";wheelResult.classList.add("show");challengeText.textContent=daily.text;wheelCount.textContent="تحدي النهارده من قسم "+daily.category;if(daily.rotation!==undefined){wheel.style.transform="rotate("+daily.rotation+"deg)";wheelRotation=daily.rotation}return}spinButton.disabled=isSpinning;spinButton.textContent="لفّي العجلة 🎀";wheelStatus.textContent=remaining?"لسه ليكي لفة النهارده ✨":"خلصتوا كل التحديات الـ50! 💗";wheelResult.classList.remove("show");if(remaining===0){spinButton.disabled=true;spinButton.textContent="خلصت كل التحديات 💗"}}
 function spinWheel(){if(isSpinning)return;const today=cairoDateKey(),daily=readWheelStorage(WHEEL_DAILY_KEY,null);if(daily&&daily.date===today){updateWheelStatus();return}let used=getUsedChallenges(),available=allChallenges.filter(x=>!used.includes(x.id));if(available.length===0){used=[];available=allChallenges}const selected=available[Math.floor(Math.random()*available.length)],categoryIndex=selected.categoryIndex;isSpinning=true;spinButton.disabled=true;wheelStatus.textContent="العجلة بتلف... 🎀";wheelResult.classList.remove("show");const segmentCenter=categoryIndex*45+22.5;const target=(360-segmentCenter+360)%360;const extraTurns=5+Math.floor(Math.random()*3);wheelRotation+=extraTurns*360+((target-wheelRotation%360+360)%360);wheel.style.transform="rotate("+wheelRotation+"deg)";setTimeout(()=>{isSpinning=false;used.push(selected.id);saveWheelStorage(WHEEL_STORAGE_KEY,used);const category=wheelChallenges[categoryIndex].name;saveWheelStorage(WHEEL_DAILY_KEY,{date:today,id:selected.id,text:selected.text,category:category,rotation:wheelRotation});challengeText.textContent=selected.text;wheelCount.textContent="القسم: "+category+" • المتبقي: "+(allChallenges.length-used.length)+" من 50";wheelResult.classList.add("show");wheelStatus.textContent="دي مفاجأة النهارده! ❤️";spinButton.disabled=true;spinButton.textContent="لفّيتي عجلة النهارده ❤️"},5100)}
@@ -479,7 +573,7 @@ updateWheelStatus();
 setInterval(()=>{const daily=readWheelStorage(WHEEL_DAILY_KEY,null);if(!daily||daily.date!==cairoDateKey())updateWheelStatus()},15000);
 </script>
 <script>
-(()=>{const buttons=[...document.querySelectorAll(".nav-btn")];buttons.forEach(button=>button.addEventListener("click",()=>{const target=button.dataset.page;document.querySelectorAll(".page-section").forEach(page=>page.classList.toggle("active",page.id===target));buttons.forEach(item=>item.classList.toggle("active",item===button));window.scrollTo({top:0,behavior:"smooth"})}))})();
+(()=>{const buttons=[...document.querySelectorAll(".nav-btn")];buttons.forEach(button=>button.addEventListener("click",()=>{const target=button.dataset.page;document.querySelectorAll(".page-section").forEach(page=>page.classList.toggle("active",page.id===target));buttons.forEach(item=>{const isActive=item===button;item.classList.toggle("active",isActive);item.style.removeProperty("background")});window.scrollTo({top:0,behavior:"smooth"})}))})();
 </script>
 
 
