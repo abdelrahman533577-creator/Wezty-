@@ -243,14 +243,22 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 .chat-status{font-size:13px;color:#d9c3ec}
 </style>
 
-</head><body>
+<style id="weztyThemeGlassOverrides">
+:root{--wezty-accent:#d94eaa;--wezty-accent-2:#3856a8;--wezty-panel:rgba(20,12,34,.68);--wezty-soft:rgba(49,27,67,.58);--wezty-border:#d58aff88;--wezty-text:#f8eaff;--wezty-muted:#c6a8df}
+.card,.wheel-section,.game-section,.coming-page,.memories-page,.private-chat{background:var(--wezty-panel)!important;border-color:var(--wezty-border)!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.message,.read-section,.wheel-result,.coming-idea,.game-panel,.game-entry,.private-chat-messages,.private-chat-bubble.theirs{background:var(--wezty-soft)!important;border-color:var(--wezty-border)!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.private-chat-bubble.mine,.nav-btn.active,.read-btn,.wheel-btn,.game-action,.level-btn.selected,.wheel-center,.surprise-close{background:linear-gradient(135deg,var(--wezty-accent),var(--wezty-accent-2))!important}
+.bottom-nav{background:var(--wezty-panel)!important;border-color:var(--wezty-border)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+.nav-btn{color:var(--wezty-muted)}
+.private-chat-form textarea,.game-answer{background:var(--wezty-soft)!important;border-color:var(--wezty-border)!important;color:var(--wezty-text)!important}
+</style></head><body>
 
 <div id="weztyAuthGate"><div class="auth-card"><div style="font-size:48px">🪿💗</div><h1>WEZTY</h1><p>سجّل دخولك عشان تدخل عالم WEZTY</p><form id="weztyLoginForm"><input id="weztyEmail" type="email" autocomplete="username" placeholder="Gmail" required><input id="weztyPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور" required><button type="submit">تسجيل الدخول</button></form><div id="weztyAuthError"></div></div></div>
 <div id="weztyAdminBar"><button id="weztyAdminToggle">⚙️ الإدارة</button></div>
 <div id="weztyAdminPanel"><div class="admin-inner"><button id="weztyAdminClose">إغلاق ✕</button><h2>WEZTY — مركز الإدارة</h2><p id="weztyAdminWelcome">مرحبًا Abdelrahman</p><section class="admin-editor"><h3>💌 إدارة الرسائل اليومية</h3><p>كل رسالة في سطر مستقل داخل محرر JSON. يمكنك تعديل النصوص أو إضافة رسائل جديدة.</p><textarea id="weztyMessagesEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:280px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="weztyLoadMessages">تحميل الرسائل الحالية</button><button id="weztySaveMessages">حفظ الرسائل على Firebase</button></div><p id="weztyAdminStatus" role="status"></p></section>
 <section class="admin-editor"><h3>🧩 إدارة أسئلة اللعبة</h3><p>عدّل أسئلة كل مستوى. احتفظ بمفاتيح light وfeelings وdeep.</p><textarea id="weztyQuestionsEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section>
 <section class="admin-editor"><h3>🎡 إدارة العجلة والتحديات</h3><p>كل قسم يحتوي name وitems. حافظ على 8 أقسام حتى تتطابق مع قطاعات العجلة الحالية.</p><textarea id="weztyWheelEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section>
-<section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option><option value="darkBlue">Dark Blue — الأزرق الداكن</option><option value="purpleNeon">Purple Neon — البنفسجي النيون</option><option value="sunsetGlow">Sunset Glow — الغروب الذهبي</option><option value="natureForest">Nature Forest — الغابة الطبيعية</option></select></section>
+<section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><optgroup label="الثيمات الحالية"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option><option value="darkBlue">Dark Blue — الأزرق الداكن</option><option value="purpleNeon">Purple Neon — البنفسجي النيون</option><option value="sunsetGlow">Sunset Glow — الغروب الذهبي</option><option value="natureForest">Nature Forest — الغابة الطبيعية</option></optgroup><optgroup label="الثيمات الجديدة"><option value="auroraGreen">Aurora Green</option><option value="galaxyDream">Galaxy Dream</option><option value="sakuraNight">Sakura Night</option><option value="oceanBlue">Ocean Blue</option><option value="royalGold">Royal Gold</option><option value="sunsetLove">Sunset Love</option><option value="cyberNeon">Cyber Neon</option><option value="softBeige">Soft Beige</option></optgroup></select></section>
 <section class="admin-editor"><h3>🔐 Secret Zone</h3><p>محتوى القسم السري الظاهر للحسابين المصرح لهم.</p><label>عنوان القسم</label><input id="weztySecretTitle" style="width:100%;padding:12px;margin:8px 0;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"><label>المحتوى</label><textarea id="weztySecretBody" style="width:100%;min-height:130px;padding:12px;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"></textarea><label style="display:block;margin:10px 0"><input type="checkbox" id="weztySecretEnabled" checked> تفعيل ظهور Secret Zone</label></section>
 <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="weztyLoadAll">تحميل كل الإعدادات</button><button id="weztySaveAll">حفظ المراحل الأربع على Firebase</button></div><p id="weztyAllStatus" role="status"></p><p style="font-size:12px;color:#e7b8dc">تنبيه: حماية Firestore الفعلية تتطلب نشر القواعد المقترحة ومراجعة اختبارها في Firebase Console. إخفاء أدوات الإدارة وحده ليس حماية.</p><button id="weztyLogout">تسجيل الخروج</button></div></div>
 
@@ -532,29 +540,57 @@ const defaultTheme="galaxy";
 const defaultSecret={title:"Secret Zone",body:"مساحة صغيرة خاصة بيكم ❤️",enabled:true};
 function applyWeztyTheme(theme){
  const presets={
-  galaxy:{bg:"radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b)",panel:"rgba(20,12,34,.88)",accent:"#d94eaa",accent2:"#3856a8",border:"#d58aff88",soft:"rgba(49,27,67,.78)"},
-  rose:{bg:"radial-gradient(ellipse at 20% 15%,#58213e 0,transparent 42%),linear-gradient(145deg,#160811,#2b1022)",panel:"rgba(48,17,37,.9)",accent:"#ef6f9d",accent2:"#b83d78",border:"#ff9fca99",soft:"rgba(75,29,55,.82)"},
-  ocean:{bg:"radial-gradient(ellipse at 15% 12%,#145477 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#102e50 0,transparent 48%),linear-gradient(145deg,#030b16,#08243a 58%,#061522)",panel:"rgba(7,31,51,.93)",accent:"#42b8e8",accent2:"#3856a8",border:"#78c9f0aa",soft:"rgba(15,53,77,.86)"},
-  darkBlue:{bg:"radial-gradient(ellipse at 14% 12%,#123c83 0,transparent 43%),radial-gradient(ellipse at 88% 82%,#064d68 0,transparent 46%),linear-gradient(145deg,#020817,#071b3c 58%,#031326)",panel:"rgba(5,20,48,.93)",accent:"#16b9ff",accent2:"#1768e8",border:"#269dff99",soft:"rgba(10,38,78,.86)"},
-  purpleNeon:{bg:"radial-gradient(ellipse at 18% 15%,#5811a8 0,transparent 43%),radial-gradient(ellipse at 85% 82%,#8700a8 0,transparent 46%),linear-gradient(145deg,#090014,#1b0630 58%,#090018)",panel:"rgba(28,8,48,.93)",accent:"#c45bff",accent2:"#ed28d7",border:"#c45bffbb",soft:"rgba(61,17,88,.86)"},
-  sunsetGlow:{bg:"radial-gradient(ellipse at 18% 12%,#a52b35 0,transparent 42%),radial-gradient(ellipse at 86% 78%,#a94b12 0,transparent 48%),linear-gradient(145deg,#1b0715,#481526 54%,#160b1a)",panel:"rgba(48,17,29,.93)",accent:"#ffad32",accent2:"#f15b24",border:"#ffad32aa",soft:"rgba(86,34,37,.86)"},
-  natureForest:{bg:"radial-gradient(ellipse at 16% 12%,#1c653d 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#526b2a 0,transparent 48%),linear-gradient(145deg,#06140e,#102b1c 58%,#08150f)",panel:"rgba(10,35,23,.94)",accent:"#83d65a",accent2:"#279b55",border:"#83d65aaa",soft:"rgba(24,65,39,.88)"}
+  // Existing themes — kept available with their original visual identity.
+  galaxy:{bg:"radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b)",panel:"rgba(20,12,34,.68)",accent:"#d94eaa",accent2:"#3856a8",border:"#d58aff88",soft:"rgba(49,27,67,.58)",text:"#f8eaff",muted:"#c6a8df"},
+  rose:{bg:"radial-gradient(ellipse at 20% 15%,#58213e 0,transparent 42%),linear-gradient(145deg,#160811,#2b1022)",panel:"rgba(48,17,37,.68)",accent:"#ef6f9d",accent2:"#b83d78",border:"#ff9fca99",soft:"rgba(75,29,55,.58)",text:"#fff0f6",muted:"#edb8ce"},
+  ocean:{bg:"radial-gradient(ellipse at 15% 12%,#145477 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#102e50 0,transparent 48%),linear-gradient(145deg,#030b16,#08243a 58%,#061522)",panel:"rgba(7,31,51,.70)",accent:"#42b8e8",accent2:"#3856a8",border:"#78c9f0aa",soft:"rgba(15,53,77,.58)",text:"#eaf8ff",muted:"#a8d5e8"},
+  darkBlue:{bg:"radial-gradient(ellipse at 14% 12%,#123c83 0,transparent 43%),radial-gradient(ellipse at 88% 82%,#064d68 0,transparent 46%),linear-gradient(145deg,#020817,#071b3c 58%,#031326)",panel:"rgba(5,20,48,.72)",accent:"#16b9ff",accent2:"#1768e8",border:"#269dff99",soft:"rgba(10,38,78,.60)",text:"#eaf5ff",muted:"#a8c9ec"},
+  purpleNeon:{bg:"radial-gradient(ellipse at 18% 15%,#5811a8 0,transparent 43%),radial-gradient(ellipse at 85% 82%,#8700a8 0,transparent 46%),linear-gradient(145deg,#090014,#1b0630 58%,#090018)",panel:"rgba(28,8,48,.70)",accent:"#c45bff",accent2:"#ed28d7",border:"#c45bffbb",soft:"rgba(61,17,88,.60)",text:"#fff0ff",muted:"#d6b3ef"},
+  sunsetGlow:{bg:"radial-gradient(ellipse at 18% 12%,#a52b35 0,transparent 42%),radial-gradient(ellipse at 86% 78%,#a94b12 0,transparent 48%),linear-gradient(145deg,#1b0715,#481526 54%,#160b1a)",panel:"rgba(48,17,29,.72)",accent:"#ffad32",accent2:"#f15b24",border:"#ffad32aa",soft:"rgba(86,34,37,.60)",text:"#fff5e8",muted:"#f0c6a4"},
+  natureForest:{bg:"radial-gradient(ellipse at 16% 12%,#1c653d 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#526b2a 0,transparent 48%),linear-gradient(145deg,#06140e,#102b1c 58%,#08150f)",panel:"rgba(10,35,23,.72)",accent:"#83d65a",accent2:"#279b55",border:"#83d65aaa",soft:"rgba(24,65,39,.60)",text:"#efffea",muted:"#b8d9ad"},
+  // New glass themes.
+  auroraGreen:{bg:"radial-gradient(ellipse at 16% 12%,#1b8b61 0,transparent 43%),radial-gradient(ellipse at 88% 78%,#8aa832 0,transparent 46%),linear-gradient(145deg,#041710,#0a3025 56%,#071b15)",panel:"rgba(9,48,35,.48)",accent:"#8be36d",accent2:"#21a879",border:"#8be3a899",soft:"rgba(35,105,75,.42)",text:"#effff5",muted:"#b8e6cd"},
+  galaxyDream:{bg:"radial-gradient(ellipse at 18% 12%,#6424a6 0,transparent 44%),radial-gradient(ellipse at 84% 82%,#244f9a 0,transparent 46%),linear-gradient(145deg,#080617,#17102e 55%,#080b20)",panel:"rgba(30,22,66,.48)",accent:"#c69aff",accent2:"#648bff",border:"#bda2ffad",soft:"rgba(67,49,117,.42)",text:"#f7f1ff",muted:"#c9bce9"},
+  sakuraNight:{bg:"radial-gradient(ellipse at 18% 14%,#a33e79 0,transparent 44%),radial-gradient(ellipse at 84% 82%,#59356e 0,transparent 46%),linear-gradient(145deg,#190b19,#30152c 56%,#130d20)",panel:"rgba(65,28,57,.48)",accent:"#ff9bc8",accent2:"#c56bd4",border:"#ffacd1aa",soft:"rgba(111,48,91,.42)",text:"#fff0f7",muted:"#edc0d8"},
+  oceanBlue:{bg:"radial-gradient(ellipse at 15% 12%,#087d9c 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#164a9a 0,transparent 48%),linear-gradient(145deg,#03111d,#062d49 58%,#041526)",panel:"rgba(5,48,75,.48)",accent:"#63dcf5",accent2:"#397ce8",border:"#71dff5aa",soft:"rgba(14,82,119,.42)",text:"#edfbff",muted:"#afd9e9"},
+  royalGold:{bg:"radial-gradient(ellipse at 18% 12%,#80602a 0,transparent 42%),radial-gradient(ellipse at 86% 80%,#57411c 0,transparent 46%),linear-gradient(145deg,#100e0a,#282116 56%,#100e0b)",panel:"rgba(48,39,22,.52)",accent:"#f3cc72",accent2:"#b78335",border:"#e8c779aa",soft:"rgba(93,72,36,.44)",text:"#fff8e8",muted:"#e2d1a8"},
+  sunsetLove:{bg:"radial-gradient(ellipse at 18% 12%,#d65b63 0,transparent 43%),radial-gradient(ellipse at 86% 82%,#d17b38 0,transparent 46%),linear-gradient(145deg,#230d1c,#542039 55%,#25101d)",panel:"rgba(83,36,47,.48)",accent:"#ffb18b",accent2:"#ed6c82",border:"#ffb49baa",soft:"rgba(129,58,65,.42)",text:"#fff3ed",muted:"#f2c5b4"},
+  cyberNeon:{bg:"radial-gradient(ellipse at 16% 12%,#6511a5 0,transparent 43%),radial-gradient(ellipse at 86% 82%,#007c91 0,transparent 46%),linear-gradient(145deg,#080615,#10162e 56%,#090a18)",panel:"rgba(20,24,54,.48)",accent:"#45f2e5",accent2:"#d34cff",border:"#55f1e6b0",soft:"rgba(39,48,91,.44)",text:"#efffff",muted:"#b8dce7"},
+  softBeige:{bg:"radial-gradient(ellipse at 16% 12%,#d9c6a3 0,transparent 44%),radial-gradient(ellipse at 88% 82%,#a9b79a 0,transparent 48%),linear-gradient(145deg,#29251f,#4a4235 58%,#25251f)",panel:"rgba(78,70,56,.58)",accent:"#e7cda0",accent2:"#a9c4a0",border:"#e8d7b6aa",soft:"rgba(113,103,82,.52)",text:"#fff9ed",muted:"#e5d9c2"}
  };
- const t=presets[theme]||presets[defaultTheme];document.documentElement.dataset.weztyTheme=theme;
- document.documentElement.style.setProperty("--wezty-accent",t.accent);
- document.documentElement.style.setProperty("--wezty-accent-2",t.accent2);
- document.documentElement.style.setProperty("--wezty-panel",t.panel);
- document.documentElement.style.setProperty("--wezty-soft",t.soft);
- document.documentElement.style.setProperty("--wezty-border",t.border);
+ const t=presets[theme]||presets[defaultTheme];
+ document.documentElement.dataset.weztyTheme=theme;
+ const root=document.documentElement;
+ root.style.setProperty("--wezty-accent",t.accent);
+ root.style.setProperty("--wezty-accent-2",t.accent2);
+ root.style.setProperty("--wezty-panel",t.panel);
+ root.style.setProperty("--wezty-soft",t.soft);
+ root.style.setProperty("--wezty-border",t.border);
+ root.style.setProperty("--wezty-text",t.text);
+ root.style.setProperty("--wezty-muted",t.muted);
  document.body.style.setProperty("background",t.bg,"important");
- document.querySelectorAll(".card,.wheel-section,.game-section,.coming-page,.memories-page,.private-chat").forEach(el=>{el.style.setProperty("background",t.panel,"important");el.style.borderColor=t.border;el.style.boxShadow=`0 0 25px ${t.accent}33,0 15px 45px #0008`});
- document.querySelectorAll(".message,.read-section,.wheel-result,.coming-idea,.game-panel,.game-entry,.private-chat-messages,.private-chat-bubble.theirs").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
+ document.body.style.setProperty("color",t.text,"important");
+ // Glass surfaces throughout the site: cards, question panels, chat, memories and navigation.
+ const glassSurfaces=".card,.wheel-section,.game-section,.coming-page,.memories-page,.private-chat,#weztyAdminPanel .admin-inner";
+ document.querySelectorAll(glassSurfaces).forEach(el=>{
+  el.style.setProperty("background",t.panel,"important");el.style.borderColor=t.border;
+  el.style.boxShadow=`0 0 25px ${t.accent}25,0 15px 45px #0007`;
+  el.style.backdropFilter="blur(18px)";el.style.webkitBackdropFilter="blur(18px)";
+ });
+ const innerGlass=".message,.read-section,.wheel-result,.coming-idea,.game-panel,.game-entry,.private-chat-messages,.private-chat-bubble.theirs,.game-question-card,.question-card,.answer-card";
+ document.querySelectorAll(innerGlass).forEach(el=>{
+  el.style.setProperty("background",t.soft,"important");el.style.borderColor=t.border;
+  el.style.backdropFilter="blur(14px)";el.style.webkitBackdropFilter="blur(14px)";
+ });
  document.querySelectorAll(".private-chat-bubble.mine").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},${t.accent2})`;el.style.borderColor=t.border});
- document.querySelectorAll(".private-chat-form textarea,.game-answer").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
- document.querySelectorAll(".bottom-nav").forEach(el=>{el.style.background=t.panel;el.style.borderColor=t.border});
- document.querySelectorAll(".read-btn,.wheel-btn,.game-action,.level-btn.selected,.wheel-center").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},${t.accent2})`});
- document.querySelectorAll("h1,.coming-title,.wheel-section h2,.wheel-result h3").forEach(el=>{el.style.color=t.accent;el.style.textShadow=`0 0 15px ${t.accent}55`});
+ document.querySelectorAll(".private-chat-form textarea,.game-answer,#weztyAdminPanel textarea,#weztyAdminPanel input").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border;el.style.color=t.text});
+ document.querySelectorAll(".bottom-nav").forEach(el=>{el.style.background=t.panel;el.style.borderColor=t.border;el.style.backdropFilter="blur(20px)";el.style.webkitBackdropFilter="blur(20px)";el.style.boxShadow=`0 8px 30px #0008,0 0 22px ${t.accent}22`});
+ document.querySelectorAll(".nav-btn").forEach(el=>{el.style.color=t.muted});
+ document.querySelectorAll(".nav-btn.active,.read-btn,.wheel-btn,.game-action,.level-btn.selected,.wheel-center,.surprise-close,#weztyAdminToggle,#weztyAdminPanel button").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},${t.accent2})`;el.style.color="#fff";el.style.borderColor=t.border});
+ document.querySelectorAll("h1,.coming-title,.wheel-section h2,.wheel-result h3,.private-chat h1").forEach(el=>{el.style.color=t.accent;el.style.textShadow=`0 0 15px ${t.accent}55`});
+ document.querySelectorAll(".sub,.date,.footer,.wheel-sub,.wheel-status,.wheel-count,.coming-subtitle,.coming-footer,.chat-status").forEach(el=>{el.style.color=t.muted});
 }
+
 document.getElementById("weztyThemeSelect").addEventListener("change",async e=>{
  if(currentWeztyRole!=="admin")return;
  const theme=e.target.value;applyWeztyTheme(theme);
