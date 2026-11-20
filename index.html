@@ -197,7 +197,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 
 /* Theme-specific cinematic wallpapers, with a dim overlay so text remains readable. */
 body{position:relative;isolation:isolate;background:transparent!important;}
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(180deg,rgba(3,5,12,.40),rgba(3,5,12,.60)),var(--wezty-wallpaper,none);background-position:center;background-size:cover;background-repeat:no-repeat;transform:translateZ(0);}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(180deg,rgba(3,5,12,.40),rgba(3,5,12,.60)),var(--wezty-wallpaper,none);background-position:center;background-size:cover;background-repeat:no-repeat;transform:translateZ(0);}
 .intro-screen{background-image:linear-gradient(180deg,rgba(3,5,12,.46),rgba(3,5,12,.68)),var(--wezty-wallpaper,none)!important;background-position:center;background-size:cover;}
 </style><style>
 #weztyAuthGate{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 50% 20%,#321447,transparent 55%),#080511;color:#fff}
