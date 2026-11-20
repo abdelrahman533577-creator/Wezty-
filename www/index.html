@@ -79,7 +79,7 @@ body{scroll-behavior:smooth}
 .game-section{width:100%;max-width:500px;text-align:center;padding:28px 22px;background:rgba(20,12,34,.82);border:1px solid #e1a0ff40;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);position:relative;z-index:2;border-radius:24px}
 .game-section h2{color:#ff9cdd;font-size:24px;margin:4px 0 10px}.game-sub{color:#c6a8df;font-size:14px;line-height:1.9;margin-bottom:18px}
 .game-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}.level-btn{border:1px solid #d58aff55;background:#321b43;color:#f8eaff;border-radius:13px;padding:11px 5px;font-size:13px;cursor:pointer}.level-btn.selected{background:linear-gradient(135deg,#8739c7,#d94eaa);border-color:#f4b3ed}
-.game-panel{padding:18px 14px;border-radius:18px;background:rgba(49,27,67,.72);border:1px solid #d58aff33;margin-top:15px}.game-turn{color:#ffb5df;font-weight:bold;font-size:14px}.game-question{font-size:19px;line-height:1.9;margin:14px 0;color:#fff0fb}.game-answer{width:100%;min-height:100px;resize:vertical;border:1px solid #d58aff55;border-radius:14px;background:#170d24;color:#fff;padding:13px;font:16px Arial;line-height:1.7;outline:none}.game-answer:focus{border-color:#e99be0}.game-action{width:100%;border:0;border-radius:14px;padding:13px;margin-top:12px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;font-size:16px;font-weight:bold;cursor:pointer}.game-action:disabled{opacity:.5}.game-progress{font-size:12px;color:#c6a8df;margin-top:12px}.game-summary{text-align:right;line-height:1.9}.game-entry{padding:12px;margin:10px 0;border-radius:13px;background:#321b43}.game-entry strong{color:#ffb5df}.game-hidden{display:none!important}
+.game-panel{padding:18px 14px;border-radius:18px;background:var(--wezty-soft,rgba(49,27,67,.72));border:1px solid var(--wezty-border,#d58aff33);margin-top:15px}.game-turn{color:#ffb5df;font-weight:bold;font-size:14px}.game-question{font-size:19px;line-height:1.9;margin:14px 0;color:#fff0fb}.game-answer{width:100%;min-height:100px;resize:vertical;border:1px solid #d58aff55;border-radius:14px;background:#170d24;color:#fff;padding:13px;font:16px Arial;line-height:1.7;outline:none}.game-answer:focus{border-color:#e99be0}.game-action{width:100%;border:0;border-radius:14px;padding:13px;margin-top:12px;background:linear-gradient(135deg,#8739c7,#e34fae);color:white;font-size:16px;font-weight:bold;cursor:pointer}.game-action:disabled{opacity:.5}.game-progress{font-size:12px;color:#c6a8df;margin-top:12px}.game-summary{text-align:right;line-height:1.9}.game-entry{padding:12px;margin:10px 0;border-radius:13px;background:var(--wezty-soft,#321b43);border:1px solid var(--wezty-border,transparent)}.game-entry strong{color:#ffb5df}.game-hidden{display:none!important}
 /* Intro screen */
 body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:none!important}
 .intro-screen{position:fixed;inset:0;z-index:20000;display:flex;align-items:center;justify-content:center;padding:24px 18px;background:radial-gradient(ellipse at 50% 25%,#321447 0,transparent 48%),linear-gradient(145deg,#05030b,#0b0715 58%,#16091f);transition:opacity .65s ease,visibility .65s ease}
@@ -208,26 +208,37 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 
 /* WEZTY requested scrolling + private chat */
 #gamePage.page-section.active{
- display:block; height:calc(100svh - 86px - env(safe-area-inset-bottom));
- min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain;
- padding:8px 0 24px; box-sizing:border-box; -webkit-overflow-scrolling:touch;
+ display:flex;align-items:center;justify-content:center;
+ height:calc(100svh - 86px - env(safe-area-inset-bottom));
+ min-height:0;overflow:hidden;padding:8px 0 16px;box-sizing:border-box;
 }
-#gamePage .game-section{overflow:visible;margin:0 auto 18px}
+#gamePage .game-section{width:100%;max-height:100%;min-height:0;overflow-y:auto;overflow-x:hidden;
+ margin:0 auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+#gamePage .game-panel{max-width:100%;min-width:0;overflow-wrap:anywhere}
+#gamePage .game-summary{max-width:100%;min-width:0}
+#gamePage .game-entry{max-width:100%;overflow-wrap:anywhere}
 #comingPage.page-section.active{
- display:block;height:calc(100svh - 86px - env(safe-area-inset-bottom));
- min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;
- padding:8px 0 24px;box-sizing:border-box;-webkit-overflow-scrolling:touch;
+ display:flex;align-items:center;justify-content:center;
+ height:calc(100svh - 86px - env(safe-area-inset-bottom));
+ min-height:0;overflow:hidden;padding:8px 0 16px;box-sizing:border-box;
 }
-.private-chat{width:100%;max-width:500px;margin:0 auto;padding:22px 16px 18px;box-sizing:border-box;text-align:center;background:rgba(20,12,34,.88);border:1px solid #e1a0ff55;border-radius:24px;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
-.private-chat-messages{display:flex;flex-direction:column;gap:10px;text-align:right;max-height: min(48svh,480px);min-height:180px;overflow-y:auto;padding:12px 5px;margin:12px 0;border:1px solid #d58aff33;border-radius:16px;background:#08051088;scroll-behavior:smooth}
+.private-chat{width:100%;max-width:500px;max-height:100%;min-height:0;margin:0 auto;padding:22px 16px 18px;
+ display:flex;flex-direction:column;overflow:hidden;box-sizing:border-box;text-align:center;
+ background:var(--wezty-panel,rgba(20,12,34,.88));border:1px solid var(--wezty-border,#e1a0ff55);
+ border-radius:24px;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;
+ backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.private-chat-messages{display:flex;flex:1 1 auto;flex-direction:column;gap:10px;text-align:right;
+ max-height:none;min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+ padding:12px 5px;margin:12px 0;border:1px solid var(--wezty-border,#d58aff33);
+ border-radius:16px;background:var(--wezty-soft,rgba(8,5,16,.55));scroll-behavior:smooth}
 .private-chat-empty{margin:auto;color:#c6a8df;font-size:14px;padding:24px 8px}
 .private-chat-bubble{max-width:86%;padding:10px 13px;border-radius:16px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;text-align:right}
-.private-chat-bubble.mine{align-self:flex-start;background:linear-gradient(135deg,#6732a0,#9b3e9e);border-bottom-left-radius:5px}
-.private-chat-bubble.theirs{align-self:flex-end;background:#241735;border:1px solid #d58aff44;border-bottom-right-radius:5px}
+.private-chat-bubble.mine{align-self:flex-start;background:linear-gradient(135deg,var(--wezty-accent,#6732a0),var(--wezty-accent-2,#9b3e9e));border:1px solid var(--wezty-border,transparent);border-bottom-left-radius:5px}
+.private-chat-bubble.theirs{align-self:flex-end;background:var(--wezty-soft,#241735);border:1px solid var(--wezty-border,#d58aff44);border-bottom-right-radius:5px}
 .private-chat-meta{font-size:11px;color:#e7c9f5;opacity:.8;margin-bottom:4px}
 .private-chat-text{font-size:15px;color:#fff}
 .private-chat-form{display:grid;gap:9px}
-.private-chat-form textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:64px;max-height:150px;padding:12px;border-radius:13px;border:1px solid #d58aff66;background:#100a1b;color:#fff;font:inherit;outline:none}
+.private-chat-form textarea{width:100%;box-sizing:border-box;resize:vertical;min-height:64px;max-height:150px;padding:12px;border-radius:13px;border:1px solid var(--wezty-border,#d58aff66);background:var(--wezty-soft,#100a1b);color:#fff;font:inherit;outline:none}
 .private-chat-form .game-action{margin:0}
 .chat-status{font-size:13px;color:#d9c3ec}
 </style>
@@ -299,7 +310,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 <section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section>
 <section class="page-section" id="comingPage"><main class="private-chat">
 <div class="coming-badge">💌 Private messages</div>
-<h2 class="coming-title">رسائل بينا</h2>
+<h2 class="coming-title">Messages</h2>
 <p class="coming-subtitle">أي رسالة تبعتها هتظهر عند الطرف التاني مباشرة ❤️</p>
 <div id="privateChatStatus" class="chat-status">جاري الاتصال...</div>
 <div id="privateChatMessages" class="private-chat-messages" aria-live="polite"></div>
@@ -309,7 +320,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 </form>
 </main></section>
 
-<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">✨</span><span>رسائلنا</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret Zone</span></button></nav>
+<nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>الرسائل</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>العجلة</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>اعرفيني أكتر</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Our Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">✨</span><span>Messages</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret Zone</span></button></nav>
 
 <div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div>
 
@@ -532,9 +543,14 @@ function applyWeztyTheme(theme){
  const t=presets[theme]||presets[defaultTheme];document.documentElement.dataset.weztyTheme=theme;
  document.documentElement.style.setProperty("--wezty-accent",t.accent);
  document.documentElement.style.setProperty("--wezty-accent-2",t.accent2);
+ document.documentElement.style.setProperty("--wezty-panel",t.panel);
+ document.documentElement.style.setProperty("--wezty-soft",t.soft);
+ document.documentElement.style.setProperty("--wezty-border",t.border);
  document.body.style.setProperty("background",t.bg,"important");
- document.querySelectorAll(".card,.wheel-section,.game-section,.coming-page,.memories-page").forEach(el=>{el.style.setProperty("background",t.panel,"important");el.style.borderColor=t.border;el.style.boxShadow=`0 0 25px ${t.accent}33,0 15px 45px #0008`});
- document.querySelectorAll(".message,.read-section,.wheel-result,.coming-idea").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
+ document.querySelectorAll(".card,.wheel-section,.game-section,.coming-page,.memories-page,.private-chat").forEach(el=>{el.style.setProperty("background",t.panel,"important");el.style.borderColor=t.border;el.style.boxShadow=`0 0 25px ${t.accent}33,0 15px 45px #0008`});
+ document.querySelectorAll(".message,.read-section,.wheel-result,.coming-idea,.game-panel,.game-entry,.private-chat-messages,.private-chat-bubble.theirs").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
+ document.querySelectorAll(".private-chat-bubble.mine").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},${t.accent2})`;el.style.borderColor=t.border});
+ document.querySelectorAll(".private-chat-form textarea,.game-answer").forEach(el=>{el.style.background=t.soft;el.style.borderColor=t.border});
  document.querySelectorAll(".bottom-nav").forEach(el=>{el.style.background=t.panel;el.style.borderColor=t.border});
  document.querySelectorAll(".read-btn,.wheel-btn,.game-action,.level-btn.selected,.wheel-center").forEach(el=>{el.style.background=`linear-gradient(135deg,${t.accent},${t.accent2})`});
  document.querySelectorAll("h1,.coming-title,.wheel-section h2,.wheel-result h3").forEach(el=>{el.style.color=t.accent;el.style.textShadow=`0 0 15px ${t.accent}55`});
