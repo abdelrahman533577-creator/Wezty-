@@ -21,6 +21,22 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Private messages: both approved accounts can read and send.
+    // Messages cannot be edited or deleted from the client.
+    match /private_messages/{messageId} {
+      allow read: if isAllowedUser();
+
+      allow create: if isAllowedUser()
+        && request.resource.data.senderUid == request.auth.uid
+        && request.resource.data.senderName is string
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 2000
+        && request.resource.data.createdAt == request.time;
+
+      allow update, delete: if false;
+    }
+
     // Daily read markers used by the two approved accounts.
     match /message_reads/{readId} {
       allow read, create, update: if isAllowedUser();
