@@ -1,0 +1,61 @@
+name: Build WEZTY APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager "platform-tools" "platforms;android-35" "build-tools;35.0.0"
+      - name: Install dependencies
+        run: npm install
+      - name: Add Android platform
+        run: npx cap add android
+      - name: Sync Android project
+        run: npx cap sync android
+      - name: Apply WEZTY launcher icon
+        run: |
+          RES="android/app/src/main/res"
+          for DENSITY in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            mkdir -p "$RES/mipmap-$DENSITY"
+            cp "assets/android/mipmap-$DENSITY/ic_launcher.png" "$RES/mipmap-$DENSITY/ic_launcher.png"
+            cp "assets/android/mipmap-$DENSITY/ic_launcher_round.png" "$RES/mipmap-$DENSITY/ic_launcher_round.png"
+          done
+          mkdir -p "$RES/drawable-nodpi" "$RES/mipmap-anydpi-v26" "$RES/values"
+          cp assets/ic_launcher_foreground.png "$RES/drawable-nodpi/ic_launcher_foreground.png"
+          cat > "$RES/mipmap-anydpi-v26/ic_launcher.xml" <<'EOF'
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+              <background android:drawable="@color/ic_launcher_background" />
+              <foreground android:drawable="@drawable/ic_launcher_foreground" />
+          </adaptive-icon>
+          EOF
+          cp "$RES/mipmap-anydpi-v26/ic_launcher.xml" "$RES/mipmap-anydpi-v26/ic_launcher_round.xml"
+          cat > "$RES/values/ic_launcher_background.xml" <<'EOF'
+          <resources><color name="ic_launcher_background">#05030B</color></resources>
+          EOF
+      - name: Build debug APK
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WEZTY-live-update-APK
+          path: android/app/build/outputs/apk/debug/app-debug.apk
