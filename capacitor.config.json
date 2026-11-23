@@ -4,6 +4,9 @@
   "webDir": "www",
   "server": {
     "url": "https://abdelrahman533577-creator.github.io/Wezty-/",
-    "cleartext": false
+    "cleartext": false,
+    "allowNavigation": [
+      "abdelrahman533577-creator.github.io"
+    ]
   }
 }
