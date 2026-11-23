@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "872003176089",
+    "project_id": "zozo-41d24",
+    "storage_bucket": "zozo-41d24.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:872003176089:android:8cf93ee638cf05324b5a08",
+        "android_client_info": {
+          "package_name": "com.wezty.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAuAX75RuJY6FMvEpQ60Mf2j0S8UWMj4F0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
