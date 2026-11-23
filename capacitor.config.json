@@ -1,13 +1,5 @@
 {
   "appId": "com.wezty.app",
   "appName": "WEZTY",
-  "webDir": "www",
-  "server": {
-    "url": "https://abdelrahman533577-creator.github.io/Wezty-/",
-    "androidScheme": "https",
-    "cleartext": false,
-    "allowNavigation": [
-      "abdelrahman533577-creator.github.io"
-    ]
-  }
+  "webDir": "www"
 }

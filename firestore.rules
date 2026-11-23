@@ -14,18 +14,14 @@ service cloud.firestore {
         && request.auth.uid == 'DmbbqyG9t2SauNcV2v9LJGFXvYE3';
     }
 
-    // Shared site content: both approved accounts can read; only Admin can change it.
     match /wezty_admin/content {
       allow read: if isAllowedUser();
       allow create, update: if isAdmin();
       allow delete: if false;
     }
 
-    // Private messages: both approved accounts can read and send.
-    // Messages cannot be edited or deleted from the client.
     match /private_messages/{messageId} {
       allow read: if isAllowedUser();
-
       allow create: if isAllowedUser()
         && request.resource.data.senderUid == request.auth.uid
         && request.resource.data.senderName is string
@@ -33,23 +29,31 @@ service cloud.firestore {
         && request.resource.data.text.size() > 0
         && request.resource.data.text.size() <= 2000
         && request.resource.data.createdAt == request.time;
-
       allow update, delete: if false;
     }
 
-    // Daily read markers used by the two approved accounts.
     match /message_reads/{readId} {
       allow read, create, update: if isAllowedUser();
       allow delete: if false;
     }
 
-    // The shared game document is writable only by the two approved accounts.
     match /shared_games/zozo_know_game {
       allow read, create, update: if isAllowedUser();
       allow delete: if false;
     }
 
-    // Deny all other documents by default.
+    // Each approved account can register/update only its own FCM token.
+    match /wezty_push_tokens/{uid} {
+      allow read: if isAllowedUser() && request.auth.uid == uid;
+      allow create, update: if isAllowedUser()
+        && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && request.resource.data.token is string
+        && request.resource.data.token.size() > 20
+        && request.resource.data.platform == 'android';
+      allow delete: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
