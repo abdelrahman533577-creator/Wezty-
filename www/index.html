@@ -560,7 +560,20 @@ const WEZTY_VIEWER_UID="eKw6zaBwDXP5g6wMyhbhoUBXf2D2";
 let currentWeztyRole=null;
 let unsubscribeWeztyContent=null;
 const authGate=document.getElementById("weztyAuthGate"),authError=document.getElementById("weztyAuthError");
-document.getElementById("weztyLoginForm").addEventListener("submit",async e=>{e.preventDefault();authError.textContent="جاري تسجيل الدخول...";try{await signInWithEmailAndPassword(auth,document.getElementById("weztyEmail").value.trim(),document.getElementById("weztyPassword").value)}catch(err){console.error(err);authError.textContent="تعذر تسجيل الدخول. راجع البريد وكلمة المرور."}});
+document.getElementById("weztyLoginForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const loginButton=document.querySelector("#weztyLoginForm button[type='submit']");
+ if(loginButton){loginButton.disabled=true;loginButton.textContent="جاري الدخول...";}
+ authError.textContent="جاري تسجيل الدخول...";
+ try{
+  await signInWithEmailAndPassword(auth,document.getElementById("weztyEmail").value.trim(),document.getElementById("weztyPassword").value);
+  authError.textContent="تم تسجيل الدخول. جاري فتح WEZTY...";
+ }catch(err){
+  console.error("WEZTY sign-in error:",err);
+  authError.textContent="فشل تسجيل الدخول: "+(err.code||err.message||"خطأ غير معروف");
+  if(loginButton){loginButton.disabled=false;loginButton.textContent="تسجيل الدخول";}
+ }
+});
 
 let unsubscribePrivateChat=null;
 const PRIVATE_CHAT_ALLOWED=[WEZTY_ADMIN_UID,WEZTY_VIEWER_UID];
@@ -614,7 +627,14 @@ onAuthStateChanged(auth,async user=>{
  if(!user){currentWeztyRole=null;authGate.style.display="flex";document.getElementById("weztyAdminBar").style.display="none";return}
  if(user.uid!==WEZTY_ADMIN_UID&&user.uid!==WEZTY_VIEWER_UID){await signOut(auth);authError.textContent="هذا الحساب غير مصرح له باستخدام WEZTY.";return}
  currentWeztyRole=user.uid===WEZTY_ADMIN_UID?"admin":"viewer";
- await setupWeztyPush(user);
+ // Never block authentication or app startup on the optional native push plugin.
+ // Reveal the authenticated app first; initialize push in the background.
+ authGate.style.display="none";
+ render();
+ void setupWeztyPush(user).catch(pushError=>{
+  console.error("WEZTY background push setup error:",pushError);
+  showWeztyPushStatus("تعذر تهيئة الإشعارات: "+(pushError?.message||String(pushError)),true);
+ });
  const applyRemoteContent=saved=>{
   if(Array.isArray(saved.messages)&&saved.messages.every(x=>typeof x==="string"&&x.trim()))messages.splice(0,messages.length,...saved.messages);
   if(saved.gameBanks&&["light","feelings","deep"].every(k=>Array.isArray(saved.gameBanks[k])&&saved.gameBanks[k].length>=6)){Object.keys(gameBanks).forEach(k=>delete gameBanks[k]);Object.assign(gameBanks,saved.gameBanks)}
