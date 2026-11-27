@@ -42,6 +42,14 @@ service cloud.firestore {
       allow delete: if false;
     }
 
+    // Mystery Room: only the two approved accounts can access the two case documents.
+    // Document IDs must match the IDs used by the app: mansion and train.
+    match /mystery_rooms/{caseId} {
+      allow read, create, update: if isAllowedUser()
+        && caseId in ['mansion', 'train'];
+      allow delete: if false;
+    }
+
     // Each approved account can register/update only its own FCM token.
     match /wezty_push_tokens/{uid} {
       allow read: if isAllowedUser() && request.auth.uid == uid;
