@@ -2568,6 +2568,109 @@ setInterval(() => { const daily = readWheelStorage(WHEEL_DAILY_KEY, null); if (!
 })();
 
 </script>
+
+<style id="weztyThemePickerMobileFix">
+/* Theme picker: render choices in a viewport-level sheet, not Android's native select popup. */
+#weztyThemeSelect.wezty-theme-native-hidden{position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;pointer-events:none!important;left:-10000px!important}
+.wezty-theme-picker{width:100%;margin:8px 0 12px}
+.wezty-theme-open{width:100%;min-height:52px;padding:13px 15px;border:1px solid var(--wezty-border,#d58aff88);border-radius:14px;background:var(--wezty-soft,#241735);color:var(--wezty-text,#fff);font:inherit;text-align:right;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.wezty-theme-open:after{content:'⌄';font-size:22px;color:var(--wezty-accent,#d9a7ee)}
+.wezty-theme-backdrop{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(3,2,10,.76);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s,visibility .18s}
+.wezty-theme-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}
+.wezty-theme-sheet{width:min(100%,460px);max-height:calc(100dvh - 32px - env(safe-area-inset-top) - env(safe-area-inset-bottom));display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--wezty-border,#d58aff88);border-radius:22px;background:#171020;box-shadow:0 20px 60px #000b;color:#fff}
+.wezty-theme-head{flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 17px;border-bottom:1px solid #ffffff20;font-weight:700}
+.wezty-theme-close{width:36px;height:36px;border:0;border-radius:50%;background:#ffffff18;color:#fff;font-size:20px}
+.wezty-theme-options{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:9px 11px calc(14px + env(safe-area-inset-bottom))}
+.wezty-theme-group{padding:12px 9px 6px;color:#dba8ee;font-size:12px;font-weight:700}
+.wezty-theme-option{width:100%;min-height:48px;margin:3px 0;padding:11px 13px;border:1px solid transparent;border-radius:12px;background:#ffffff09;color:#f8efff;text-align:right;font:inherit}
+.wezty-theme-option.selected{border-color:var(--wezty-border,#d58aff88);background:color-mix(in srgb,var(--wezty-accent,#a855f7) 25%,#21172c);color:#fff}
+@media(max-width:600px){.wezty-theme-backdrop{align-items:flex-end;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}.wezty-theme-sheet{width:100%;max-height:82dvh;border-radius:22px 22px 16px 16px}.wezty-theme-options{padding-bottom:calc(18px + env(safe-area-inset-bottom))}}
+</style>
+
+
+<script id="weztyThemePickerMobileFixScript">
+(() => {
+  const select = document.getElementById('weztyThemeSelect');
+  if (!select || select.dataset.customPickerReady === '1') return;
+  select.dataset.customPickerReady = '1';
+  select.classList.add('wezty-theme-native-hidden');
+  const wrap = document.createElement('div');
+  wrap.className = 'wezty-theme-picker';
+  const trigger = document.createElement('button');
+  trigger.type = 'button';
+  trigger.className = 'wezty-theme-open';
+  trigger.setAttribute('aria-haspopup', 'dialog');
+  trigger.setAttribute('aria-expanded', 'false');
+  const triggerText = document.createElement('span');
+  trigger.appendChild(triggerText);
+  select.parentNode.insertBefore(wrap, select);
+  wrap.appendChild(trigger);
+  wrap.appendChild(select);
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'wezty-theme-backdrop';
+  backdrop.innerHTML = '<div class="wezty-theme-sheet" role="dialog" aria-modal="true" aria-label="اختيار الثيم"><div class="wezty-theme-head"><span>اختار الثيم المناسب</span><button type="button" class="wezty-theme-close" aria-label="إغلاق">×</button></div><div class="wezty-theme-options"></div></div>';
+  document.body.appendChild(backdrop);
+  const optionsBox = backdrop.querySelector('.wezty-theme-options');
+  const closeBtn = backdrop.querySelector('.wezty-theme-close');
+
+  const selectedLabel = () => {
+    const option = select.options[select.selectedIndex];
+    return option ? option.textContent.trim() : 'اختار الثيم';
+  };
+  const sync = () => {
+    triggerText.textContent = selectedLabel();
+    optionsBox.querySelectorAll('.wezty-theme-option').forEach(btn => {
+      const active = btn.dataset.value === select.value;
+      btn.classList.toggle('selected', active);
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  };
+  const close = () => {
+    backdrop.classList.remove('open');
+    trigger.setAttribute('aria-expanded', 'false');
+  };
+  const open = () => {
+    sync();
+    backdrop.classList.add('open');
+    trigger.setAttribute('aria-expanded', 'true');
+    const active = optionsBox.querySelector('.wezty-theme-option.selected');
+    if (active) requestAnimationFrame(() => active.scrollIntoView({block:'nearest'}));
+  };
+  Array.from(select.children).forEach(group => {
+    if (group.tagName === 'OPTGROUP') {
+      const heading = document.createElement('div');
+      heading.className = 'wezty-theme-group';
+      heading.textContent = group.label;
+      optionsBox.appendChild(heading);
+      Array.from(group.children).forEach(option => addOption(option));
+    } else if (group.tagName === 'OPTION') addOption(group);
+  });
+  function addOption(option) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'wezty-theme-option';
+    btn.textContent = option.textContent.trim();
+    btn.dataset.value = option.value;
+    btn.addEventListener('click', () => {
+      select.value = option.value;
+      select.dispatchEvent(new Event('change', {bubbles:true}));
+      sync();
+      close();
+    });
+    optionsBox.appendChild(btn);
+  }
+  trigger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', event => { if (event.target === backdrop) close(); });
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+  select.addEventListener('change', sync);
+  const observer = new MutationObserver(sync);
+  observer.observe(select, {childList:true,subtree:true,characterData:true});
+  sync();
+})();
+</script>
+
 </body>
 
 </html>
