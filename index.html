@@ -40,7 +40,7 @@ h1{font-size:27px;color:#ff9cdd;margin:12px 0;text-shadow:0 0 15px #ff4fc477}
 .page-section{display:none;width:100%;max-width:500px;position:relative;z-index:2;margin:auto 0}
 .page-section.active{display:block;animation:pageIn .28s ease}
 @keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 16px));display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.bottom-nav{position:fixed;z-index:10000;bottom:calc(12px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(540px,calc(100% - 16px));display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;padding:9px;background:rgba(24,12,38,.94);border:1px solid #d58aff66;border-radius:22px;box-shadow:0 8px 30px #0009,0 0 20px #a855f733;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 .nav-btn{position:relative;z-index:1;border:1px solid transparent;border-radius:15px;background:transparent;color:#d9c3ec;padding:10px 8px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:15px;font-weight:bold;cursor:pointer;transform:translateY(0) scale(1);transition:transform .38s cubic-bezier(.2,.85,.25,1.25),background .28s ease,color .28s ease,box-shadow .28s ease;will-change:transform}
 .nav-btn .nav-icon{font-size:22px;line-height:1;transition:transform .38s cubic-bezier(.2,.85,.25,1.25),filter .28s ease}
 .nav-btn.active{transform:translateY(-11px) scale(1.045);background:linear-gradient(135deg,var(--wezty-accent,#8739c7),var(--wezty-accent-2,#d94eaa));color:#fff;box-shadow:0 7px 18px #c14cff55,0 0 16px #c14cff55;border-color:var(--wezty-border,#e1a0ff66)}
@@ -165,7 +165,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 .memory-footer{direction:ltr;color:#e9b8ed;font-size:14px;line-height:1.7;margin:16px 4px 3px;text-shadow:0 0 12px #d46cff55}
 .memory-sparkle{color:#f4b8ff;text-shadow:0 0 12px #d98aff}
 @media screen and (max-width:600px) and (max-height:950px){
- .bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
+ .bottom-nav{grid-template-columns:repeat(7,minmax(0,1fr));width:calc(100% - 12px);gap:2px;padding:4px}
  .nav-btn{min-width:0;padding:6px 1px;gap:3px;font-size:10px;white-space:nowrap}
  .nav-btn .nav-icon{font-size:16px}
  .memories-page{width:100%;max-height:calc(100svh - 78px);overflow-y:auto;overscroll-behavior:contain;padding:13px 10px 10px;border-radius:19px}
@@ -186,7 +186,7 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 
 /* Mobile bottom navigation: stack icon and label to prevent overlap */
 @media (max-width:600px){
- .bottom-nav{grid-template-columns:repeat(6,minmax(0,1fr));gap:3px;padding:5px;width:calc(100% - 16px)}
+ .bottom-nav{grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;padding:5px;width:calc(100% - 16px)}
  .nav-btn{min-width:0;width:100%;min-height:54px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:clamp(9px,2.6vw,11px);line-height:1.15;white-space:normal;text-align:center;overflow-wrap:anywhere}
  .nav-btn .nav-icon{display:block;font-size:18px;line-height:1.1;flex:0 0 auto}
  .nav-btn span:not(.nav-icon){display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere}
@@ -202,6 +202,55 @@ body:not(.app-started) .page-section,body:not(.app-started) .bottom-nav{display:
 body{position:relative;isolation:isolate;background:transparent!important;}
 body::before{content:none!important;}
 .intro-screen{background-image:linear-gradient(180deg,rgba(3,5,12,.46),rgba(3,5,12,.68)),var(--wezty-wallpaper,none)!important;background-position:center;background-size:cover;}
+
+/* Mystery Room — shared cooperative investigation */
+.mystery-page{width:100%;max-width:560px;margin:0 auto;padding:18px 14px 20px;text-align:right;position:relative;z-index:2;background:var(--wezty-panel,rgba(20,12,34,.82));border:1px solid var(--wezty-border,#e1a0ff40);border-radius:24px;box-shadow:0 0 25px #a855f733,0 15px 45px #0008;backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);max-height:calc(100svh - 92px);overflow-y:auto;overscroll-behavior:contain;color:var(--wezty-text,#f8eaff)}
+.mystery-kicker{text-align:center;color:var(--wezty-muted,#c6a8df);font-size:10px;letter-spacing:2px;font-weight:bold}
+.mystery-title{text-align:center;color:var(--wezty-text,#ff9cdd);font-size:27px;margin:6px 0;text-shadow:0 0 15px #ff4fc477}
+.mystery-subtitle{text-align:center;color:var(--wezty-muted,#c6a8df);font-size:12px;line-height:1.8;margin:0 0 12px}
+.mystery-status{text-align:center;color:var(--wezty-muted,#c6a8df);font-size:11px;line-height:1.6;margin:6px 0 12px}
+.mystery-case-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mystery-case-card{display:flex;flex-direction:column;align-items:center;gap:8px;min-width:0;min-height:185px;padding:15px 10px;border-radius:18px;border:1px solid var(--wezty-border,#d58aff55);background:var(--wezty-soft,rgba(49,27,67,.72));color:var(--wezty-text,#f8eaff);text-align:center;cursor:pointer}
+.mystery-case-card strong{font-size:15px;color:var(--wezty-text,#ffb5df)}
+.mystery-case-card>span:not(.mystery-case-icon){font-size:11px;line-height:1.7;color:var(--wezty-muted,#d7c0e8)}
+.mystery-case-card small{font-size:10px;color:var(--wezty-muted,#c6a8df);margin-top:auto}
+.mystery-case-icon{font-size:32px;line-height:1.2}
+.mystery-investigation{margin-top:8px}
+.mystery-hidden{display:none!important}
+.mystery-back{border:1px solid var(--wezty-border,#d58aff55);border-radius:12px;padding:8px 12px;background:var(--wezty-soft,rgba(49,27,67,.72));color:var(--wezty-text,#fff);font-size:11px}
+.mystery-case-heading{display:flex;align-items:center;gap:12px;margin:14px 0;padding:13px;border:1px solid var(--wezty-border,#d58aff44);border-radius:16px;background:var(--wezty-soft,rgba(49,27,67,.72))}
+.mystery-case-heading .mystery-case-icon{font-size:35px}
+.mystery-case-heading h3{margin:0 0 5px;color:var(--wezty-text,#ffb5df);font-size:17px}
+.mystery-case-heading p{margin:0;color:var(--wezty-muted,#d7c0e8);font-size:11px;line-height:1.7}
+.mystery-progress-wrap{padding:10px 12px;border-radius:14px;background:var(--wezty-soft,rgba(49,27,67,.72));border:1px solid var(--wezty-border,#d58aff33)}
+.mystery-progress-label{display:flex;justify-content:space-between;font-size:11px;color:var(--wezty-muted,#d7c0e8)}
+.mystery-progress-label b{color:var(--wezty-text,#ffb5df)}
+.mystery-progress-track{height:7px;border-radius:10px;background:#0003;margin-top:8px;overflow:hidden}
+.mystery-progress-track i{display:block;width:0;height:100%;border-radius:10px;background:linear-gradient(90deg,var(--wezty-accent,#8739c7),var(--wezty-accent-2,#d94eaa));transition:width .3s}
+.mystery-section-title{font-size:14px;color:var(--wezty-text,#ffb5df);margin:17px 0 8px}
+.mystery-hint{font-size:10px;line-height:1.7;color:var(--wezty-muted,#c6a8df);margin:0 0 9px}
+.mystery-clues{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mystery-clue{border:1px solid var(--wezty-border,#d58aff44);border-radius:13px;padding:10px;background:var(--wezty-soft,rgba(49,27,67,.65));color:var(--wezty-text,#f8eaff);text-align:right;min-height:76px}
+.mystery-clue button{width:100%;border:0;background:transparent;color:inherit;text-align:right;padding:0;cursor:pointer}
+.mystery-clue strong{display:block;font-size:11px;color:var(--wezty-text,#ffb5df);margin-bottom:5px}
+.mystery-clue span{display:block;font-size:10px;line-height:1.65;color:var(--wezty-muted,#d7c0e8)}
+.mystery-clue.found{border-color:var(--wezty-accent,#b75cff);box-shadow:inset 0 0 15px #b75cff16}
+.mystery-clue.found strong:before{content:"✓ ";color:#9de6bd}
+.mystery-note-form{display:grid;gap:7px}
+.mystery-note-form textarea,.mystery-final-box textarea,.mystery-final-box select{width:100%;border:1px solid var(--wezty-border,#d58aff55);border-radius:12px;padding:10px;background:var(--wezty-soft,#170d24);color:var(--wezty-text,#fff);font:12px Arial;line-height:1.7;outline:none}
+.mystery-note-form button,.mystery-final-box>button{border:0;border-radius:12px;padding:10px;background:linear-gradient(135deg,var(--wezty-accent,#8739c7),var(--wezty-accent-2,#d94eaa));color:#fff;font-weight:bold;font-size:12px}
+.mystery-notes{display:grid;gap:7px;margin-top:9px}
+.mystery-note{padding:9px 11px;border-radius:12px;background:var(--wezty-soft,rgba(49,27,67,.72));border:1px solid var(--wezty-border,#d58aff33)}
+.mystery-note b{display:block;font-size:10px;color:var(--wezty-text,#ffb5df);margin-bottom:4px}
+.mystery-note span{font-size:11px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+.mystery-final-box{margin-top:15px;padding:12px;border:1px solid var(--wezty-border,#d58aff55);border-radius:16px;background:var(--wezty-soft,rgba(49,27,67,.5))}
+.mystery-final-box label{display:block;font-size:11px;color:var(--wezty-muted,#d7c0e8);margin:9px 0 5px}
+.mystery-final-box textarea{margin-top:8px;resize:vertical}
+.mystery-final-box>button{width:100%;margin-top:8px}
+.mystery-reveal{display:none;margin-top:10px;padding:11px;border-radius:12px;background:#1c3b2b55;border:1px solid #8cdbac55;color:var(--wezty-text,#f8eaff);font-size:11px;line-height:1.8;white-space:pre-wrap}
+.mystery-reveal.show{display:block}
+@media(max-width:380px){.mystery-page{padding:14px 10px}.mystery-case-grid,.mystery-clues{gap:6px}.mystery-case-card{padding:12px 7px;min-height:170px}.mystery-clue{padding:8px}.mystery-title{font-size:23px}}
+@media screen and (max-width:600px){.bottom-nav{grid-template-columns:repeat(7,minmax(0,1fr))!important}.mystery-page{max-height:calc(100svh - 82px);padding:12px 10px}.mystery-case-card{min-height:155px;padding:10px 6px}.mystery-case-icon{font-size:27px}.mystery-case-card strong{font-size:12px}.mystery-case-card>span:not(.mystery-case-icon){font-size:10px}.mystery-case-card small{font-size:9px}.mystery-section-title{margin:12px 0 6px}}
 </style><style>
 #weztyAuthGate{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 50% 20%,#321447,transparent 55%),#080511;color:#fff}
 #weztyAuthGate .auth-card{width:min(100%,420px);padding:28px;border:1px solid #dca1ff66;border-radius:24px;background:#1a1029ee;box-shadow:0 0 35px #a855f744;text-align:center}
@@ -356,86 +405,75 @@ body::before{content:none!important;}
   #weztyAdminToggle::after{content:"⚙️";font-size:19px!important;}
 }
 </style>
-<script type="importmap">{"imports":{"@capacitor/core":"https://cdn.jsdelivr.net/npm/@capacitor/core@7.4.3/dist/esm/index.js"}}</script></head><body><div id="weztyAuthGate"><div class="auth-card"><div style="font-size:48px">🪿💗</div><h1>WEZTY</h1><p>سجّل دخولك عشان تدخل عالم WEZTY</p><form id="weztyLoginForm"><input id="weztyEmail" type="email" autocomplete="username" placeholder="Gmail" required><input id="weztyPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور" required><button type="submit">تسجيل الدخول</button></form><div id="weztyAuthError"></div></div></div><div id="weztyAdminBar"><button id="weztyAdminToggle">⚙️ الإدارة</button></div><div id="weztyAdminPanel"><div class="admin-inner"><button id="weztyAdminClose">إغلاق ✕</button><h2>WEZTY — مركز الإدارة</h2><p id="weztyAdminWelcome">مرحبًا Abdelrahman</p><section class="admin-editor"><h3>💌 إدارة الرسائل اليومية</h3><p>كل رسالة في سطر مستقل داخل محرر JSON. يمكنك تعديل النصوص أو إضافة رسائل جديدة.</p><textarea id="weztyMessagesEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:280px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="weztyLoadMessages">تحميل الرسائل الحالية</button><button id="weztySaveMessages">حفظ الرسائل على Firebase</button></div><p id="weztyAdminStatus" role="status"></p></section><section class="admin-editor"><h3>🧩 إدارة أسئلة اللعبة</h3><p>عدّل أسئلة كل مستوى. احتفظ بمفاتيح light وfeelings وdeep.</p><textarea id="weztyQuestionsEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎡 إدارة العجلة والتحديات</h3><p>كل قسم يحتوي name وitems. حافظ على 8 أقسام حتى تتطابق مع قطاعات العجلة الحالية.</p><textarea id="weztyWheelEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><optgroup label="الثيمات الحالية"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option><option value="darkBlue">Dark Blue — الأزرق الداكن</option><option value="purpleNeon">Purple Neon — البنفسجي النيون</option><option value="sunsetGlow">Sunset Glow — الغروب الذهبي</option><option value="natureForest">Nature Forest — الغابة الطبيعية</option></optgroup><optgroup label="الثيمات الجديدة"><option value="auroraGreen">Aurora Green</option><option value="galaxyDream">Galaxy Dream</option><option value="sakuraNight">Sakura Night</option><option value="pinkDream">Pink Dream — الحديقة الوردية</option><option value="oceanBlue">Ocean Blue</option><option value="royalGold">Royal Gold</option><option value="sunsetLove">Sunset Love</option><option value="cyberNeon">Cyber Neon</option><option value="softBeige">Soft Beige</option></optgroup></select></section><section class="admin-editor"><h3>🔐 Secret Zone</h3><p>محتوى القسم السري الظاهر للحسابين المصرح لهم.</p><label>عنوان القسم</label><input id="weztySecretTitle" style="width:100%;padding:12px;margin:8px 0;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"><label>المحتوى</label><textarea id="weztySecretBody" style="width:100%;min-height:130px;padding:12px;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"></textarea><label style="display:block;margin:10px 0"><input type="checkbox" id="weztySecretEnabled" checked> تفعيل ظهور Secret Zone</label></section><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="weztyLoadAll">تحميل كل الإعدادات</button><button id="weztySaveAll">حفظ المراحل الأربع على Firebase</button></div><p id="weztyAllStatus" role="status"></p><p style="font-size:12px;color:#e7b8dc">تنبيه: حماية Firestore الفعلية تتطلب نشر القواعد المقترحة ومراجعة اختبارها في Firebase Console. إخفاء أدوات الإدارة وحده ليس حماية.</p><button id="weztyLogout">تسجيل الخروج</button></div></div><canvas id="galaxyCanvas"></canvas><section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>حدث خطأ ما</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section><section class="page-section active" id="messagesPage"><main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main></section><section class="page-section" id="wheelPage"><section class="wheel-section"><h2>🎡 عجلة المفاجآت بتاعتك</h2><div class="wheel-sub">كل يوم ليكي لفة واحدة، شوفي النهارده مخبيلك إيه ❤️</div><div class="wheel-wrap"><div class="wheel-pointer"></div><div class="wheel" id="wheel"><span class="wheel-label" style="--x:62.4%;--y:19.7%">❤️ الحب</span><span class="wheel-label" style="--x:80.3%;--y:37.6%">😂 الضحك</span><span class="wheel-label" style="--x:80.3%;--y:62.4%">🎁 المفاجآت</span><span class="wheel-label" style="--x:62.4%;--y:80.3%">📸 الصور</span><span class="wheel-label" style="--x:37.6%;--y:80.3%">💌 الرسائل</span><span class="wheel-label" style="--x:19.7%;--y:62.4%">🧠 الأسئلة</span><span class="wheel-label" style="--x:19.7%;--y:37.6%">🥰 رومانسية</span><span class="wheel-label" style="--x:37.6%;--y:19.7%">✨ متنوعة</span></div><div class="wheel-center">💗</div></div><button class="wheel-btn" id="spinButton">لفّي العجلة 🎀</button><div class="wheel-status" id="wheelStatus"></div><div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div></section></section><section class="page-section" id="gamePage"><section class="game-section"><h2>🧩 اعرفيني أكتر</h2><div class="game-sub">سؤال ليكي وسؤال ليا... نشوف قد إيه عارفين بعض؟ ❤️</div><div class="game-sub" id="roleStatus">هويتك بتتحدد تلقائيًا من حساب تسجيل الدخول ❤️</div><div id="gameSetup"><div class="game-sub">اختاروا مستوى الأسئلة وابدأوا جولتكوا</div><div class="game-levels"><button class="level-btn selected" data-level="light">🌸 خفيف</button><button class="level-btn" data-level="feelings">❤️ مشاعر</button><button class="level-btn" data-level="deep">🧠 عميق</button></div><button class="game-action" id="startGame">ابدأوا اللعب 🎀</button></div><div id="gamePlay" class="game-panel game-hidden"><div class="game-turn" id="gameTurn"></div><div class="game-question" id="gameQuestion"></div><textarea class="game-answer" id="gameAnswer" placeholder="اكتب إجابتك هنا..."></textarea><button class="game-action" id="saveAnswer">احفظ الإجابة وكمل</button><div class="game-progress" id="gameProgress"></div><div class="game-summary" id="gameLiveAnswers"></div></div><div id="gameDone" class="game-panel game-hidden"><h3 style="color:#ff9cdd">خلصتوا الجولة! 🎉</h3><div class="game-summary" id="gameSummary"></div><button class="game-action" id="newGame">العبوا جولة جديدة</button></div></section></section><section class="page-section" id="memoriesPage"><main class="memories-page"><h2 class="memories-title">♡ Our Memories ♡</h2><p class="memories-subtitle">Two confessions... One beautiful story. ❤️</p><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">♥</span>The Day You First Said "I Love You"</h3><p class="memory-date">June 23, 2026 · 2:14 PM</p><div class="memory-days" id="memoryYouDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryYouHours">00</b>Hours</div><div class="memory-unit"><b id="memoryYouMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryYouSeconds">00</b>Seconds</div></div></article><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">✉</span>The Day I First Said "I Love You"</h3><p class="memory-date">May 19, 2026 · 1:14 AM</p><div class="memory-days" id="memoryIDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryIHours">00</b>Hours</div><div class="memory-unit"><b id="memoryIMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryISeconds">00</b>Seconds</div></div></article><p class="memory-footer"><span class="memory-sparkle">✦</span> Every second since then has been a beautiful memory. ❤️</p></main></section><section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section><section class="page-section" id="comingPage"><main class="private-chat"><div class="coming-badge">💌 Private messages</div><h2 class="coming-title">Messages</h2><p class="coming-subtitle">أي رسالة تبعتها هتظهر عند الطرف التاني مباشرة ❤️</p><div id="privateChatStatus" class="chat-status">جاري الاتصال...</div><div id="privateChatMessages" class="private-chat-messages" aria-live="polite"></div><form id="privateChatForm" class="private-chat-form"><textarea id="privateChatInput" maxlength="2000" rows="2" placeholder="اكتب رسالتك هنا..." required></textarea><button id="privateChatSend" class="game-action" type="submit">إرسال 💌</button></form></main></section><nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>Chat</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>Wheel</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>Know Me</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">💌</span><span>Our Message</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret</span></button></nav><div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div><script type="module">
+<script type="importmap">{"imports":{"@capacitor/core":"https://cdn.jsdelivr.net/npm/@capacitor/core@7.4.3/dist/esm/index.js"}}</script></head><body><div id="weztyAuthGate"><div class="auth-card"><div style="font-size:48px">🪿💗</div><h1>WEZTY</h1><p>سجّل دخولك عشان تدخل عالم WEZTY</p><form id="weztyLoginForm"><input id="weztyEmail" type="email" autocomplete="username" placeholder="Gmail" required><input id="weztyPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور" required><button type="submit">تسجيل الدخول</button></form><div id="weztyAuthError"></div></div></div><div id="weztyAdminBar"><button id="weztyAdminToggle">⚙️ الإدارة</button></div><div id="weztyAdminPanel"><div class="admin-inner"><button id="weztyAdminClose">إغلاق ✕</button><h2>WEZTY — مركز الإدارة</h2><p id="weztyAdminWelcome">مرحبًا Abdelrahman</p><section class="admin-editor"><h3>💌 إدارة الرسائل اليومية</h3><p>كل رسالة في سطر مستقل داخل محرر JSON. يمكنك تعديل النصوص أو إضافة رسائل جديدة.</p><textarea id="weztyMessagesEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:280px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="weztyLoadMessages">تحميل الرسائل الحالية</button><button id="weztySaveMessages">حفظ الرسائل على Firebase</button></div><p id="weztyAdminStatus" role="status"></p></section><section class="admin-editor"><h3>🧩 إدارة أسئلة اللعبة</h3><p>عدّل أسئلة كل مستوى. احتفظ بمفاتيح light وfeelings وdeep.</p><textarea id="weztyQuestionsEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎡 إدارة العجلة والتحديات</h3><p>كل قسم يحتوي name وitems. حافظ على 8 أقسام حتى تتطابق مع قطاعات العجلة الحالية.</p><textarea id="weztyWheelEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><optgroup label="الثيمات الحالية"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option><option value="darkBlue">Dark Blue — الأزرق الداكن</option><option value="purpleNeon">Purple Neon — البنفسجي النيون</option><option value="sunsetGlow">Sunset Glow — الغروب الذهبي</option><option value="natureForest">Nature Forest — الغابة الطبيعية</option></optgroup><optgroup label="الثيمات الجديدة"><option value="auroraGreen">Aurora Green</option><option value="galaxyDream">Galaxy Dream</option><option value="sakuraNight">Sakura Night</option><option value="pinkDream">Pink Dream — الحديقة الوردية</option><option value="oceanBlue">Ocean Blue</option><option value="royalGold">Royal Gold</option><option value="sunsetLove">Sunset Love</option><option value="cyberNeon">Cyber Neon</option><option value="softBeige">Soft Beige</option></optgroup></select></section><section class="admin-editor"><h3>🔐 Secret Zone</h3><p>محتوى القسم السري الظاهر للحسابين المصرح لهم.</p><label>عنوان القسم</label><input id="weztySecretTitle" style="width:100%;padding:12px;margin:8px 0;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"><label>المحتوى</label><textarea id="weztySecretBody" style="width:100%;min-height:130px;padding:12px;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"></textarea><label style="display:block;margin:10px 0"><input type="checkbox" id="weztySecretEnabled" checked> تفعيل ظهور Secret Zone</label></section><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="weztyLoadAll">تحميل كل الإعدادات</button><button id="weztySaveAll">حفظ المراحل الأربع على Firebase</button></div><p id="weztyAllStatus" role="status"></p><p style="font-size:12px;color:#e7b8dc">تنبيه: حماية Firestore الفعلية تتطلب نشر القواعد المقترحة ومراجعة اختبارها في Firebase Console. إخفاء أدوات الإدارة وحده ليس حماية.</p><button id="weztyLogout">تسجيل الخروج</button></div></div><canvas id="galaxyCanvas"></canvas><section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>حدث خطأ ما</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section><section class="page-section active" id="messagesPage"><main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main></section><section class="page-section" id="wheelPage"><section class="wheel-section"><h2>🎡 عجلة المفاجآت بتاعتك</h2><div class="wheel-sub">كل يوم ليكي لفة واحدة، شوفي النهارده مخبيلك إيه ❤️</div><div class="wheel-wrap"><div class="wheel-pointer"></div><div class="wheel" id="wheel"><span class="wheel-label" style="--x:62.4%;--y:19.7%">❤️ الحب</span><span class="wheel-label" style="--x:80.3%;--y:37.6%">😂 الضحك</span><span class="wheel-label" style="--x:80.3%;--y:62.4%">🎁 المفاجآت</span><span class="wheel-label" style="--x:62.4%;--y:80.3%">📸 الصور</span><span class="wheel-label" style="--x:37.6%;--y:80.3%">💌 الرسائل</span><span class="wheel-label" style="--x:19.7%;--y:62.4%">🧠 الأسئلة</span><span class="wheel-label" style="--x:19.7%;--y:37.6%">🥰 رومانسية</span><span class="wheel-label" style="--x:37.6%;--y:19.7%">✨ متنوعة</span></div><div class="wheel-center">💗</div></div><button class="wheel-btn" id="spinButton">لفّي العجلة 🎀</button><div class="wheel-status" id="wheelStatus"></div><div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div></section></section><section class="page-section" id="gamePage"><section class="game-section"><h2>🧩 اعرفيني أكتر</h2><div class="game-sub">سؤال ليكي وسؤال ليا... نشوف قد إيه عارفين بعض؟ ❤️</div><div class="game-sub" id="roleStatus">هويتك بتتحدد تلقائيًا من حساب تسجيل الدخول ❤️</div><div id="gameSetup"><div class="game-sub">اختاروا مستوى الأسئلة وابدأوا جولتكوا</div><div class="game-levels"><button class="level-btn selected" data-level="light">🌸 خفيف</button><button class="level-btn" data-level="feelings">❤️ مشاعر</button><button class="level-btn" data-level="deep">🧠 عميق</button></div><button class="game-action" id="startGame">ابدأوا اللعب 🎀</button></div><div id="gamePlay" class="game-panel game-hidden"><div class="game-turn" id="gameTurn"></div><div class="game-question" id="gameQuestion"></div><textarea class="game-answer" id="gameAnswer" placeholder="اكتب إجابتك هنا..."></textarea><button class="game-action" id="saveAnswer">احفظ الإجابة وكمل</button><div class="game-progress" id="gameProgress"></div><div class="game-summary" id="gameLiveAnswers"></div></div><div id="gameDone" class="game-panel game-hidden"><h3 style="color:#ff9cdd">خلصتوا الجولة! 🎉</h3><div class="game-summary" id="gameSummary"></div><button class="game-action" id="newGame">العبوا جولة جديدة</button></div></section></section><section class="page-section" id="memoriesPage"><main class="memories-page"><h2 class="memories-title">♡ Our Memories ♡</h2><p class="memories-subtitle">Two confessions... One beautiful story. ❤️</p><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">♥</span>The Day You First Said "I Love You"</h3><p class="memory-date">June 23, 2026 · 2:14 PM</p><div class="memory-days" id="memoryYouDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryYouHours">00</b>Hours</div><div class="memory-unit"><b id="memoryYouMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryYouSeconds">00</b>Seconds</div></div></article><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">✉</span>The Day I First Said "I Love You"</h3><p class="memory-date">May 19, 2026 · 1:14 AM</p><div class="memory-days" id="memoryIDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryIHours">00</b>Hours</div><div class="memory-unit"><b id="memoryIMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryISeconds">00</b>Seconds</div></div></article><p class="memory-footer"><span class="memory-sparkle">✦</span> Every second since then has been a beautiful memory. ❤️</p></main></section>
+<section class="page-section" id="mysteryPage">
+ <main class="mystery-page">
+  <div class="mystery-kicker">🕵️ CO-OP INVESTIGATION</div>
+  <h2 class="mystery-title">Mystery Room</h2>
+  <p class="mystery-subtitle">غرفة تحقيق مشتركة — اجمعوا الأدلة، اكتبوا ملاحظاتكم، ووصلوا للحقيقة سوا.</p>
+  <div id="mysteryStatus" class="mystery-status">جاري الاتصال بغرفة التحقيق...</div>
+  <div id="mysteryCasePicker" class="mystery-case-grid">
+   <button class="mystery-case-card" type="button" data-mystery-case="mansion">
+    <span class="mystery-case-icon">🏰</span><strong>القصر الغامض</strong>
+    <span>قطعة أثرية اختفت من غرفة مغلقة، وخمس روايات مش متطابقة.</span><small>القضية الأولى • 6 أدلة</small>
+   </button>
+   <button class="mystery-case-card" type="button" data-mystery-case="train">
+    <span class="mystery-case-icon">🚆</span><strong>لغز القطار</strong>
+    <span>حقيبة اختفت أثناء الرحلة، وكل راكب عنده جزء من الحكاية.</span><small>القضية الثانية • 6 أدلة</small>
+   </button>
+  </div>
+  <div id="mysteryInvestigation" class="mystery-investigation mystery-hidden">
+   <button id="mysteryBack" class="mystery-back" type="button">← كل القضايا</button>
+   <div class="mystery-case-heading">
+    <div id="mysteryCaseIcon" class="mystery-case-icon">🏰</div>
+    <div><h3 id="mysteryCaseTitle"></h3><p id="mysteryCaseIntro"></p></div>
+   </div>
+   <div class="mystery-progress-wrap"><div class="mystery-progress-label"><span>الأدلة المكتشفة</span><b id="mysteryProgress">0 / 6</b></div><div class="mystery-progress-track"><i id="mysteryProgressBar"></i></div></div>
+   <h4 class="mystery-section-title">ملف الأدلة</h4>
+   <div id="mysteryClues" class="mystery-clues"></div>
+   <h4 class="mystery-section-title">دفتر التحقيق المشترك</h4>
+   <p class="mystery-hint">أي ملاحظة يضيفها واحد فيكم هتظهر عند التاني مباشرة.</p>
+   <form id="mysteryNoteForm" class="mystery-note-form"><textarea id="mysteryNoteInput" maxlength="500" rows="2" placeholder="اكتبوا ملاحظة أو استنتاج..."></textarea><button id="mysteryNoteSave" type="submit">أضف للدفتر</button></form>
+   <div id="mysteryNotes" class="mystery-notes"></div>
+   <div class="mystery-final-box">
+    <h4 class="mystery-section-title">الاستنتاج النهائي</h4>
+    <p class="mystery-hint">لما تتفقوا، اختاروا الشخص المسؤول واكتبوا تفسيركم. الحل هيتكشف للطرفين بعد الإرسال.</p>
+    <label for="mysterySuspect">مين المسؤول؟</label>
+    <select id="mysterySuspect"><option value="">اختاروا من المشتبه فيهم</option></select>
+    <textarea id="mysteryExplanation" maxlength="800" rows="3" placeholder="إيه الأدلة اللي خلتكم توصلوا للاستنتاج ده؟"></textarea>
+    <button id="mysterySubmitFinal" type="button">اعتماد الحل النهائي 🔎</button>
+    <div id="mysteryReveal" class="mystery-reveal"></div>
+   </div>
+  </div>
+ </main>
+</section>
+<section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section><section class="page-section" id="comingPage"><main class="private-chat"><div class="coming-badge">💌 Private messages</div><h2 class="coming-title">Messages</h2><p class="coming-subtitle">أي رسالة تبعتها هتظهر عند الطرف التاني مباشرة ❤️</p><div id="privateChatStatus" class="chat-status">جاري الاتصال...</div><div id="privateChatMessages" class="private-chat-messages" aria-live="polite"></div><form id="privateChatForm" class="private-chat-form"><textarea id="privateChatInput" maxlength="2000" rows="2" placeholder="اكتب رسالتك هنا..." required></textarea><button id="privateChatSend" class="game-action" type="submit">إرسال 💌</button></form></main></section><nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>Chat</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>Wheel</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>Know Me</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">💌</span><span>Our Message</span></button><button class="nav-btn" type="button" data-page="mysteryPage"><span class="nav-icon">🕵️</span><span>Mystery</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret</span></button></nav><div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div><script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,collection,addDoc,query,orderBy}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 const firebaseConfig={apiKey:"AIzaSyD4I4NviTS4pNo5hxksiGDr-2SiOVaj4AI",authDomain:"zozo-41d24.firebaseapp.com",projectId:"zozo-41d24",storageBucket:"zozo-41d24.firebasestorage.app",messagingSenderId:"872003176089",appId:"1:872003176089:web:c9d522e470d6e7124b5a08",measurementId:"G-HZRTXWPJSX"};const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app);
-// Native Android push registration. Load the plugin only inside the native app.
+// Native Android push registration (the web version safely skips this block).
 let weztyPushListenersReady=false;
-let weztyPushPluginPromise=null;
-let weztyPushSetupUid=null;
-function showWeztyPushStatus(message,isError=false){
- try{
-  let box=document.getElementById('weztyPushStatusNotice');
-  if(!box){
-   box=document.createElement('div');box.id='weztyPushStatusNotice';
-   box.style.cssText='position:fixed;z-index:99999;top:12px;left:12px;right:12px;max-width:520px;margin:auto;padding:12px 16px;border-radius:12px;text-align:center;font:14px Arial,sans-serif;box-shadow:0 5px 22px #0006;';
-   document.body.appendChild(box);
-  }
-  box.textContent=message;box.style.background=isError?'#7f1d1d':'#14532d';box.style.color='#fff';box.style.display='block';
-  clearTimeout(window.__weztyPushNoticeTimer);
-  window.__weztyPushNoticeTimer=setTimeout(()=>{box.style.display='none'},6500);
- }catch(e){console.warn('WEZTY push status UI:',e)}
-}
-async function getWeztyPushPlugin(){
- if(!weztyPushPluginPromise){
-  // jsDelivr's +esm endpoint rewrites package imports for browser ESM.
-  weztyPushPluginPromise=import('https://cdn.jsdelivr.net/npm/@capacitor/push-notifications@7.0.2/+esm')
-   .then(mod=>mod.PushNotifications);
- }
- return weztyPushPluginPromise;
-}
 async function setupWeztyPush(user){
- if(!user||![WEZTY_ADMIN_UID,WEZTY_VIEWER_UID].includes(user.uid))return;
- if(!window.Capacitor?.isNativePlatform?.()){
-  console.info('WEZTY push: browser session; native push is skipped.');return;
- }
  try{
-  const nativePush=await getWeztyPushPlugin();
-  if(!nativePush)throw new Error('PushNotifications plugin export was not found');
+  if(!window.Capacitor?.isNativePlatform?.()||!user||![WEZTY_ADMIN_UID,WEZTY_VIEWER_UID].includes(user.uid))return;
+  const {PushNotifications:nativePush}=await import("https://cdn.jsdelivr.net/npm/@capacitor/push-notifications@7.0.2/dist/esm/index.js");
   if(!weztyPushListenersReady){
+   weztyPushListenersReady=true;
    await nativePush.addListener('registration',async tokenEvent=>{
     const activeUser=auth.currentUser;
     if(!activeUser||![WEZTY_ADMIN_UID,WEZTY_VIEWER_UID].includes(activeUser.uid))return;
-    if(!tokenEvent?.value){console.error('WEZTY push: empty FCM token event');showWeztyPushStatus('وصل تسجيل الإشعارات بدون Token صالح.',true);return;}
-    try{
-     await setDoc(doc(db,'wezty_push_tokens',activeUser.uid),{
-      token:tokenEvent.value,uid:activeUser.uid,platform:'android',updatedAt:serverTimestamp()
-     },{merge:true});
-     console.info('WEZTY push token saved for UID:',activeUser.uid);
-     showWeztyPushStatus('تم تسجيل الإشعارات وحفظ الجهاز بنجاح ✓');
-    }catch(error){
-     console.error('WEZTY push token save failed:',error);
-     showWeztyPushStatus('التطبيق استلم Token لكن فشل حفظه في Firebase: '+(error.code||error.message||'خطأ'),true);
-    }
+    try{await setDoc(doc(db,'wezty_push_tokens',activeUser.uid),{token:tokenEvent.value,uid:activeUser.uid,platform:'android',updatedAt:serverTimestamp()},{merge:true});}
+    catch(error){console.error('WEZTY push token save failed:',error);}
    });
-   await nativePush.addListener('registrationError',error=>{
-    console.error('WEZTY push registration failed:',error);
-    showWeztyPushStatus('فشل تسجيل الإشعارات: '+(error?.message||JSON.stringify(error)),true);
-   });
+   await nativePush.addListener('registrationError',error=>console.error('WEZTY push registration failed:',error));
    await nativePush.addListener('pushNotificationReceived',notification=>console.info('WEZTY notification received:',notification));
    await nativePush.addListener('pushNotificationActionPerformed',action=>console.info('WEZTY notification opened:',action));
-   weztyPushListenersReady=true;
   }
-  try{
-   await nativePush.createChannel({id:'wezty_updates',name:'WEZTY Updates',description:'WEZTY messages and game updates',importance:5,visibility:1});
-  }catch(channelError){console.warn('WEZTY notification channel:',channelError)}
+  try{await nativePush.createChannel({id:'wezty_updates',name:'WEZTY Updates',description:'WEZTY messages and game updates',importance:5,visibility:1});}catch(channelError){console.warn('WEZTY notification channel:',channelError)}
   let permission=await nativePush.checkPermissions();
   if(permission.receive!=='granted')permission=await nativePush.requestPermissions();
-  if(permission.receive!=='granted'){
-   showWeztyPushStatus('إذن الإشعارات غير مسموح. فعّله من إعدادات التطبيق.',true);return;
-  }
-  if(weztyPushSetupUid!==user.uid){
-   weztyPushSetupUid=user.uid;
-   await nativePush.register();
-   console.info('WEZTY push registration requested for:',user.uid);
-  }
- }catch(error){
-  console.error('WEZTY push setup failed:',error);
-  weztyPushPluginPromise=null;
-  showWeztyPushStatus('تعذر تشغيل إضافة الإشعارات: '+(error?.message||String(error)),true);
- }
+  if(permission.receive==='granted')await nativePush.register();
+ }catch(error){console.error('WEZTY push setup:',error);}
 }
-
 
 const messages=[
 `يا وزتي يا حتة من قلبي ❤️
@@ -564,12 +602,15 @@ document.getElementById("weztyLoginForm").addEventListener("submit",async e=>{
  e.preventDefault();
  const loginButton=document.querySelector("#weztyLoginForm button[type='submit']");
  if(loginButton){loginButton.disabled=true;loginButton.textContent="جاري الدخول...";}
- authError.textContent="جاري تسجيل الدخول...";
+ authError.textContent="جاري الاتصال بـ Firebase...";
  try{
-  await signInWithEmailAndPassword(auth,document.getElementById("weztyEmail").value.trim(),document.getElementById("weztyPassword").value);
-  authError.textContent="تم تسجيل الدخول. جاري فتح WEZTY...";
+  const credential=await signInWithEmailAndPassword(auth,
+   document.getElementById("weztyEmail").value.trim(),
+   document.getElementById("weztyPassword").value);
+  console.info("WEZTY AUTH SUCCESS:",credential.user.uid);
+  authError.textContent="تم قبول تسجيل الدخول. جاري فتح WEZTY...";
  }catch(err){
-  console.error("WEZTY sign-in error:",err);
+  console.error("WEZTY AUTH ERROR:",err);
   authError.textContent="فشل تسجيل الدخول: "+(err.code||err.message||"خطأ غير معروف");
   if(loginButton){loginButton.disabled=false;loginButton.textContent="تسجيل الدخول";}
  }
@@ -622,19 +663,17 @@ document.getElementById("privateChatForm").addEventListener("submit",async event
  }finally{button.disabled=false;button.textContent="إرسال 💌";}
 });
 onAuthStateChanged(auth,async user=>{
+ console.info("WEZTY AUTH STATE:",user?user.uid:"NO USER");
+ stopMysteryListeners();
+ try{
  if(unsubscribePrivateChat){unsubscribePrivateChat();unsubscribePrivateChat=null;}
  if(unsubscribeWeztyContent){unsubscribeWeztyContent();unsubscribeWeztyContent=null;}
  if(!user){currentWeztyRole=null;authGate.style.display="flex";document.getElementById("weztyAdminBar").style.display="none";return}
  if(user.uid!==WEZTY_ADMIN_UID&&user.uid!==WEZTY_VIEWER_UID){await signOut(auth);authError.textContent="هذا الحساب غير مصرح له باستخدام WEZTY.";return}
  currentWeztyRole=user.uid===WEZTY_ADMIN_UID?"admin":"viewer";
- // Never block authentication or app startup on the optional native push plugin.
- // Reveal the authenticated app first; initialize push in the background.
  authGate.style.display="none";
- render();
- void setupWeztyPush(user).catch(pushError=>{
-  console.error("WEZTY background push setup error:",pushError);
-  showWeztyPushStatus("تعذر تهيئة الإشعارات: "+(pushError?.message||String(pushError)),true);
- });
+ authError.textContent="";
+ setupWeztyPush(user);
  const applyRemoteContent=saved=>{
   if(Array.isArray(saved.messages)&&saved.messages.every(x=>typeof x==="string"&&x.trim()))messages.splice(0,messages.length,...saved.messages);
   if(saved.gameBanks&&["light","feelings","deep"].every(k=>Array.isArray(saved.gameBanks[k])&&saved.gameBanks[k].length>=6)){Object.keys(gameBanks).forEach(k=>delete gameBanks[k]);Object.assign(gameBanks,saved.gameBanks)}
@@ -649,7 +688,19 @@ onAuthStateChanged(auth,async user=>{
  authGate.style.display="none";render();listenToPrivateChat();
  document.getElementById("weztyAdminBar").style.display=currentWeztyRole==="admin"?"block":"none";
  document.getElementById("weztyAdminWelcome").textContent=currentWeztyRole==="admin"?"مرحبًا Abdelrahman — Admin":"";
- try{await refreshReadStatus();listenToSharedGame();setRole(currentWeztyRole==="admin"?"me":"her")}catch(error){console.error(error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}
+ try{await refreshReadStatus();listenToSharedGame();setRole(currentWeztyRole==="admin"?"me":"her");startMysteryListeners()}catch(error){console.error("WEZTY data initialization:",error);document.getElementById("readStatus").textContent="تعذر الاتصال بقاعدة البيانات. راجع إعدادات Firebase."}
+ }catch(authInitError){
+  console.error("WEZTY AUTH INITIALIZATION ERROR:",authInitError);
+  authError.textContent="تم تسجيل الدخول لكن حدث خطأ أثناء فتح التطبيق: "+(authInitError.code||authInitError.message||"خطأ غير معروف");
+  const readStatus=document.getElementById("readStatus");
+  if(readStatus)readStatus.textContent="حدث خطأ أثناء تحميل بيانات التطبيق.";
+ }
+});
+window.addEventListener("error",event=>{
+ console.error("WEZTY GLOBAL JS ERROR:",event.error||event.message);
+});
+window.addEventListener("unhandledrejection",event=>{
+ console.error("WEZTY UNHANDLED PROMISE:",event.reason);
 });
 async function loadAdminMessages(){const status=document.getElementById("weztyAdminStatus"),editor=document.getElementById("weztyMessagesEditor");status.textContent="جاري تحميل الرسائل...";try{const snap=await getDoc(doc(db,"wezty_admin","content"));const stored=snap.exists()?snap.data().messages:null;editor.value=JSON.stringify(Array.isArray(stored)?stored:messages,null,2);status.textContent=`تم تحميل ${Array.isArray(stored)?stored.length:messages.length} رسالة.`}catch(err){console.error(err);editor.value=JSON.stringify(messages,null,2);status.textContent="تعذر تحميل إعدادات Firebase؛ المعروض هو المحتوى المحلي الحالي."}}
 document.getElementById("weztyLoadMessages").addEventListener("click",()=>{if(currentWeztyRole==="admin")loadAdminMessages()});
@@ -812,6 +863,166 @@ gameEl("saveAnswer").addEventListener("click",async()=>{
 });
 gameEl("newGame").addEventListener("click",()=>{gameDone.classList.add("game-hidden");gameSetup.classList.remove("game-hidden");sharedGame=null;gameEl("gameAnswer").value=""});
 
+
+// Mystery Room: two shared co-op cases. Both authorized accounts can investigate.
+const MYSTERY_ALLOWED_UIDS=[WEZTY_ADMIN_UID,WEZTY_VIEWER_UID];
+const MYSTERY_CASES={
+ mansion:{
+  title:"القصر الغامض",icon:"🏰",
+  intro:"اختفت البوصلة الفضية من غرفة العرض في قصر العائلة. الباب كان مقفولًا، وخمسة أشخاص كانوا داخل القصر وقتها.",
+  suspects:["يوسف — مسؤول الصيانة","سلمى — ضيفة العائلة","فارس — ابن صاحب القصر","لينا — مسؤولة المطبخ","نادر — حارس القصر"],
+  clues:[
+   {title:"محضر الغرفة",text:"الباب الرئيسي كان مقفولًا، لكن سجل الفحص يثبت أن مفتاح الخدمة الاحتياطي فُتح به قفل الغرفة الساعة 8:12 مساءً."},
+   {title:"دفتر المفاتيح",text:"دفتر الاستلام يوضح أن يوسف استلم مفتاح الخدمة الساعة 8:05 وأعاده الساعة 8:26. لا يوجد توقيع آخر في هذه الفترة."},
+   {title:"توقيت الحارس",text:"نادر أكد أنه رأى يوسف خارج غرفة العرض الساعة 8:18، رغم أن يوسف قال إنه كان في المطبخ طوال الوقت."},
+   {title:"أثر المياه",text:"ظهر بلل خفيف أسفل صندوق العرض، وبجواره نقطة من السقف المتسرب. لم توجد آثار كسر أو عبث بالصندوق."},
+   {title:"ملاحظة المالك",text:"رسالة قديمة من صاحب القصر تطلب نقل البوصلة إلى خزانة جافة إذا ظهر أي تسرب في غرفة العرض."},
+   {title:"الخزانة الجانبية",text:"عُثر على البوصلة داخل خزانة الحفظ الجافة في ممر الصيانة، ومعها قطعة قماش يستخدمها فريق الصيانة لحماية المقتنيات."}
+  ],
+  answer:"يوسف — مسؤول الصيانة",
+  solution:"يوسف هو من نقل البوصلة، لكنه لم يسرقها. استخدم مفتاح الخدمة بعد ملاحظة تسرب المياه، ونقلها إلى خزانة جافة تنفيذًا لتعليمات المالك. دفتر المفاتيح وتوقيت الحارس ومكان العثور على البوصلة يثبتون ذلك."
+ },
+ train:{
+  title:"لغز القطار",icon:"🚆",
+  intro:"اختفت حقيبة زرقاء من عربة الركاب أثناء الرحلة. لا توجد علامات سرقة، لكن أقوال الركاب لا تتفق مع سجل الرحلة.",
+  suspects:["هادي — مراقب القطار","عمر — راكب في المقعد 12","دينا — راكبة في المقعد 14","رامي — راكب في العربة المجاورة","منى — مسؤولة خدمة الركاب"],
+  clues:[
+   {title:"تذكرة صاحبة الحقيبة",text:"تذكرة دينا تحدد مقعدها 14 في العربة الثانية، ورقم بطاقة الحقيبة هو 314."},
+   {title:"سجل الممر",text:"سجل المراقب يذكر أن الحقيبة كانت تعوق ممر الخروج، فتم نقل الأمتعة التي تعترض الطريق إلى رف الأمتعة في العربة الثالثة."},
+   {title:"شهادة عمر",text:"عمر أكد أنه رأى هادي ينقل حقيبة زرقاء من جوار المقعد 14 قبل توقف القطار بالمحطة التالية."},
+   {title:"ملصق النقل",text:"على بطاقة الحقيبة ملصق صغير مكتوب عليه «نُقلت للعربة 3» ومؤرخ الساعة 9:08."},
+   {title:"كاميرا العربة",text:"التسجيل يُظهر هادي وهو يحمل الحقيبة باتجاه العربة الثالثة، ثم يعود إلى عمله دون أن يغادر القطار."},
+   {title:"رف العربة الثالثة",text:"الحقيبة موجودة في الرف المخصص للأمتعة المنقولة، ورقم البطاقة 314 يطابق تذكرة دينا."}
+  ],
+  answer:"هادي — مراقب القطار",
+  solution:"هادي نقل الحقيبة إلى رف آمن في العربة الثالثة لأنها كانت تعوق ممر الخروج. لم يأخذها لنفسه؛ سجل النقل والملصق والتسجيل ورقم البطاقة يوضحون مكانها وسبب نقلها."
+ }
+};
+const mysteryDocs={mansion:doc(db,"mystery_rooms","mansion"),train:doc(db,"mystery_rooms","train")};
+const mysteryState={mansion:null,train:null};
+const mysteryUnsubs={mansion:null,train:null};
+let activeMysteryCase=null;
+const mysteryById=id=>document.getElementById(id);
+function mysteryEscape(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function mysteryName(uid){return uid===WEZTY_ADMIN_UID?"Abdelrahman":"Weza"}
+function stopMysteryListeners(){for(const caseId of Object.keys(mysteryUnsubs)){if(mysteryUnsubs[caseId]){mysteryUnsubs[caseId]();mysteryUnsubs[caseId]=null;}}}
+function startMysteryListeners(){
+ if(!auth.currentUser||!MYSTERY_ALLOWED_UIDS.includes(auth.currentUser.uid))return;
+ for(const caseId of Object.keys(MYSTERY_CASES)){
+  if(mysteryUnsubs[caseId])mysteryUnsubs[caseId]();
+  mysteryUnsubs[caseId]=onSnapshot(mysteryDocs[caseId],snap=>{
+   mysteryState[caseId]=snap.exists()?snap.data():null;
+   mysteryById("mysteryStatus").textContent="متصل — تقدم التحقيق بيتزامن بين الحسابين مباشرة";
+   if(activeMysteryCase===caseId)renderMysteryCase();
+  },error=>{
+   console.error("Mystery Room listener:",error);
+   mysteryById("mysteryStatus").textContent="تعذر الاتصال بملفات القضية. راجع صلاحيات Firestore لمجموعة mystery_rooms.";
+  });
+ }
+}
+function showMysteryCase(caseId){
+ if(!MYSTERY_CASES[caseId])return;
+ activeMysteryCase=caseId;
+ mysteryById("mysteryCasePicker").classList.add("mystery-hidden");
+ mysteryById("mysteryInvestigation").classList.remove("mystery-hidden");
+ renderMysteryCase();
+}
+function renderMysteryCase(){
+ if(!activeMysteryCase)return;
+ const cfg=MYSTERY_CASES[activeMysteryCase],data=mysteryState[activeMysteryCase]||{};
+ const found=Array.isArray(data.foundClues)?data.foundClues:[];
+ mysteryById("mysteryCaseIcon").textContent=cfg.icon;
+ mysteryById("mysteryCaseTitle").textContent=cfg.title;
+ mysteryById("mysteryCaseIntro").textContent=cfg.intro;
+ mysteryById("mysteryProgress").textContent=found.length+" / "+cfg.clues.length;
+ mysteryById("mysteryProgressBar").style.width=(found.length/cfg.clues.length*100)+"%";
+ mysteryById("mysteryClues").innerHTML=cfg.clues.map((clue,index)=>{
+  const unlocked=found.includes(index);
+  return `<div class="mystery-clue ${unlocked?"found":""}"><button type="button" data-mystery-clue="${index}" ${unlocked?"disabled":""}><strong>${unlocked?mysteryEscape(clue.title):"دليل مقفول • "+(index+1)}</strong><span>${unlocked?mysteryEscape(clue.text):"اضغطوا لاكتشاف الدليل ومشاركته مع الطرف الآخر."}</span></button></div>`;
+ }).join("");
+ mysteryById("mysteryClues").querySelectorAll("[data-mystery-clue]").forEach(button=>button.addEventListener("click",()=>discoverMysteryClue(Number(button.dataset.mysteryClue))));
+ const notes=Array.isArray(data.notes)?data.notes:[];
+ mysteryById("mysteryNotes").innerHTML=notes.length?notes.map(note=>`<div class="mystery-note"><b>${mysteryEscape(note.name||"محقق")} • ${mysteryEscape(note.time||"")}</b><span>${mysteryEscape(note.text)}</span></div>`).join(""):'<div class="mystery-hint">لسه مفيش ملاحظات. اكتبوا أول استنتاج هنا.</div>';
+ const select=mysteryById("mysterySuspect");
+ if(!select.dataset.caseId||select.dataset.caseId!==activeMysteryCase){
+  select.innerHTML='<option value="">اختاروا من المشتبه فيهم</option>'+cfg.suspects.map(x=>`<option value="${mysteryEscape(x)}">${mysteryEscape(x)}</option>`).join("");
+  select.dataset.caseId=activeMysteryCase;
+ }
+ const final=data.finalAnswer||null;
+ const reveal=mysteryById("mysteryReveal");
+ if(final){
+  mysteryById("mysterySuspect").disabled=true;
+  mysteryById("mysteryExplanation").disabled=true;
+  mysteryById("mysterySubmitFinal").disabled=true;
+  mysteryById("mysterySubmitFinal").textContent="تم اعتماد الحل";
+  reveal.classList.add("show");
+  reveal.textContent=(final.suspect===cfg.answer?"🎉 وصلتوا للحل الصحيح!":"انتهى التحقيق — الحل اللي اخترتوه مختلف عن الحل المدعوم بالأدلة.")+"\n\nالحل الصحيح: "+cfg.answer+"\n"+cfg.solution+"\n\nتفسيركم: "+(final.explanation||"لم تتم إضافة تفسير.");
+ }else{
+  mysteryById("mysterySuspect").disabled=false;
+  mysteryById("mysteryExplanation").disabled=false;
+  mysteryById("mysterySubmitFinal").disabled=false;
+  mysteryById("mysterySubmitFinal").textContent="اعتماد الحل النهائي 🔎";
+  reveal.classList.remove("show");reveal.textContent="";
+ }
+}
+async function discoverMysteryClue(index){
+ const caseId=activeMysteryCase,user=auth.currentUser;
+ if(!caseId||!user||!MYSTERY_ALLOWED_UIDS.includes(user.uid))return;
+ try{
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(mysteryDocs[caseId]);
+   const data=snap.exists()?snap.data():{foundClues:[],notes:[],finalAnswer:null};
+   if(data.finalAnswer)throw new Error("تم إنهاء القضية بالفعل.");
+   const found=Array.isArray(data.foundClues)?data.foundClues:[];
+   if(!found.includes(index))found.push(index);
+   tx.set(mysteryDocs[caseId],{foundClues:found,notes:Array.isArray(data.notes)?data.notes:[],finalAnswer:data.finalAnswer||null,updatedAt:serverTimestamp(),createdAt:data.createdAt||serverTimestamp()},{merge:true});
+  });
+ }catch(error){console.error("Mystery clue:",error);alert("الدليل ما اتحفظش. اتأكدوا من صلاحيات Firestore لمجموعة mystery_rooms.")}
+}
+mysteryById("mysteryCasePicker").querySelectorAll("[data-mystery-case]").forEach(button=>button.addEventListener("click",()=>showMysteryCase(button.dataset.mysteryCase)));
+mysteryById("mysteryBack").addEventListener("click",()=>{
+ activeMysteryCase=null;
+ mysteryById("mysteryInvestigation").classList.add("mystery-hidden");
+ mysteryById("mysteryCasePicker").classList.remove("mystery-hidden");
+});
+mysteryById("mysteryNoteForm").addEventListener("submit",async event=>{
+ event.preventDefault();
+ const caseId=activeMysteryCase,user=auth.currentUser,input=mysteryById("mysteryNoteInput"),value=input.value.trim();
+ if(!caseId||!user||!value||!MYSTERY_ALLOWED_UIDS.includes(user.uid))return;
+ const button=mysteryById("mysteryNoteSave");button.disabled=true;button.textContent="جاري الحفظ...";
+ try{
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(mysteryDocs[caseId]);
+   const data=snap.exists()?snap.data():{foundClues:[],notes:[],finalAnswer:null};
+   if(data.finalAnswer)throw new Error("تم إنهاء القضية.");
+   const notes=Array.isArray(data.notes)?data.notes:[];
+   if(notes.length>=100)throw new Error("وصل دفتر الملاحظات للحد الأقصى.");
+   notes.push({uid:user.uid,name:mysteryName(user.uid),text:value,time:new Date().toLocaleString("ar-EG"),createdAt:Date.now()});
+   tx.set(mysteryDocs[caseId],{foundClues:Array.isArray(data.foundClues)?data.foundClues:[],notes,finalAnswer:null,updatedAt:serverTimestamp(),createdAt:data.createdAt||serverTimestamp()},{merge:true});
+  });
+  input.value="";
+ }catch(error){console.error("Mystery note:",error);alert("الملاحظة ما اتحفظتش. راجعوا اتصال Firestore وصلاحيات المجموعة.")}
+ finally{button.disabled=false;button.textContent="أضف للدفتر"}
+});
+mysteryById("mysterySubmitFinal").addEventListener("click",async()=>{
+ const caseId=activeMysteryCase,user=auth.currentUser,cfg=MYSTERY_CASES[activeMysteryCase];
+ const suspect=mysteryById("mysterySuspect").value,explanation=mysteryById("mysteryExplanation").value.trim();
+ if(!caseId||!user||!MYSTERY_ALLOWED_UIDS.includes(user.uid))return;
+ if(!suspect){alert("اختاروا المشتبه فيه الأول.");return}
+ if((mysteryState[caseId]?.foundClues||[]).length<cfg.clues.length){alert("اكتشفوا الأدلة الستة الأول قبل اعتماد الحل.");return}
+ if(!explanation){alert("اكتبوا تفسيركم للأدلة قبل اعتماد الحل.");return}
+ const button=mysteryById("mysterySubmitFinal");button.disabled=true;button.textContent="جاري اعتماد الحل...";
+ try{
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(mysteryDocs[caseId]);
+   const data=snap.exists()?snap.data():null;
+   if(!data||data.finalAnswer)throw new Error("القضية غير متاحة أو تم إنهاؤها.");
+   if((data.foundClues||[]).length<cfg.clues.length)throw new Error("لم يتم اكتشاف كل الأدلة.");
+   tx.update(mysteryDocs[caseId],{finalAnswer:{suspect,explanation,uid:user.uid,name:mysteryName(user.uid),submittedAt:Date.now()},status:"solved",updatedAt:serverTimestamp()});
+  });
+ }catch(error){console.error("Mystery final answer:",error);alert("ما قدرناش نعتمد الحل. ممكن الطرف التاني اعتمده بالفعل أو فيه مشكلة في الصلاحيات.");}
+ finally{button.disabled=false;button.textContent="اعتماد الحل النهائي 🔎";renderMysteryCase()}
+});
 </script><script>
 (()=>{const c=document.getElementById("galaxyCanvas"),x=c.getContext("2d");let w,h,s=[],raf;function resize(){w=innerWidth;h=innerHeight;c.width=w*devicePixelRatio;c.height=h*devicePixelRatio;c.style.width=w+"px";c.style.height=h+"px";x.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);s=Array.from({length:Math.min(90,Math.floor(w/6))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.6+.3,v:Math.random()*.2+.03,p:Math.random()*6.28,col:Math.random()>.5?"255,130,215":"181,145,255"}))}function draw(){x.clearRect(0,0,w,h);let t=Date.now()*.001;s.forEach(a=>{let g=.35+.65*(Math.sin(t*1.5+a.p)+1)/2;x.beginPath();x.arc(a.x,a.y,a.r,0,6.28);x.fillStyle=`rgba(${a.col},${g})`;x.shadowBlur=7;x.shadowColor=`rgba(${a.col},.7)`;x.fill();x.shadowBlur=0;a.y+=a.v;a.x+=Math.sin(t+a.p)*.06;if(a.y>h+3){a.y=-3;a.x=Math.random()*w}});raf=requestAnimationFrame(draw)}resize();draw();addEventListener("resize",resize);document.addEventListener("visibilitychange",()=>{if(document.hidden)cancelAnimationFrame(raf);else draw()})})();
 </script><script>
