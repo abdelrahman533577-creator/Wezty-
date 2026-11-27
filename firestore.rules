@@ -1,6 +1,8 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // الحسابان المصرح لهما باستخدام WEZTY فقط.
     function isAllowedUser() {
       return request.auth != null
         && request.auth.uid in [
@@ -9,17 +11,20 @@ service cloud.firestore {
         ];
     }
 
+    // حساب عبدالرحمن هو حساب الإدارة.
     function isAdmin() {
       return request.auth != null
         && request.auth.uid == 'DmbbqyG9t2SauNcV2v9LJGFXvYE3';
     }
 
+    // محتوى الموقع: الحسابان يقرآن، والإدارة فقط تعدّل.
     match /wezty_admin/content {
       allow read: if isAllowedUser();
       allow create, update: if isAdmin();
       allow delete: if false;
     }
 
+    // الرسائل الخاصة بين الحسابين.
     match /private_messages/{messageId} {
       allow read: if isAllowedUser();
       allow create: if isAllowedUser()
@@ -32,38 +37,72 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // إيصالات قراءة الرسائل.
     match /message_reads/{readId} {
       allow read, create, update: if isAllowedUser();
       allow delete: if false;
     }
 
+    // لعبة سؤال وسؤال المشتركة.
     match /shared_games/zozo_know_game {
       allow read, create, update: if isAllowedUser();
       allow delete: if false;
     }
 
-    // Mystery Room: only the two approved accounts can access the two case documents.
-    // Document IDs must match the IDs used by the app: mansion and train.
+    // Mystery Room — التحقيق التعاوني، مع القضايا الأربع.
     match /mystery_rooms/{caseId} {
       allow read, create, update: if isAllowedUser()
-        && caseId in ['mansion', 'train'];
+        && caseId in ['mansion', 'train', 'museum', 'lighthouse'];
       allow delete: if false;
     }
 
-    // Each approved account can register/update only its own FCM token.
-    match /wezty_push_tokens/{uid} {
+    // Guess the Number — الحالة العامة للجولة والتخمينات.
+    // الأرقام السرية لا تُخزّن في هذا المستند.
+    match /number_game_sessions/current {
+      allow read, create, update: if isAllowedUser();
+      allow delete: if false;
+    }
+
+    // Guess the Number — كل لاعب يقرأ ويكتب مستند رقمه السري فقط.
+    match /number_game_secrets/{uid} {
       allow read: if isAllowedUser() && request.auth.uid == uid;
       allow create, update: if isAllowedUser()
         && request.auth.uid == uid
-        && request.resource.data.uid == uid
-        && request.resource.data.token is string
-        && request.resource.data.token.size() > 20
-        && request.resource.data.platform == 'android';
+        && request.resource.data.uid == uid;
       allow delete: if false;
     }
 
-    match /{document=**} {
-      allow read, write: if false;
+    // Mystery Room — حالة تسليم التحدي الفردي المشتركة.
+    // لا تُعرض النتيجة إلا بعد وجود مستندي إجابة الحسابين.
+    match /mystery_solo_status/{caseId} {
+      allow read: if isAllowedUser()
+        && caseId in ['mansion', 'train', 'museum', 'lighthouse'];
+      allow create, update: if isAllowedUser()
+        && caseId in ['mansion', 'train', 'museum', 'lighthouse']
+        && request.resource.data.caseId == caseId
+        && (
+          request.resource.data.completed != true
+          || (
+            exists(/databases/$(database)/documents/mystery_solo_private/$(caseId + '_DmbbqyG9t2SauNcV2v9LJGFXvYE3'))
+            && exists(/databases/$(database)/documents/mystery_solo_private/$(caseId + '_eKw6zaBwDXP5g6wMyhbhoUBXf2D2'))
+          )
+        );
+      allow delete: if false;
     }
-  }
-}
+
+    // Mystery Room — الإجابة الفردية خاصة بصاحبها حتى اكتمال تسليم الحسابين.
+    match /mystery_solo_private/{docId} {
+      allow create, update: if isAllowedUser()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.caseId in ['mansion', 'train', 'museum', 'lighthouse']
+        && docId == request.resource.data.caseId + '_' + request.auth.uid;
+
+      allow read: if isAllowedUser()
+        && (
+          resource.data.uid == request.auth.uid
+          || get(/databases/$(database)/documents/mystery_solo_status/$(resource.data.caseId)).data.completed == true
+        );
+
+      allow delete: if false;
+    }
+
