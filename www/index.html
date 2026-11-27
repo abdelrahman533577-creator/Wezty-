@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>رسالة النهارده لوزتي ❤️</title><style>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>WEZTY — عالمكم الخاص ❤️</title><style>
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:22px;padding:24px 16px 112px;font-family:Arial,sans-serif;background:radial-gradient(ellipse at 20% 15%,#29113f 0,transparent 42%),radial-gradient(ellipse at 85% 80%,#25103b 0,transparent 45%),linear-gradient(145deg,#05030b,#0b0715 55%,#10091b);color:#f8eaff;overflow-x:hidden}
 #galaxyCanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
@@ -251,6 +251,39 @@ body::before{content:none!important;}
 .mystery-reveal.show{display:block}
 @media(max-width:380px){.mystery-page{padding:14px 10px}.mystery-case-grid,.mystery-clues{gap:6px}.mystery-case-card{padding:12px 7px;min-height:170px}.mystery-clue{padding:8px}.mystery-title{font-size:23px}}
 @media screen and (max-width:600px){.bottom-nav{grid-template-columns:repeat(7,minmax(0,1fr))!important}.mystery-page{max-height:calc(100svh - 82px);padding:12px 10px}.mystery-case-card{min-height:155px;padding:10px 6px}.mystery-case-icon{font-size:27px}.mystery-case-card strong{font-size:12px}.mystery-case-card>span:not(.mystery-case-icon){font-size:10px}.mystery-case-card small{font-size:9px}.mystery-section-title{margin:12px 0 6px}}
+
+/* WEZTY Game Center */
+.game-center-page{min-height:0}
+.center-game-grid,.mystery-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:18px 0}
+.center-game-card,.mystery-mode-card{min-height:150px;padding:18px 12px;border:1px solid var(--wezty-border);border-radius:19px;background:var(--wezty-soft);color:var(--wezty-text);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;text-align:center}
+.center-game-card{cursor:pointer}
+.center-game-card>span{font-size:36px}
+.center-game-card strong,.mystery-mode-card strong{font-size:15px;color:var(--wezty-text)}
+.center-game-card small,.mystery-mode-card small{font-size:11px;line-height:1.7;color:var(--wezty-muted)}
+.center-coming{text-align:center;color:var(--wezty-muted);font-size:12px;margin-top:20px}
+.mystery-mode-card{min-height:115px}
+.center-back{margin-bottom:12px}
+.number-secret-box{padding:13px;margin:12px 0;border:1px solid var(--wezty-border);border-radius:16px;background:var(--wezty-soft);text-align:right}
+.number-secret-box strong{color:var(--wezty-text);font-size:14px}
+.number-secret-box p,.number-secret-box small{display:block;color:var(--wezty-muted);font-size:11px;line-height:1.7;margin:7px 0}
+.number-input-row{display:flex;gap:7px;margin-top:10px}
+.number-input-row input{min-width:0;flex:1;width:100%;border:1px solid var(--wezty-border);border-radius:11px;background:var(--wezty-panel);color:var(--wezty-text);padding:11px;font:700 20px monospace;letter-spacing:5px;text-align:center;direction:ltr}
+.number-input-row button{border:0;border-radius:11px;padding:9px 12px;background:linear-gradient(135deg,var(--wezty-accent),var(--wezty-accent-2));color:white;font-size:11px;font-weight:bold}
+.number-history{display:grid;gap:7px;margin-top:9px}
+.number-history-row{padding:9px;border-radius:11px;background:var(--wezty-panel);border:1px solid var(--wezty-border);font-size:11px;line-height:1.7}
+.number-history-row b{font-family:monospace;font-size:17px;letter-spacing:3px;direction:ltr;display:inline-block}
+.number-history-row small{display:block}
+.mystery-case-card{cursor:pointer}
+.mystery-hidden{display:none!important}
+@media(max-width:600px){
+ .center-game-grid,.mystery-mode-grid{gap:8px}
+ .center-game-card{min-height:130px;padding:12px 8px}
+ .center-game-card>span{font-size:29px}
+ .center-game-card strong,.mystery-mode-card strong{font-size:12px}
+ .center-game-card small,.mystery-mode-card small{font-size:10px}
+ .number-input-row{flex-direction:column}
+ .number-input-row button{padding:11px}
+}
 </style><style>
 #weztyAuthGate{position:fixed;inset:0;z-index:50000;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(ellipse at 50% 20%,#321447,transparent 55%),#080511;color:#fff}
 #weztyAuthGate .auth-card{width:min(100%,420px);padding:28px;border:1px solid #dca1ff66;border-radius:24px;background:#1a1029ee;box-shadow:0 0 35px #a855f744;text-align:center}
@@ -407,47 +440,68 @@ body::before{content:none!important;}
 </style>
 <script type="importmap">{"imports":{"@capacitor/core":"https://cdn.jsdelivr.net/npm/@capacitor/core@7.4.3/dist/esm/index.js"}}</script></head><body><div id="weztyAuthGate"><div class="auth-card"><div style="font-size:48px">🪿💗</div><h1>WEZTY</h1><p>سجّل دخولك عشان تدخل عالم WEZTY</p><form id="weztyLoginForm"><input id="weztyEmail" type="email" autocomplete="username" placeholder="Gmail" required><input id="weztyPassword" type="password" autocomplete="current-password" placeholder="كلمة المرور" required><button type="submit">تسجيل الدخول</button></form><div id="weztyAuthError"></div></div></div><div id="weztyAdminBar"><button id="weztyAdminToggle">⚙️ الإدارة</button></div><div id="weztyAdminPanel"><div class="admin-inner"><button id="weztyAdminClose">إغلاق ✕</button><h2>WEZTY — مركز الإدارة</h2><p id="weztyAdminWelcome">مرحبًا Abdelrahman</p><section class="admin-editor"><h3>💌 إدارة الرسائل اليومية</h3><p>كل رسالة في سطر مستقل داخل محرر JSON. يمكنك تعديل النصوص أو إضافة رسائل جديدة.</p><textarea id="weztyMessagesEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:280px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="weztyLoadMessages">تحميل الرسائل الحالية</button><button id="weztySaveMessages">حفظ الرسائل على Firebase</button></div><p id="weztyAdminStatus" role="status"></p></section><section class="admin-editor"><h3>🧩 إدارة أسئلة اللعبة</h3><p>عدّل أسئلة كل مستوى. احتفظ بمفاتيح light وfeelings وdeep.</p><textarea id="weztyQuestionsEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎡 إدارة العجلة والتحديات</h3><p>كل قسم يحتوي name وitems. حافظ على 8 أقسام حتى تتطابق مع قطاعات العجلة الحالية.</p><textarea id="weztyWheelEditor" dir="ltr" spellcheck="false" style="width:100%;min-height:260px;background:#100a1b;color:#fff;border:1px solid #bd8bdd66;border-radius:12px;padding:12px;font:13px/1.6 monospace"></textarea></section><section class="admin-editor"><h3>🎨 الثيمات</h3><p>اختار الثيم؛ هيتطبق فورًا ويتحفظ تلقائيًا على Firebase.</p><select id="weztyThemeSelect" style="width:100%;padding:12px;border-radius:10px;background:#100a1b;color:white"><optgroup label="الثيمات الحالية"><option value="galaxy">Galaxy — البنفسجي الأصلي</option><option value="rose">Rose — الوردي</option><option value="ocean">Ocean — الأزرق</option><option value="darkBlue">Dark Blue — الأزرق الداكن</option><option value="purpleNeon">Purple Neon — البنفسجي النيون</option><option value="sunsetGlow">Sunset Glow — الغروب الذهبي</option><option value="natureForest">Nature Forest — الغابة الطبيعية</option></optgroup><optgroup label="الثيمات الجديدة"><option value="auroraGreen">Aurora Green</option><option value="galaxyDream">Galaxy Dream</option><option value="sakuraNight">Sakura Night</option><option value="pinkDream">Pink Dream — الحديقة الوردية</option><option value="oceanBlue">Ocean Blue</option><option value="royalGold">Royal Gold</option><option value="sunsetLove">Sunset Love</option><option value="cyberNeon">Cyber Neon</option><option value="softBeige">Soft Beige</option></optgroup></select></section><section class="admin-editor"><h3>🔐 Secret Zone</h3><p>محتوى القسم السري الظاهر للحسابين المصرح لهم.</p><label>عنوان القسم</label><input id="weztySecretTitle" style="width:100%;padding:12px;margin:8px 0;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"><label>المحتوى</label><textarea id="weztySecretBody" style="width:100%;min-height:130px;padding:12px;background:#100a1b;color:white;border:1px solid #bd8bdd66;border-radius:10px"></textarea><label style="display:block;margin:10px 0"><input type="checkbox" id="weztySecretEnabled" checked> تفعيل ظهور Secret Zone</label></section><div style="display:flex;gap:8px;flex-wrap:wrap"><button id="weztyLoadAll">تحميل كل الإعدادات</button><button id="weztySaveAll">حفظ المراحل الأربع على Firebase</button></div><p id="weztyAllStatus" role="status"></p><p style="font-size:12px;color:#e7b8dc">تنبيه: حماية Firestore الفعلية تتطلب نشر القواعد المقترحة ومراجعة اختبارها في Firebase Console. إخفاء أدوات الإدارة وحده ليس حماية.</p><button id="weztyLogout">تسجيل الخروج</button></div></div><canvas id="galaxyCanvas"></canvas><section class="intro-screen" id="introScreen" aria-label="صفحة البداية"><div class="intro-card"><div class="intro-art"><div class="intro-orbit"></div><div class="intro-goose">🪿</div></div><h2>حدث خطأ ما</h2><p>مش تايهة ولا حاجة... رسالتك الحلوة ومفاجأة النهارده مستنيينكي هنا 💌</p><button class="intro-button" id="goHomeButton" type="button">Go to Home</button><span class="intro-note">A little message made just for you ✨</span></div></section><section class="page-section active" id="messagesPage"><main class="card"><div class="heart">💗</div><h1>وزتي، يا أجمل حاجة في دنيتي</h1><div class="sub">كل يوم رسالة مخصوصة ليكي يا وزة 💌</div><div class="message" id="message">جاري تحميل رسالة النهارده...</div><div class="date" id="date"></div><div class="read-section"><p>خلصتي قراءة رسالة النهارده يا وزتي؟ 💗</p><button class="read-btn" id="herRead">أنا وزه ❤️ قريت الرسالة</button><button class="read-btn" id="myRead">أنا عبدالرحمن 💙 قريت الرسالة</button><div id="readStatus">جاري تحميل حالة القراءة...</div></div><div class="footer">ربنا يخليكي ليا ويحفظك من كل شر يا حبيبتي 🤍</div></main></section><section class="page-section" id="wheelPage"><section class="wheel-section"><h2>🎡 عجلة المفاجآت بتاعتك</h2><div class="wheel-sub">كل يوم ليكي لفة واحدة، شوفي النهارده مخبيلك إيه ❤️</div><div class="wheel-wrap"><div class="wheel-pointer"></div><div class="wheel" id="wheel"><span class="wheel-label" style="--x:62.4%;--y:19.7%">❤️ الحب</span><span class="wheel-label" style="--x:80.3%;--y:37.6%">😂 الضحك</span><span class="wheel-label" style="--x:80.3%;--y:62.4%">🎁 المفاجآت</span><span class="wheel-label" style="--x:62.4%;--y:80.3%">📸 الصور</span><span class="wheel-label" style="--x:37.6%;--y:80.3%">💌 الرسائل</span><span class="wheel-label" style="--x:19.7%;--y:62.4%">🧠 الأسئلة</span><span class="wheel-label" style="--x:19.7%;--y:37.6%">🥰 رومانسية</span><span class="wheel-label" style="--x:37.6%;--y:19.7%">✨ متنوعة</span></div><div class="wheel-center">💗</div></div><button class="wheel-btn" id="spinButton">لفّي العجلة 🎀</button><div class="wheel-status" id="wheelStatus"></div><div class="wheel-result" id="wheelResult"><h3>🎉 تحدي النهارده</h3><p id="challengeText"></p><div class="wheel-count" id="wheelCount"></div></div></section></section><section class="page-section" id="gamePage"><section class="game-section"><h2>🧩 اعرفيني أكتر</h2><div class="game-sub">سؤال ليكي وسؤال ليا... نشوف قد إيه عارفين بعض؟ ❤️</div><div class="game-sub" id="roleStatus">هويتك بتتحدد تلقائيًا من حساب تسجيل الدخول ❤️</div><div id="gameSetup"><div class="game-sub">اختاروا مستوى الأسئلة وابدأوا جولتكوا</div><div class="game-levels"><button class="level-btn selected" data-level="light">🌸 خفيف</button><button class="level-btn" data-level="feelings">❤️ مشاعر</button><button class="level-btn" data-level="deep">🧠 عميق</button></div><button class="game-action" id="startGame">ابدأوا اللعب 🎀</button></div><div id="gamePlay" class="game-panel game-hidden"><div class="game-turn" id="gameTurn"></div><div class="game-question" id="gameQuestion"></div><textarea class="game-answer" id="gameAnswer" placeholder="اكتب إجابتك هنا..."></textarea><button class="game-action" id="saveAnswer">احفظ الإجابة وكمل</button><div class="game-progress" id="gameProgress"></div><div class="game-summary" id="gameLiveAnswers"></div></div><div id="gameDone" class="game-panel game-hidden"><h3 style="color:#ff9cdd">خلصتوا الجولة! 🎉</h3><div class="game-summary" id="gameSummary"></div><button class="game-action" id="newGame">العبوا جولة جديدة</button></div></section></section><section class="page-section" id="memoriesPage"><main class="memories-page"><h2 class="memories-title">♡ Our Memories ♡</h2><p class="memories-subtitle">Two confessions... One beautiful story. ❤️</p><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">♥</span>The Day You First Said "I Love You"</h3><p class="memory-date">June 23, 2026 · 2:14 PM</p><div class="memory-days" id="memoryYouDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryYouHours">00</b>Hours</div><div class="memory-unit"><b id="memoryYouMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryYouSeconds">00</b>Seconds</div></div></article><article class="memory-counter" aria-live="off"><h3 class="memory-label"><span class="memory-icon">✉</span>The Day I First Said "I Love You"</h3><p class="memory-date">May 19, 2026 · 1:14 AM</p><div class="memory-days" id="memoryIDays">0 <span>Days</span></div><div class="memory-units"><div class="memory-unit"><b id="memoryIHours">00</b>Hours</div><div class="memory-unit"><b id="memoryIMinutes">00</b>Minutes</div><div class="memory-unit"><b id="memoryISeconds">00</b>Seconds</div></div></article><p class="memory-footer"><span class="memory-sparkle">✦</span> Every second since then has been a beautiful memory. ❤️</p></main></section>
 <section class="page-section" id="mysteryPage">
- <main class="mystery-page">
-  <div class="mystery-kicker">🕵️ CO-OP INVESTIGATION</div>
-  <h2 class="mystery-title">Mystery Room</h2>
-  <p class="mystery-subtitle">غرفة تحقيق مشتركة — اجمعوا الأدلة، اكتبوا ملاحظاتكم، ووصلوا للحقيقة سوا.</p>
-  <div id="mysteryStatus" class="mystery-status">جاري الاتصال بغرفة التحقيق...</div>
-  <div id="mysteryCasePicker" class="mystery-case-grid">
-   <button class="mystery-case-card" type="button" data-mystery-case="mansion">
-    <span class="mystery-case-icon">🏰</span><strong>القصر الغامض</strong>
-    <span>قطعة أثرية اختفت من غرفة مغلقة، وخمس روايات مش متطابقة.</span><small>القضية الأولى • 6 أدلة</small>
-   </button>
-   <button class="mystery-case-card" type="button" data-mystery-case="train">
-    <span class="mystery-case-icon">🚆</span><strong>لغز القطار</strong>
-    <span>حقيبة اختفت أثناء الرحلة، وكل راكب عنده جزء من الحكاية.</span><small>القضية الثانية • 6 أدلة</small>
-   </button>
+ <main class="mystery-page game-center-page">
+  <div id="gameCenterHome">
+   <div class="mystery-kicker">WEZTY • PLAY TOGETHER</div>
+   <h2 class="mystery-title">🎮 Game Center</h2>
+   <p class="mystery-subtitle">مركز ألعابكم — اختاروا التحدي وابدأوا اللعب.</p>
+   <div class="center-game-grid">
+    <button class="center-game-card" id="openMysteryHub" type="button"><span>🕵️</span><strong>Mystery Room</strong><small>قضايا وتحقيقات وتحديات ذكاء</small></button>
+    <button class="center-game-card" id="openNumberHub" type="button"><span>🔢</span><strong>Guess the Number</strong><small>كل واحد يخمن الرقم السري للتاني</small></button>
+   </div>
+   <div class="center-coming">✨ ألعاب جديدة قريبًا</div>
   </div>
+
+  <div id="mysteryHub" class="mystery-hidden">
+   <button class="mystery-back center-back" type="button" data-center-back>← مركز الألعاب</button>
+   <div class="mystery-kicker">🕵️ MYSTERY ROOM</div>
+   <h2 class="mystery-title">غرفة التحقيق</h2>
+   <p class="mystery-subtitle">اختاروا طريقة اللعب: تعاون أو منافسة، وكل قضية ليها تفاصيلها.</p><div id="mysteryStatus" class="mystery-status">جاري الاتصال بغرفة التحقيق...</div>
+   <div class="mystery-mode-grid">
+    <button class="mystery-mode-card" id="openCoopCases" type="button"><strong>🤝 التحقيق المشترك</strong><small>اجمعوا الأدلة واكتبوا استنتاجاتكم سوا.</small></button>
+    <button class="mystery-mode-card" id="openSoloCases" type="button"><strong>⚔️ تحدي المحققين</strong><small>كل واحد يحل لوحده، والنتيجة تظهر بعد ما الاتنين يسلّموا.</small></button>
+   </div>
+   <div id="mysteryCasePicker" class="mystery-case-grid mystery-hidden">
+    <button class="mystery-case-card" type="button" data-mystery-case="mansion"><span class="mystery-case-icon">🏰</span><strong>القصر الغامض</strong><span>قطعة أثرية اختفت من غرفة مغلقة.</span><small>القضية الأولى • 6 أدلة</small></button>
+    <button class="mystery-case-card" type="button" data-mystery-case="train"><span class="mystery-case-icon">🚆</span><strong>لغز القطار</strong><span>حقيبة اختفت أثناء الرحلة.</span><small>القضية الثانية • 6 أدلة</small></button>
+    <button class="mystery-case-card" type="button" data-mystery-case="museum"><span class="mystery-case-icon">🏛️</span><strong>سر المتحف</strong><span>لوحة أصلية اختفت ليلة الافتتاح، والنسخة المزيفة مكانها.</span><small>القضية الثالثة • صعب • 6 أدلة</small></button>
+    <button class="mystery-case-card" type="button" data-mystery-case="lighthouse"><span class="mystery-case-icon">🌊</span><strong>منارة منتصف الليل</strong><span>إشارة المنارة توقفت قبل وصول سفينة بدقائق.</span><small>القضية الرابعة • خبير • 6 أدلة</small></button>
+   </div>
+  </div>
+
   <div id="mysteryInvestigation" class="mystery-investigation mystery-hidden">
    <button id="mysteryBack" class="mystery-back" type="button">← كل القضايا</button>
-   <div class="mystery-case-heading">
-    <div id="mysteryCaseIcon" class="mystery-case-icon">🏰</div>
-    <div><h3 id="mysteryCaseTitle"></h3><p id="mysteryCaseIntro"></p></div>
-   </div>
+   <div class="mystery-case-heading"><div id="mysteryCaseIcon" class="mystery-case-icon">🏰</div><div><h3 id="mysteryCaseTitle"></h3><p id="mysteryCaseIntro"></p></div></div>
    <div class="mystery-progress-wrap"><div class="mystery-progress-label"><span>الأدلة المكتشفة</span><b id="mysteryProgress">0 / 6</b></div><div class="mystery-progress-track"><i id="mysteryProgressBar"></i></div></div>
-   <h4 class="mystery-section-title">ملف الأدلة</h4>
-   <div id="mysteryClues" class="mystery-clues"></div>
-   <h4 class="mystery-section-title">دفتر التحقيق المشترك</h4>
-   <p class="mystery-hint">أي ملاحظة يضيفها واحد فيكم هتظهر عند التاني مباشرة.</p>
+   <h4 class="mystery-section-title">ملف الأدلة</h4><div id="mysteryClues" class="mystery-clues"></div>
+   <h4 class="mystery-section-title">دفتر التحقيق المشترك</h4><p class="mystery-hint">أي ملاحظة يضيفها واحد فيكم هتظهر عند التاني مباشرة.</p>
    <form id="mysteryNoteForm" class="mystery-note-form"><textarea id="mysteryNoteInput" maxlength="500" rows="2" placeholder="اكتبوا ملاحظة أو استنتاج..."></textarea><button id="mysteryNoteSave" type="submit">أضف للدفتر</button></form>
    <div id="mysteryNotes" class="mystery-notes"></div>
-   <div class="mystery-final-box">
-    <h4 class="mystery-section-title">الاستنتاج النهائي</h4>
-    <p class="mystery-hint">لما تتفقوا، اختاروا الشخص المسؤول واكتبوا تفسيركم. الحل هيتكشف للطرفين بعد الإرسال.</p>
-    <label for="mysterySuspect">مين المسؤول؟</label>
-    <select id="mysterySuspect"><option value="">اختاروا من المشتبه فيهم</option></select>
-    <textarea id="mysteryExplanation" maxlength="800" rows="3" placeholder="إيه الأدلة اللي خلتكم توصلوا للاستنتاج ده؟"></textarea>
-    <button id="mysterySubmitFinal" type="button">اعتماد الحل النهائي 🔎</button>
-    <div id="mysteryReveal" class="mystery-reveal"></div>
-   </div>
+   <div class="mystery-final-box"><h4 class="mystery-section-title">الاستنتاج النهائي</h4><p class="mystery-hint">لما تتفقوا، اختاروا الشخص المسؤول واكتبوا تفسيركم.</p><label for="mysterySuspect">مين المسؤول؟</label><select id="mysterySuspect"><option value="">اختاروا من المشتبه فيهم</option></select><textarea id="mysteryExplanation" maxlength="800" rows="3" placeholder="إيه الأدلة اللي خلتكم توصلوا للاستنتاج ده؟"></textarea><button id="mysterySubmitFinal" type="button">اعتماد الحل النهائي 🔎</button><div id="mysteryReveal" class="mystery-reveal"></div></div>
+  </div>
+
+  <div id="mysterySolo" class="mystery-investigation mystery-hidden">
+   <button id="mysterySoloBack" class="mystery-back" type="button">← القضايا</button>
+   <div class="mystery-case-heading"><div id="soloCaseIcon" class="mystery-case-icon">🏛️</div><div><h3 id="soloCaseTitle"></h3><p id="soloCaseIntro"></p></div></div>
+   <p class="mystery-hint">حل القضية بنفسك. تقدمك وإجابتك منفصلين عن الطرف الآخر، والنتيجة النهائية هتظهر بعد تسليمكما.</p>
+   <div class="mystery-progress-wrap"><div class="mystery-progress-label"><span>أدلتك المكتشفة</span><b id="soloProgress">0 / 6</b></div><div class="mystery-progress-track"><i id="soloProgressBar"></i></div></div>
+   <h4 class="mystery-section-title">أدلة القضية</h4><div id="soloClues" class="mystery-clues"></div>
+   <div class="mystery-final-box"><h4 class="mystery-section-title">إجابتك النهائية</h4><label for="soloSuspect">مين المسؤول؟</label><select id="soloSuspect"><option value="">اختار المشتبه فيه</option></select><textarea id="soloExplanation" maxlength="800" rows="3" placeholder="اكتب تفسيرك والأدلة اللي اعتمدت عليها"></textarea><button id="soloSubmit" type="button">تسليم إجابتي 🔎</button><div id="soloResult" class="mystery-reveal"></div></div>
+  </div>
+
+  <div id="numberGame" class="mystery-investigation mystery-hidden">
+   <button class="mystery-back center-back" type="button" data-center-back>← مركز الألعاب</button>
+   <div class="mystery-kicker">🔢 SECRET CODE DUEL</div><h2 class="mystery-title">Guess the Number</h2>
+   <p class="mystery-subtitle">كل واحد يختار رقم سري من 3 خانات مختلفة، وبعدها تحاولوا تكتشفوا رقم بعض.</p>
+   <div id="numberStatus" class="mystery-status">جاري الاتصال...</div>
+   <div class="number-secret-box"><strong>1. اختار رقمك السري</strong><p>الرقم مش هيظهر للطرف التاني. الأرقام لازم تكون مختلفة، والصفر مسموح في البداية.</p><div class="number-input-row"><input id="numberSecretInput" inputmode="numeric" maxlength="3" placeholder="مثال 047" autocomplete="off"><button id="numberSetSecret" type="button">تأكيد الرقم</button></div><small id="numberSecretState"></small></div>
+   <div class="number-secret-box"><strong>2. خمن رقم الطرف التاني</strong><div class="number-input-row"><input id="numberGuessInput" inputmode="numeric" maxlength="3" placeholder="3 أرقام مختلفة" autocomplete="off"><button id="numberSendGuess" type="button">إرسال التخمين</button></div><small>النتيجة: أرقام صحيحة في مكانها، وأرقام صحيحة في أماكن مختلفة.</small></div>
+   <div class="number-secret-box"><strong>سجل التخمينات</strong><div id="numberHistory" class="number-history">لسه مفيش تخمينات.</div></div>
+   <button id="numberNewRound" class="mystery-back" type="button">بدء جولة جديدة ↻</button>
   </div>
  </main>
 </section>
-<section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section><section class="page-section" id="comingPage"><main class="private-chat"><div class="coming-badge">💌 Private messages</div><h2 class="coming-title">Messages</h2><p class="coming-subtitle">أي رسالة تبعتها هتظهر عند الطرف التاني مباشرة ❤️</p><div id="privateChatStatus" class="chat-status">جاري الاتصال...</div><div id="privateChatMessages" class="private-chat-messages" aria-live="polite"></div><form id="privateChatForm" class="private-chat-form"><textarea id="privateChatInput" maxlength="2000" rows="2" placeholder="اكتب رسالتك هنا..." required></textarea><button id="privateChatSend" class="game-action" type="submit">إرسال 💌</button></form></main></section><nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>Chat</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>Wheel</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>Know Me</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">💌</span><span>Our Message</span></button><button class="nav-btn" type="button" data-page="mysteryPage"><span class="nav-icon">🕵️</span><span>Mystery</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret</span></button></nav><div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div><script type="module">
+<section class="page-section" id="secretPage"><main class="coming-page"><div class="coming-badge">🔐 Private corner</div><h2 class="coming-title" id="secretPageTitle">Secret Zone</h2><p class="coming-subtitle" id="secretPageBody">مساحة صغيرة خاصة بيكم ❤️</p></main></section><section class="page-section" id="comingPage"><main class="private-chat"><div class="coming-badge">💌 Private messages</div><h2 class="coming-title">Messages</h2><p class="coming-subtitle">أي رسالة تبعتها هتظهر عند الطرف التاني مباشرة ❤️</p><div id="privateChatStatus" class="chat-status">جاري الاتصال...</div><div id="privateChatMessages" class="private-chat-messages" aria-live="polite"></div><form id="privateChatForm" class="private-chat-form"><textarea id="privateChatInput" maxlength="2000" rows="2" placeholder="اكتب رسالتك هنا..." required></textarea><button id="privateChatSend" class="game-action" type="submit">إرسال 💌</button></form></main></section><nav class="bottom-nav" aria-label="التنقل بين أقسام الموقع"><button class="nav-btn active" type="button" data-page="messagesPage"><span class="nav-icon">💌</span><span>Chat</span></button><button class="nav-btn" type="button" data-page="wheelPage"><span class="nav-icon">🎡</span><span>Wheel</span></button><button class="nav-btn" type="button" data-page="gamePage"><span class="nav-icon">🧩</span><span>Know Me</span></button><button class="nav-btn" type="button" data-page="memoriesPage"><span class="nav-icon">💗</span><span>Memories</span></button><button class="nav-btn" type="button" data-page="comingPage"><span class="nav-icon">💌</span><span>Our Message</span></button><button class="nav-btn" type="button" data-page="mysteryPage"><span class="nav-icon">🎮</span><span>Games</span></button><button class="nav-btn" type="button" data-page="secretPage"><span class="nav-icon">🔐</span><span>Secret</span></button></nav><div class="touch-surprise" id="touchSurprise"><div class="surprise-box"><div class="big-heart">💗</div><p>عارفة يا وزتي؟ 🥹<br>كل لمسة منك هنا بتفكرني<br>قد إيه إنتي مميزة عندي ❤️</p><button class="surprise-close" id="closeSurprise">بحبك يا وزة 💕</button></div></div><script type="module">
 import{initializeApp}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js";import{getFirestore,doc,setDoc,getDoc,serverTimestamp,onSnapshot,runTransaction,collection,addDoc,query,orderBy}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";import{getAuth,signInWithEmailAndPassword,onAuthStateChanged,signOut}from"https://www.gstatic.com/firebasejs/11.10.0/firebase-auth.js";
 const firebaseConfig={apiKey:"AIzaSyD4I4NviTS4pNo5hxksiGDr-2SiOVaj4AI",authDomain:"zozo-41d24.firebaseapp.com",projectId:"zozo-41d24",storageBucket:"zozo-41d24.firebasestorage.app",messagingSenderId:"872003176089",appId:"1:872003176089:web:c9d522e470d6e7124b5a08",measurementId:"G-HZRTXWPJSX"};const app=initializeApp(firebaseConfig),db=getFirestore(app),auth=getAuth(app);
 // Native Android push registration (the web version safely skips this block).
@@ -865,6 +919,158 @@ gameEl("newGame").addEventListener("click",()=>{gameDone.classList.add("game-hid
 
 
 // Mystery Room: two shared co-op cases. Both authorized accounts can investigate.
+
+/* Game Center navigation */
+const gc=id=>document.getElementById(id);
+let mysteryPlayMode="coop",activeSoloCase=null,soloFound=[];
+function showGameCenterPanel(panel){
+ ["gameCenterHome","mysteryHub","numberGame","mysteryInvestigation","mysterySolo"].forEach(id=>gc(id)?.classList.add("mystery-hidden"));
+ gc(panel)?.classList.remove("mystery-hidden");
+}
+gc("openMysteryHub").addEventListener("click",()=>showGameCenterPanel("mysteryHub"));
+gc("openNumberHub").addEventListener("click",()=>{showGameCenterPanel("numberGame");initNumberGame()});
+document.querySelectorAll("[data-center-back]").forEach(b=>b.addEventListener("click",()=>showGameCenterPanel("gameCenterHome")));
+gc("openCoopCases").addEventListener("click",()=>{mysteryPlayMode="coop";gc("mysteryCasePicker").classList.remove("mystery-hidden");});
+gc("openSoloCases").addEventListener("click",()=>{mysteryPlayMode="solo";gc("mysteryCasePicker").classList.remove("mystery-hidden");});
+/* Secret-code game: each player's secret is stored in a UID-owned document. */
+const numberPublicRef=doc(db,"number_game_sessions","current");
+const numberSecretRef=uid=>doc(db,"number_game_secrets",uid);
+let numberPublicState=null,numberUnsub=null,numberProcessing=new Set();
+const numberOpponent=uid=>uid===WEZTY_ADMIN_UID?WEZTY_VIEWER_UID:WEZTY_ADMIN_UID;
+const numberPlayerName=uid=>uid===WEZTY_ADMIN_UID?"Abdelrahman":"Weza";
+function validThreeDigits(v){return /^[0-9]{3}$/.test(v)&&new Set(v).size===3}
+function numberFeedback(secret,guess){
+ let exact=0,common=0;
+ for(let i=0;i<3;i++){if(secret[i]===guess[i])exact++}
+ for(const d of guess){if(secret.includes(d))common++}
+ return {exact,misplaced:common-exact};
+}
+function renderNumberGame(){
+ const state=numberPublicState||{},user=auth.currentUser;if(!user)return;
+ const ready=state.ready||{},myReady=!!ready[user.uid],theirReady=!!ready[numberOpponent(user.uid)];
+ gc("numberStatus").textContent=state.winner?("🏆 "+numberPlayerName(state.winner)+" اكتشف الرقم وفاز بالجولة!"):theirReady&&myReady?"الاتنين جاهزين — ابدأوا التخمين!":myReady?"رقمك اتسجل سرًا. مستنيين الطرف التاني يختار رقمه.":theirReady?"الطرف التاني اختار رقمه. دورك تختار رقمك السري.":"اختاروا أرقامكم السرية الأول.";
+ gc("numberSecretState").textContent=myReady?"✅ رقمك السري محفوظ للجولة الحالية.":"لسه ما اخترتش رقم سري للجولة.";
+ gc("numberSecretInput").disabled=myReady||!!state.winner;gc("numberSetSecret").disabled=myReady||!!state.winner;
+ gc("numberGuessInput").disabled=!(myReady&&theirReady)||!!state.winner;gc("numberSendGuess").disabled=!(myReady&&theirReady)||!!state.winner;
+ const guesses=Array.isArray(state.guesses)?state.guesses:[];
+ gc("numberHistory").innerHTML=guesses.length?guesses.slice().reverse().map(g=>`<div class="number-history-row"><b>${mysteryEscape(g.guess)}</b><small>${mysteryEscape(numberPlayerName(g.fromUid))} ← ${g.feedback?`${g.feedback.exact} في مكانهم • ${g.feedback.misplaced} في مكان غلط`:"في انتظار رد صاحب الرقم"}</small></div>`).join(""):'لسه مفيش تخمينات.';
+}
+async function processIncomingNumberGuesses(){
+ const user=auth.currentUser;if(!user||!numberPublicState)return;
+ const round=numberPublicState.roundId,secretSnap=await getDoc(numberSecretRef(user.uid));
+ if(!secretSnap.exists()||secretSnap.data().roundId!==round)return;
+ const secret=secretSnap.data().secret;
+ for(const g of (numberPublicState.guesses||[])){
+  if(g.toUid!==user.uid||g.feedback||numberProcessing.has(g.id))continue;
+  numberProcessing.add(g.id);
+  try{
+   await runTransaction(db,async tx=>{
+    const snap=await tx.get(numberPublicRef);if(!snap.exists())return;
+    const data=snap.data(),arr=[...(data.guesses||[])],item=arr.find(x=>x.id===g.id);
+    if(!item||item.feedback||data.roundId!==round)return;
+    item.feedback=numberFeedback(secret,item.guess);item.answeredAt=Date.now();
+    if(item.feedback.exact===3)data.winner=user.uid;
+    tx.set(numberPublicRef,{...data,guesses:arr,updatedAt:serverTimestamp()});
+   });
+  }catch(e){console.warn("Number feedback:",e)}
+  finally{numberProcessing.delete(g.id)}
+ }
+}
+async function initNumberGame(){
+ if(!auth.currentUser)return;
+ if(numberUnsub)numberUnsub();
+ try{
+  const snap=await getDoc(numberPublicRef);
+  if(!snap.exists())await setDoc(numberPublicRef,{roundId:"round-"+Date.now(),ready:{},guesses:[],winner:null,updatedAt:serverTimestamp()});
+  numberUnsub=onSnapshot(numberPublicRef,s=>{numberPublicState=s.exists()?s.data():null;renderNumberGame();processIncomingNumberGuesses().catch(console.warn)},e=>{gc("numberStatus").textContent="تعذر الاتصال بلعبة الأرقام. راجع قواعد Firestore."});
+ }catch(e){console.error(e);gc("numberStatus").textContent="تعذر بدء اللعبة. راجع صلاحيات Firestore."}
+}
+gc("numberSetSecret").addEventListener("click",async()=>{
+ const user=auth.currentUser,value=gc("numberSecretInput").value.trim();
+ if(!user||!validThreeDigits(value)){alert("اكتب 3 أرقام مختلفة، ومسموح يبدأ الرقم بصفر.");return}
+ const round=numberPublicState?.roundId;if(!round)return;
+ try{
+  await setDoc(numberSecretRef(user.uid),{uid:user.uid,roundId:round,secret:value,updatedAt:serverTimestamp()});
+  await runTransaction(db,async tx=>{const snap=await tx.get(numberPublicRef);const d=snap.exists()?snap.data():{roundId:round,ready:{},guesses:[]};if(d.roundId!==round)throw new Error("بدأت جولة جديدة");const ready={...(d.ready||{}),[user.uid]:true};tx.set(numberPublicRef,{...d,ready,updatedAt:serverTimestamp()})});
+  gc("numberSecretInput").value="";
+ }catch(e){alert("ما قدرناش نحفظ الرقم. راجع اتصال وقواعد Firestore.")}
+});
+gc("numberSendGuess").addEventListener("click",async()=>{
+ const user=auth.currentUser,guess=gc("numberGuessInput").value.trim(),state=numberPublicState;
+ if(!user||!validThreeDigits(guess)){alert("التخمين لازم يكون 3 أرقام مختلفة.");return}
+ if(!state?.ready?.[user.uid]||!state?.ready?.[numberOpponent(user.uid)]){alert("لازم كل واحد يختار رقمه السري الأول.");return}
+ if(state.winner){alert("الجولة انتهت. ابدأوا جولة جديدة.");return}
+ try{
+  await runTransaction(db,async tx=>{
+   const snap=await tx.get(numberPublicRef);if(!snap.exists())throw new Error("لا توجد جولة");
+   const d=snap.data();if(d.winner||d.roundId!==state.roundId)throw new Error("الجولة انتهت");
+   const guesses=[...(d.guesses||[])];guesses.push({id:crypto.randomUUID(),fromUid:user.uid,toUid:numberOpponent(user.uid),guess,feedback:null,createdAt:Date.now()});
+   tx.set(numberPublicRef,{...d,guesses,updatedAt:serverTimestamp()});
+  });
+  gc("numberGuessInput").value="";
+ }catch(e){alert("التخمين ما اتحفظش. حاول تاني.")}
+});
+gc("numberNewRound").addEventListener("click",async()=>{
+ if(!confirm("تبدأوا جولة جديدة؟ هتحتاجوا تختاروا أرقام سرية جديدة."))return;
+ try{await setDoc(numberPublicRef,{roundId:"round-"+Date.now(),ready:{},guesses:[],winner:null,updatedAt:serverTimestamp()});}
+ catch(e){alert("تعذر بدء جولة جديدة.")}
+});
+/* Individual case challenge: private answer docs, shared completion flags. */
+const soloStatusRef=caseId=>doc(db,"mystery_solo_status",caseId);
+const soloPrivateRef=(caseId,uid)=>doc(db,"mystery_solo_private",caseId+"_"+uid);
+let soloStatusUnsub=null,soloStatusData=null,soloOwnUnsub=null,soloOwnData=null;
+function soloStorageKey(){return "wezty_solo_"+activeSoloCase+"_"+auth.currentUser.uid}
+function renderSoloCase(){
+ if(!activeSoloCase||!auth.currentUser)return;
+ const cfg=MYSTERY_CASES[activeSoloCase],done=soloStatusData?.completed===true;
+ gc("soloCaseIcon").textContent=cfg.icon;gc("soloCaseTitle").textContent=cfg.title;gc("soloCaseIntro").textContent=cfg.intro;
+ gc("soloProgress").textContent=soloFound.length+" / "+cfg.clues.length;gc("soloProgressBar").style.width=(soloFound.length/cfg.clues.length*100)+"%";
+ gc("soloClues").innerHTML=cfg.clues.map((c,i)=>{const found=soloFound.includes(i);return `<div class="mystery-clue ${found?"found":""}"><button type="button" data-solo-clue="${i}" ${found||soloOwnData?"disabled":""}><strong>${found?mysteryEscape(c.title):"دليل مقفول • "+(i+1)}</strong><span>${found?mysteryEscape(c.text):"اضغط لعرض الدليل — تقدمك خاص بيك."}</span></button></div>`}).join("");
+ gc("soloClues").querySelectorAll("[data-solo-clue]").forEach(b=>b.addEventListener("click",()=>{const i=Number(b.dataset.soloClue);if(!soloFound.includes(i)){soloFound.push(i);localStorage.setItem(soloStorageKey(),JSON.stringify(soloFound));renderSoloCase()}}));
+ const select=gc("soloSuspect");if(select.dataset.caseId!==activeSoloCase){select.innerHTML='<option value="">اختار المشتبه فيه</option>'+cfg.suspects.map(x=>`<option value="${mysteryEscape(x)}">${mysteryEscape(x)}</option>`).join("");select.dataset.caseId=activeSoloCase}
+ if(soloOwnData){select.value=soloOwnData.suspect;select.disabled=true;gc("soloExplanation").value=soloOwnData.explanation||"";gc("soloExplanation").disabled=true;gc("soloSubmit").disabled=true;gc("soloSubmit").textContent="تم تسليم إجابتك";}
+ else{select.disabled=false;gc("soloExplanation").disabled=false;gc("soloSubmit").disabled=false;gc("soloSubmit").textContent="تسليم إجابتي 🔎"}
+ const result=gc("soloResult");
+ if(done){result.classList.add("show");result.textContent="🎉 اكتمل التحدي! تم تسليم إجابة المحققين. جاري عرض النتيجة.";loadSoloResults().catch(console.warn)}
+ else{result.classList.remove("show");result.textContent=soloOwnData?"إجابتك اتسجلت سرًا. مستنيين الطرف التاني يسلّم.":""}
+}
+async function loadSoloResults(){
+ if(!soloStatusData?.completed||!activeSoloCase)return;
+ const other=numberOpponent(auth.currentUser.uid),mine=soloOwnData;
+ const otherSnap=await getDoc(soloPrivateRef(activeSoloCase,other));
+ if(!otherSnap.exists())return;
+ const theirs=otherSnap.data(),cfg=MYSTERY_CASES[activeSoloCase];
+ const mineCorrect=mine?.suspect===cfg.answer,otherCorrect=theirs.suspect===cfg.answer;
+ gc("soloResult").classList.add("show");
+ gc("soloResult").textContent=`🏁 نتيجة القضية: ${cfg.title}\\n\\n${numberPlayerName(auth.currentUser.uid)}: ${mineCorrect?"إجابة صحيحة ✅":"إجابة غير صحيحة ❌"} • ${mine?.elapsedSeconds??"—"} ثانية\\n${numberPlayerName(other)}: ${otherCorrect?"إجابة صحيحة ✅":"إجابة غير صحيحة ❌"} • ${theirs.elapsedSeconds??"—"} ثانية\\n\\nالحل المدعوم بالأدلة: ${cfg.answer}\\n${cfg.solution}\\n\\nتفسيرك: ${mine?.explanation||"—"}\\nتفسير الطرف الآخر: ${theirs.explanation||"—"}`;
+}
+async function openSoloCase(caseId){
+ activeSoloCase=caseId;soloFound=[];soloOwnData=null;soloStatusData=null;
+ try{soloFound=JSON.parse(localStorage.getItem(soloStorageKey())||"[]")}catch(e){}
+ if(!localStorage.getItem(soloStorageKey()+"_start"))localStorage.setItem(soloStorageKey()+"_start",String(Date.now()));
+ showGameCenterPanel("mysterySolo");
+ if(soloStatusUnsub)soloStatusUnsub();if(soloOwnUnsub)soloOwnUnsub();
+ soloStatusUnsub=onSnapshot(soloStatusRef(caseId),snap=>{soloStatusData=snap.exists()?snap.data():null;renderSoloCase()},console.warn);
+ soloOwnUnsub=onSnapshot(soloPrivateRef(caseId,auth.currentUser.uid),snap=>{soloOwnData=snap.exists()?snap.data():null;renderSoloCase()},console.warn);
+}
+gc("mysterySoloBack").addEventListener("click",()=>{if(soloStatusUnsub)soloStatusUnsub();if(soloOwnUnsub)soloOwnUnsub();showGameCenterPanel("mysteryHub");gc("mysteryCasePicker").classList.remove("mystery-hidden")});
+gc("soloSubmit").addEventListener("click",async()=>{
+ if(!activeSoloCase||!auth.currentUser)return;
+ const cfg=MYSTERY_CASES[activeSoloCase],suspect=gc("soloSuspect").value,explanation=gc("soloExplanation").value.trim();
+ if(soloFound.length<cfg.clues.length){alert("افتح كل الأدلة الستة الأول.");return}
+ if(!suspect||!explanation){alert("اختار المشتبه فيه واكتب تفسيرك.");return}
+ const start=Number(localStorage.getItem(soloStorageKey()+"_start")||Date.now());localStorage.setItem(soloStorageKey()+"_start",String(start));
+ const payload={caseId:activeSoloCase,uid:auth.currentUser.uid,name:numberPlayerName(auth.currentUser.uid),suspect,explanation,elapsedSeconds:Math.max(0,Math.round((Date.now()-start)/1000)),submittedAt:Date.now()};
+ try{
+  await setDoc(soloPrivateRef(activeSoloCase,auth.currentUser.uid),payload);
+  await runTransaction(db,async tx=>{
+   const ref=soloStatusRef(activeSoloCase),snap=await tx.get(ref),data=snap.exists()?snap.data():{submittedUids:[]};
+   const submitted=[...new Set([...(data.submittedUids||[]),auth.currentUser.uid])];
+   tx.set(ref,{caseId:activeSoloCase,submittedUids:submitted,completed:MYSTERY_ALLOWED_UIDS.every(uid=>submitted.includes(uid)),updatedAt:serverTimestamp()},{merge:true});
+  });
+ }catch(e){console.error(e);alert("تعذر تسليم الإجابة. راجع صلاحيات Firestore.");}
+});
+
 const MYSTERY_ALLOWED_UIDS=[WEZTY_ADMIN_UID,WEZTY_VIEWER_UID];
 const MYSTERY_CASES={
  mansion:{
@@ -896,11 +1102,41 @@ const MYSTERY_CASES={
   ],
   answer:"هادي — مراقب القطار",
   solution:"هادي نقل الحقيبة إلى رف آمن في العربة الثالثة لأنها كانت تعوق ممر الخروج. لم يأخذها لنفسه؛ سجل النقل والملصق والتسجيل ورقم البطاقة يوضحون مكانها وسبب نقلها."
+ },
+ museum:{
+  title:"سر المتحف",icon:"🏛️",
+  intro:"في ليلة افتتاح معرض نادر، اختفت اللوحة الأصلية من إطارها وظهرت نسخة مطابقة تقريبًا. نظام الإنذار لم يسجل اقتحامًا، وأربعة أشخاص امتلكوا صلاحية دخول القاعة.",
+  suspects:["ماهر — أمين المعرض","ليلى — مرممة اللوحات","كريم — مسؤول الإضاءة","نهى — منسقة الافتتاح","طارق — مسؤول الأمن"],
+  clues:[
+   {title:"سجل الرطوبة",text:"سجل القاعة يوضح ارتفاع الرطوبة الساعة 7:40، وهو وقت يستدعي نقل اللوحات الحساسة إلى غرفة الحفظ."},
+   {title:"بطاقة الدخول",text:"بطاقة ليلى فُتحت بها غرفة الحفظ الساعة 7:46، بينما بطاقة ماهر دخلت قاعة العرض الساعة 7:51."},
+   {title:"أثر الإطار",text:"النسخة الموجودة في الإطار مثبتة بشريط ترميم أزرق لا يستخدمه إلا فريق الترميم."},
+   {title:"رسالة الصيانة",text:"رسالة داخلية تطلب فحص اللوحة الأصلية قبل الافتتاح بسبب انفصال بسيط في طبقة الورنيش."},
+   {title:"صورة الممر",text:"صورة التقطت الساعة 7:55 تظهر ليلى تحمل صندوق نقل معتمدًا باتجاه غرفة الحفظ، ولا يظهر عليها استعجال أو محاولة إخفاء."},
+   {title:"سجل غرفة الحفظ",text:"تم تسجيل اللوحة الأصلية باسم ليلى في الرف B-12، ومعها تقرير حالة يثبت أن النقل تم لحمايتها."}
+  ],
+  answer:"ليلى — مرممة اللوحات",
+  solution:"ليلى نقلت الأصل إلى غرفة الحفظ لحمايته بعد ارتفاع الرطوبة وظهور مشكلة في الورنيش. شريط الترميم وسجل الدخول وتقرير الحفظ يربطونها بالنسخة البديلة، لكن النقل كان إجراء حماية موثقًا لا سرقة."
+ },
+ lighthouse:{
+  title:"منارة منتصف الليل",icon:"🌊",
+  intro:"توقفت إشارة المنارة لمدة 11 دقيقة قبل وصول سفينة شحن. لم يقع حادث، لكن سجل التشغيل يظهر تعديلًا غير معتاد في جدول الإضاءة.",
+  suspects:["سامي — مشغل المنارة","هدى — مهندسة الكهرباء","باسم — مسؤول الميناء","رائد — فني الاتصالات","مروان — قائد دورية الساحل"],
+  clues:[
+   {title:"سجل الطاقة",text:"مصدر الطاقة الرئيسي ظل يعمل طوال الليل، لكن دائرة المصباح الاحتياطي فُصلت يدويًا الساعة 11:52."},
+   {title:"تقرير الطقس",text:"تقرير الطقس سجل ضبابًا كثيفًا بدأ الساعة 11:45، وكان من المفترض زيادة شدة الإشارة لا إيقافها."},
+   {title:"مفتاح التحكم",text:"مفتاح لوحة الإضاءة الاحتياطية لا يعمل إلا ببطاقة فني الكهرباء، وقد استُخدمت بطاقة هدى الساعة 11:51."},
+   {title:"اتصال الميناء",text:"سجل الاتصال يوضح أن باسم طلب اختبارًا قصيرًا للإشارة، لكن الطلب كان محددًا للساعة 12:20 وليس 11:52."},
+   {title:"تقرير الفحص",text:"هدى أرسلت قبل الواقعة تقريرًا يحذر من سخونة زائدة في وحدة التحويل، ويوصي بفصلها عند ظهور مؤشر أحمر."},
+   {title:"صورة لوحة التحكم",text:"صورة الساعة 11:53 تظهر مؤشر الحرارة الأحمر ورسالة فصل تلقائي معلقة، وبجانبها بطاقة هدى المستخدمة في الفحص."}
+  ],
+  answer:"هدى — مهندسة الكهرباء",
+  solution:"هدى فصلت دائرة الإضاءة الاحتياطية بعد ظهور تحذير سخونة في وحدة التحويل، لكنها أخطأت في تقدير أثر ذلك على الإشارة. سجل البطاقة وتقرير الفحص وصورة اللوحة تدعم مسؤوليتها عن الانقطاع، دون دليل على محاولة تعطيل المنارة عمدًا."
  }
 };
-const mysteryDocs={mansion:doc(db,"mystery_rooms","mansion"),train:doc(db,"mystery_rooms","train")};
-const mysteryState={mansion:null,train:null};
-const mysteryUnsubs={mansion:null,train:null};
+const mysteryDocs=Object.fromEntries(Object.keys(MYSTERY_CASES).map(id=>[id,doc(db,"mystery_rooms",id)]));
+const mysteryState=Object.fromEntries(Object.keys(MYSTERY_CASES).map(id=>[id,null]));
+const mysteryUnsubs=Object.fromEntries(Object.keys(MYSTERY_CASES).map(id=>[id,null]));
 let activeMysteryCase=null;
 const mysteryById=id=>document.getElementById(id);
 function mysteryEscape(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
@@ -923,6 +1159,7 @@ function startMysteryListeners(){
 function showMysteryCase(caseId){
  if(!MYSTERY_CASES[caseId])return;
  activeMysteryCase=caseId;
+ mysteryById("mysteryHub").classList.add("mystery-hidden");
  mysteryById("mysteryCasePicker").classList.add("mystery-hidden");
  mysteryById("mysteryInvestigation").classList.remove("mystery-hidden");
  renderMysteryCase();
@@ -979,10 +1216,13 @@ async function discoverMysteryClue(index){
   });
  }catch(error){console.error("Mystery clue:",error);alert("الدليل ما اتحفظش. اتأكدوا من صلاحيات Firestore لمجموعة mystery_rooms.")}
 }
-mysteryById("mysteryCasePicker").querySelectorAll("[data-mystery-case]").forEach(button=>button.addEventListener("click",()=>showMysteryCase(button.dataset.mysteryCase)));
+mysteryById("mysteryCasePicker").querySelectorAll("[data-mystery-case]").forEach(button=>button.addEventListener("click",()=>{
+  if(mysteryPlayMode==="solo")openSoloCase(button.dataset.mysteryCase);else showMysteryCase(button.dataset.mysteryCase);
+ }));
 mysteryById("mysteryBack").addEventListener("click",()=>{
  activeMysteryCase=null;
  mysteryById("mysteryInvestigation").classList.add("mystery-hidden");
+ mysteryById("mysteryHub").classList.remove("mystery-hidden");
  mysteryById("mysteryCasePicker").classList.remove("mystery-hidden");
 });
 mysteryById("mysteryNoteForm").addEventListener("submit",async event=>{
